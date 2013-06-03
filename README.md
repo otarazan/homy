@@ -1,4 +1,2 @@
-homy
-====
-
-getting rid of little problems
+Initial homy project 
+Play version 1.2.2
