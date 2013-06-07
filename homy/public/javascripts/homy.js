@@ -19,3 +19,6 @@ $(document).ready(function()
 ); 
 
 //create tab on task page
+$(function() {
+    $( "#tabs" ).tabs();
+  });

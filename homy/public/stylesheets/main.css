@@ -43,3 +43,27 @@ body {
 .expand-box span{
     float:left;
 }
+
+
+
+#hommy
+
+#quotescointainer{
+    width: 100%;
+    font-size: 12px;
+    overflow: hidden; /* contain floated elements */
+    background: #ccc
+}
+#quotesleft {
+    float: left; 
+    width: 90;
+    background-color: #bbb;
+}
+#quotescenter { 
+    float: left;
+    background-color: #eee;
+    width: 80%;
+}
+#quotesright{
+    float: left;
+}

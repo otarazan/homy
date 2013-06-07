@@ -4,16 +4,17 @@
 <head>
 <title>#{get 'title' /}</title>
 <meta charset="${_response_encoding}">
-<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
-<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/style.css'}">
+<link rel="stylesheet" media="screen"	href="@{'/public/stylesheets/main.css'}">
+<link rel="stylesheet" media="screen"	href="@{'/public/stylesheets/style.css'}">
+<link rel="stylesheet"	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 #{get 'moreStyles' /}
-<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+<link rel="shortcut icon" type="image/png"	href="@{'/public/images/favicon.png'}">
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="@{'/public/javascripts/jquery.tablesorter.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-<script src="@{'/public/javascripts/homy.js'}" type="text/javascript" charset="${_response_encoding}"></script> 
+<script src="@{'/public/javascripts/jquery.tablesorter.js'}"	type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/javascripts/homy.js'}" type="text/javascript"	charset="${_response_encoding}"></script>
 
 #{get 'moreScripts' /}
 
@@ -21,65 +22,81 @@
 <body onload="initPage()">
 	<div style="background: black; height: 75px;" style="float:left;">
 		<img width="150" height="75" src="@{'/public/images/logo.png'}">
-		<div style="width: 600px; height:75px; float: right; padding-right:40px;">
-			<a href="#"><img width="75" height="75" src="@{'/public/images/shop.png'}"></a>
-			<a href="#"><img width="75" height="75" src="@{'/public/images/deposit.png'}"></a>
-			<a href="tasks"><img width="75" height="75" src="@{'/public/images/task.png'}"></a>			
+		<div
+			style="width: 600px; height: 75px; float: right; padding-right: 40px;">
+			<a href="#"><img width="75" height="75"
+				src="@{'/public/images/shop.png'}"></a> <a href="#"><img
+				width="75" height="75" src="@{'/public/images/deposit.png'}"></a>
+			<a href="tasks"><img width="75" height="75"
+				src="@{'/public/images/task.png'}"></a>
 		</div>
 	</div>
-	<div style="float: right; height: 400px; word-wrap: break-word;">
-		<img src="@{'/public/images/advertisement.jpg'}">
+	<div id="quotescointainer">
+		<div id="quotesleft">
+			<table border="1">
+				<thead>
+					<tr>
+						<th colspan="2">Today</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Another task</th>
+						<th><img width="20" height="20"
+							src="@{'/public/images/notifyOrange.png'}"></th>
+					</tr>
+					<tr>
+						<th>Groceries update</th>
+						<th><img width="20" height="20"
+							src="@{'/public/images/notifyBlue.png'}"></th>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Important task</th>
+						<th><img width="20" height="20"
+							src="@{'/public/images/notifyBlue.png'}"></th>
+					</tr>
+				</tfoot>
+			</table>
+			<br>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Today</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Another task</th>
+						<th><img width="20" height="20"
+							src="@{'/public/images/notifyOrange.png'}"></th>
+					</tr>
+					<tr>
+						<th>Groceries update</th>
+						<th><img width="20" height="20"
+							src="@{'/public/images/notifyBlue.png'}"></th>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Important task</th>
+						<th><img width="20" height="20"
+							src="@{'/public/images/notifyBlue.png'}"></th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div id="quotescenter">#{doLayout /}</div>
+		<div id="quotesright"></div>
 	</div>
 
-	<div align="left" style="float: left; height: 400px; width: 200px;">
-		<table border="1">
-			<thead>
-				<tr>
-					<th colspan="2">Today</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>Another task</th>
-					<th><img width="20" height="20"  src="@{'/public/images/notifyOrange.png'}"></th>
-				</tr>
-				<tr>
-					<th>Groceries update</th>
-					<th><img width="20" height="20" src="@{'/public/images/notifyBlue.png'}"></th>
-				</tr>
-			</tbody>
-						<tfoot>
-				<tr>
-					<th>Important task</th>
-					<th><img width="20" height="20" src="@{'/public/images/notifyBlue.png'}"></th>
-				</tr>
-			</tfoot>
-		</table>
-		<br>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>Today</th>
-				</tr>
-			</thead>
-				<tbody>
-				<tr>
-					<th>Another task</th>
-					<th><img width="20" height="20"  src="@{'/public/images/notifyOrange.png'}"></th>
-				</tr>
-				<tr>
-					<th>Groceries update</th>
-					<th><img width="20" height="20" src="@{'/public/images/notifyBlue.png'}"></th>
-				</tr>
-			</tbody>
-						<tfoot>
-				<tr>
-					<th>Important task</th>
-					<th><img width="20" height="20" src="@{'/public/images/notifyBlue.png'}"></th>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
-	#{doLayout /}
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
 </body>
 </html>
