@@ -1,0 +1,13 @@
+
+
+.advertise {
+	margin-top:20px;
+	outline: 2px dotted #a0a0a0;
+	height:400px;
+}
+
+.advertise:after{
+	color: #b0b0b0;
+	font-size: 11px;
+	content: "Advertise here";
+}

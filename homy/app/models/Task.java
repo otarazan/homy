@@ -8,6 +8,7 @@ import java.util.*;
 
 @Entity
 public class Task extends Model {
+	@Id
     public String id;
     public String description;
     public boolean status;

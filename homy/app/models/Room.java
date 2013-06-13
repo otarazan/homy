@@ -8,6 +8,7 @@ import java.util.*;
 
 @Entity
 public class Room extends Model {
+   @Id
    public String id;
    public String name;
    public String description;
