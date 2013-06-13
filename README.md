@@ -1,11 +1,21 @@
 # Homy Project
-Solving all the _little_ problems
+Solving all the _little_ problems.
+Please read the following notes on where to find resources and how to include them in your work.
 
 ### Teamplates
 
 Find templates in:
 
     /public/{name of the html file}.html
+
+Provided are:
+    
+    Login
+    Tasks List
+    Tasks
+    Groceries
+    User-Settings
+    Deposit Box
 
 General template can be found in
 
