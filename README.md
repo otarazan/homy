@@ -2,24 +2,32 @@
 Solving all the _little_ problems.
 Please read the following notes on where to find resources and how to include them in your work.
 
-### Teamplates
+### Teamplates and views
 
-Find templates in:
+Views are called by the "render" method. This method calls the view with the name of its calling method
+
+    {contoller name} {
+        public static void {method name} {
+            render(); // renders {controller}/{method name}.html
+            // same as renderTemplate({method name})
+        }
+    }
+
+Views are located in the view directory:
+    
+    views/Application/
+
+When writing your own controller move the view in the corresponding sub directory:
+
+    views/{controller}/{view name}
+
+All templates are rendered inside the master tempaltes (except for the login):
+
+    view/main.html    
+
+Find *RAW* templates in:
 
     /public/{name of the html file}.html
-
-Provided are:
-    
-    Login
-    Tasks List
-    Tasks
-    Groceries
-    User-Settings
-    Deposit Box
-
-General template can be found in
-
-    public/index.html
 
 When generating your own views use this file. Reference the stylesheets and javascripts via:
 

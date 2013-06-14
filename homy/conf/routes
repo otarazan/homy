@@ -3,10 +3,13 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
-
-
-GET     /tasks                                  Application.tasks
+GET     /deposit                           Application.deposit
+GET     /settings                          Application.settings
+GET     /login                             Application.login
+GET     /grocery                           Application.grocery
+GET     /dashboard                         Application.dashboard
+GET     /tasks                             Application.tasks
+GET     /                                  Application.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
