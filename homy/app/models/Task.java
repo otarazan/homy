@@ -19,20 +19,13 @@ public class Task extends Model {
     public int recurrence;
     /*better store it as a Date and then calculate remaining time*/
     public Date remainingTime;
-	
-    public Task(String title){
-	super();
-        this.title=title;
-    }
     
-    public Task(String description, String title, boolean status, int recurrence,
-			Date remainingTime) {
+    public Task(String title, int recurrence,String assignee,Date remainingTime) {
 		super();
 		this.title = title;
-		this.description = description;
-		this.status = status;
 		this.recurrence = recurrence;
 		this.remainingTime = remainingTime;
+		this.assignee = assignee;
 	}
     
     

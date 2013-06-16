@@ -18,14 +18,14 @@ public class Application extends Controller {
         render(tasks);
     }
     
-    public static void createTask(String title) {
-        Task task=new Task(title).save();
+    public static void createTask(String title,int recurrence,String assignee,Date remainingTime) {
+        Task task=new Task(title, recurrence,assignee,remainingTime).save();
         renderJSON(task);
     }
     
-    public static void changeStatus(long id, boolean done) {
+    public static void changeStatus(long id, boolean status) {
         Task task = Task.findById(id);
-        task.done=done;
+        task.status=status;
         task.save();
         renderJSON(task);
     }
