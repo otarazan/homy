@@ -75,10 +75,9 @@
 							task : $("#txtTask").val(),
 							recurrence:$('#selectRecurrence :selected').val(),
 							assignee:$('#selectUser :selected').val(),
-							assignee2:'1/1/2012',
 							remainingDate:$('#datepicker').val()
 						}, function(task) {
-							$('#allTasks tbody').append('<tr><td>'+task.title+'</td><td></td><td><input type="checkbox" id="'+task.id+'"></td><td></td><td></td></tr>');
+							$('#allTasks tbody').append('<tr><td>'+task.title+'</td><td>'+task.assignee+'</td><td><input type="checkbox" id="'+task.id+'"></td><td>'+task.recurrence+'</td><td>'+task.remainingDate+'</td></tr>');
 						}, 'json')
 					})
 	
