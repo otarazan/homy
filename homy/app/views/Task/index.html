@@ -4,98 +4,68 @@
 
 <div class="span12">
 	<div id="tabs">
-	<ul>
-	<li><a href="#tabs-1">My Tasks</a></li>
-	<li><a href="#tabs-2">All Tasks</a></li>
-	</ul>
-	<div id="tabs-2">
-	  <table id="allTasks" class="tablesorter">
-	    <thead>
-				<tr>
-					<th>Task</th>
-					<th>Assignee</th>
-					<th>Status</th>
-					<th>Recurrence</th>
-					<th>Remaining Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				#{list items:tasks, as:'task'}
-				<tr>
-					<td>${task.title}</td>
-					<td>${task.assignee}</td>
-					<td><input type="checkbox" id="${task.id}"${task.status ? 'checked':''}></td>
-					<td>${task.recurrence}</td>
-					<td>${task.remainingDate}</td>
-				</tr>
-				#{/list}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td><input type="text" id="txtTask" value="Add new task"></td>
-					<td>
-						<select id="selectUser">
-						  <option value="1">Olcay</option>
-						</select>
-					</td>
-					<td><input type="checkbox"/></td>
-					<td>
-						<select id="selectRecurrence">
-						  <option value="1">every Day</option>
-						  <option value="2">every Week</option>
-						  <option value="3">every Month</option>
-						  <option value="4">every Year</option>
-						</select>
-					</td>
-					<td><input type="text" id="datepicker"></td>
-				</tr>
-			</tfoot>
-	  </table>
-	  <a id="createTask" href="#">Save</a>
+		<ul>
+		<li><a href="#tabs-1">My Tasks</a></li>
+		<li><a href="#tabs-2">All Tasks</a></li>
+		</ul>
+		<div id="tabs-2">
+		  <table id="allTasks" class="tablesorter">
+		    <thead>
+					<tr>
+						<th>Task</th>
+						<th>Assignee</th>
+						<th>Status</th>
+						<th>Recurrence</th>
+						<th>Remaining Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:tasks, as:'task'}
+					<tr>
+						<td>${task.title}</td>
+						<td>${task.assignee}</td>
+						<td><input type="checkbox" id="${task.id}"${task.status ? 'checked':''}></td>
+						<td>${task.recurrence}</td>
+						<td>${task.remainingDate}</td>
+					</tr>
+					#{/list}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td><input type="text" id="txtTask" value="Add new task"></td>
+						<td>
+							<select id="selectUser">
+							  <option value="1">Olcay</option>
+							</select>
+						</td>
+						<td><input type="checkbox"/></td>
+						<td>
+							<select id="selectRecurrence">
+							  <option value="1">every Day</option>
+							  <option value="2">every Week</option>
+							  <option value="3">every Month</option>
+							  <option value="4">every Year</option>
+							</select>
+						</td>
+						<td><input type="text" id="datepicker"></td>
+					</tr>
+				</tfoot>
+		  </table>
+		  <a id="createTask" href="#">Save</a>
+	</div>
+	<div id="tabs-1">
+		#{list items:tasks, as:'task'}
+			<div class="boxed" id="box_${task.id}">
+						<p>${task.title}</p>
+						<div>
+							<center>${task.assignee}</center>
+							<center>${task.recurrence}</center>
+							<center>${task.remainingDate}</center>
+							<center><button type="button">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id})">Done</button></center>
+						</div>
+						
+			</div>
+		#{/list}
+	</div>
 </div>
-<div id="tabs-1">
-	#{list items:tasks, as:'task'}
-		<div class="boxed" id="box_${task.id}">
-					<p>${task.title}</p>
-					<div>
-						<center>${task.assignee}</center>
-						<center>${task.recurrence}</center>
-						<center>${task.remainingDate}</center>
-						<center><button type="button">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id})">Done</button></center>
-					</div>
-					
-		</div>
-	#{/list}
-</div>
-</div>
-	<script>
-			$("#createTask").click(
-					function() {
-						$.post('@{createTask()}', {
-							task : $("#txtTask").val(),
-							recurrence:$('#selectRecurrence :selected').val(),
-							assignee:$('#selectUser :selected').val(),
-							remainingDate:$('#datepicker').val()
-						}, function(task) {
-							$('#allTasks tbody').append('<tr><td>'+task.title+'</td><td>'+task.assignee+'</td><td><input type="checkbox" id="'+task.id+'"></td><td>'+task.recurrence+'</td><td>'+task.remainingDate+'</td></tr>');
-						}, 'json')
-					})
-	
-			//change status
-			$('input checkbox').click(function() {
-				alert('test');
-				$.post('@{changeStatus()}', {
-					id : $(this).attr('id'),
-					status : $(this).val()
-				})
-			});
-			
-			function setTaskAsDone(boxid) {
-				$.post('@{changeStatus()}', {
-					id : 1,
-					status : true
-				})
-				$(boxid).fadeOut("slow");
-			}
-	</script>
 </div>
