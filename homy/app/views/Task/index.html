@@ -55,13 +55,13 @@
 </div>
 <div id="tabs-1">
 	#{list items:tasks, as:'task'}
-		<div class="boxed">
+		<div class="boxed" id="box_${task.id}">
 					<p>${task.title}</p>
 					<div>
 						<center>${task.assignee}</center>
 						<center>${task.recurrence}</center>
 						<center>${task.remainingDate}</center>
-						<center><button type="button">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone()">Done</button></center>
+						<center><button type="button">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id})">Done</button></center>
 					</div>
 					
 		</div>
@@ -90,11 +90,12 @@
 				})
 			});
 			
-			function setTaskAsDone() {
+			function setTaskAsDone(boxid) {
 				$.post('@{changeStatus()}', {
 					id : 1,
 					status : true
 				})
+				$(boxid).fadeOut("slow");
 			}
 	</script>
 </div>
