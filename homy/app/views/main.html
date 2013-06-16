@@ -8,15 +8,17 @@
         <link rel="stylesheet" href="@{'/public/themes/cosmo/bootstrap.css'}">
         <link rel="stylesheet" href="@{'/public/stylesheets/bootstrap-responsive.css'}">
         <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/tableSorter.css'}"> 
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />       
+       
         #{get 'moreStyles' /}
         <script type="text/javascript" src="@{'/public/javascripts/jquery.min.js'}" charset="${_response_encoding}"></script>
         <script type="text/javascript" src="@{'/public/javascripts/bootstrap.min.js'}" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/jquery.tablesorter.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         
         <script src="@{'/public/javascripts/jquery.tablesorter.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/javascripts/homy.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script src="@{'/public/javascripts/homy.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
     </head>
     
