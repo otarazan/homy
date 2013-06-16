@@ -4,23 +4,6 @@
 
 <div class="span12">
 
-  <ol class="breadcrumb" style="background:none">
-    <li>
-      <a href="#">Date</a>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <a href="#">Date</a>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <a href="#">State</a>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <a href="#">Assignee</a>
-    </li>
-  </ol>
   <table id="allTasks" class="tablesorter">
     <thead>
 			<tr>
@@ -35,10 +18,10 @@
 			#{list items:tasks, as:'task'}
 			<tr>
 				<td>${task.title}</td>
-				<td>${task.assignee}</td>
+				<td>${task.assignee2}</td>
 				<td><input type="checkbox" id="${task.id}"${task.status ? 'checked':''}></td>
 				<td>${task.recurrence}</td>
-				<td>${task.remainingTime}</td>
+				<td>${task.remainingDate}</td>
 			</tr>
 			#{/list}
 		</tbody>
@@ -69,10 +52,11 @@
 		$("#createTask").click(
 				function() {
 					$.post('@{createTask()}', {
-						title : $("#txtTask").val(),
+						task : $("#txtTask").val(),
 						recurrence:$('#selectRecurrence :selected').val(),
 						assignee:$('#selectUser :selected').val(),
-						remainingTime:$('#datepicker').val()
+						assignee2:'1/1/2012',
+						remainingDate:$('#datepicker').val()
 					}, function(task) {
 						$('#allTasks tbody').append('<tr><td>'+task.title+'</td><td></td><td><input type="checkbox" id="'+task.id+'"></td><td></td><td></td></tr>');
 					}, 'json')

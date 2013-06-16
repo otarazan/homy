@@ -17,5 +17,6 @@ $(document).ready(function()
         $(".tablesorter").tablesorter(); 
         $( "#datepicker" ).datepicker();
         $("#txtTask").focusin(function() {$("#txtTask").val("")});
+        $( "#tabs" ).tabs();
     } 
 ); 

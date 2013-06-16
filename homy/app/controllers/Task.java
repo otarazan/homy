@@ -19,15 +19,21 @@ public class Task extends Controller {
     }
 
 
-    public static void createTask(String title,int recurrence,String assignee,Date remainingTime) {
-	models.Task task=new models.Task(title, recurrence,assignee,remainingTime).save();
-        renderJSON(task);
+    public static void createTask(String task,int recurrence,String assignee,Date assignee2,String remainingDate) {
+	models.Task newtask=new models.Task(task, recurrence,assignee,assignee2,remainingDate).save();
+        renderJSON(newtask);
     }
 
     public static void changeStatus(long id, boolean status) {
 	models.Task task = models.Task.findById(id);
         task.status=status;
         task.save();
+        renderJSON(task);
+    }
+    
+    public static void delete(long id) {
+	models.Task task = models.Task.findById(id);
+        task.delete();
         renderJSON(task);
     }
 }    
