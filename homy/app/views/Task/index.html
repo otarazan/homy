@@ -57,11 +57,12 @@
 	#{list items:tasks, as:'task'}
 		<div class="boxed">
 					<p>${task.title}</p>
-					<ul>
-						<li>${task.assignee}</li>
-						<li>${task.recurrence}</li>
-						<li>${task.remainingDate}</li>
-					</ul>
+					<div>
+						<center>${task.assignee}</center>
+						<center>${task.recurrence}</center>
+						<center>${task.remainingDate}</center>
+						<center><button type="button">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone()">Done</button></center>
+					</div>
 					
 		</div>
 	#{/list}
@@ -83,10 +84,18 @@
 	
 			//change status
 			$('input checkbox').click(function() {
+				alert('test');
 				$.post('@{changeStatus()}', {
 					id : $(this).attr('id'),
-					done : $(this).val()
+					status : $(this).val()
 				})
 			});
+			
+			function setTaskAsDone() {
+				$.post('@{changeStatus()}', {
+					id : 1,
+					status : true
+				})
+			}
 	</script>
 </div>

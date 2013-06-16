@@ -27,8 +27,9 @@ public class Task extends Model {
 		this.recurrence = recurrence;
 		this.remainingDate = remainingDate;
 		this.assignee = assignee;
-	}
+    }
     
-    
-    
+    public String toString(){
+	return title;
+    }
 }

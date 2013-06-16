@@ -14,8 +14,8 @@
 
 .boxed {
   border: 1px solid #F6A828 ;
-  height: 200px;
-  width:100px;
+  height: 150px;
+  width:150px;
   float: left;
   margin-left:10px;
 }
