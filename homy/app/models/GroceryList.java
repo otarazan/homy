@@ -10,7 +10,7 @@ import java.util.*;
 public class GroceryList extends Model {
 	
 	@Id
-	public String id;
+	public String grocery_id;
 	public LinkedList <GroceryItem> groceryItemsList;
 
 	public GroceryList() {
@@ -21,7 +21,6 @@ public class GroceryList extends Model {
 		// Then check it.
 		// See JPA presistence Guide and annotations (@Id)
 		//
-		this.id = "tobechanged";
 		this.groceryItemsList = new LinkedList<GroceryItem>();
 	}
     

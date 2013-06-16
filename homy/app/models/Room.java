@@ -9,7 +9,7 @@ import java.util.*;
 @Entity
 public class Room extends Model {
    @Id
-   public String id;
+   public String room_id;
    public String name;
    public String description;
    public GroceryList groceryList;
@@ -18,9 +18,8 @@ public class Room extends Model {
    public LinkedList <Roomy> roomysList;
    
    
-   public Room(String id, String name, String description) {
+   public Room(String name, String description) {
 	   super();
-	   this.id = id;
 	   this.name = name;
 	   this.description = description;
 	   this.groceryList = new GroceryList();

@@ -9,7 +9,7 @@ import java.util.*;
 @Entity
 public class Task extends Model {
 	@Id
-    public String id;
+    public String task_id;
     //public String id;
     public String title;
     public String description;
@@ -30,7 +30,6 @@ public class Task extends Model {
     public Task(String description, String title, boolean status, int recurrence,
 			Date remainingTime) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.status = status;

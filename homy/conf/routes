@@ -3,12 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /deposit                           Application.deposit
+GET     /deposit                           Deposit.index
 GET     /settings                          Application.settings
 GET     /login                             Application.login
-GET     /grocery                           Application.grocery
-GET     /dashboard                         Application.dashboard
-GET     /tasks                             Application.tasks
+GET     /grocery                           Grocery.index
+GET     /dashboard                         Dashboard.index
+GET     /tasks                             Task.index
 GET     /                                  Application.index
 
 # Ignore favicon requests

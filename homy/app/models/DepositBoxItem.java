@@ -10,16 +10,15 @@ import java.util.*;
 public class DepositBoxItem extends Model {
 	
 	@Id
-    public String id;
+    public String boxItem_id;
     public String description;
     public Float amount;
     public boolean income;
 	
     
-    public DepositBoxItem(String id, String description, Float amount,
+    public DepositBoxItem(String description, Float amount,
 			boolean income) {
 		super();
-		this.id = id;
 		this.description = description;
 		this.amount = amount;
 		this.income = income;

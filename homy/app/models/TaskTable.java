@@ -9,7 +9,7 @@ import java.util.*;
 @Entity
 public class TaskTable extends Model {
 	@Id
-    public String id;
+    public String taskTable_id;
     public LinkedList <Task> tasksList;
 
 	public TaskTable() {

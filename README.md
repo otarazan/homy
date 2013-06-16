@@ -1,39 +1,41 @@
 # Homy Project
-Solving all the _little_ problems.
+Solving all the **little** problems.
 Please read the following notes on where to find resources and how to include them in your work.
 
+### Todo
+- [x] Create all tempaltes and master template
+- [x] Create model
+- [x] Create dynamic tags for template changes on clicks
+- [x] Create all controller
+- [ ] Create login
+- [ ] Create deposit index action
+- [ ] Create settings index action
+- [ ] Create task index action
+- [ ] Create grocery index action
+- [ ] Create dashboard index action
+
 ### Teamplates and views
-
 Views are called by the "render" method. This method calls the view with the name of its calling method
-
-    {contoller name} {
-        public static void {method name} {
-            render(); // renders {controller}/{method name}.html
-            // same as renderTemplate({method name})
-        }
+```java
+{contoller name} {
+    public static void {method name} {
+        render(); // renders {controller}/{method name}.html
+        // same as renderTemplate('{contoller name}/{method name'})
     }
+}
+```
 
 Views are located in the view directory:
-    
-    views/Application/
 
-When writing your own controller move the view in the corresponding sub directory:
+    views/{contoller name}/{method name}.html
 
-    views/{controller}/{view name}
-
-All templates are rendered inside the master tempaltes (except for the login):
+feel free to edit. All templates are rendered inside the master tempaltes (except for the login):
 
     view/main.html    
 
 Find *RAW* templates in:
 
     /public/{name of the html file}.html
-
-When generating your own views use this file. Reference the stylesheets and javascripts via:
-
-    <script src="@{'public/javascripts/YOUR_JS'}"... or
-    @{script 'public/javascripts/YOUR_JS'} or
-    <script src="@{'public/stylesheets/YOUR_JS'}"...
 
 ### Notes on Dev process
 

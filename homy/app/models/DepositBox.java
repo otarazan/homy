@@ -10,7 +10,7 @@ import java.util.*;
 public class DepositBox extends Model {
 
 	@Id
-    public String id;
+    public String box_id;
     public Float currentDeposit;
     public LinkedList <DepositBoxItem> depositBoxItemsList;
     
@@ -22,7 +22,6 @@ public class DepositBox extends Model {
 		// Then check it.
 		// See JPA presistence Guide and annotations (@Id)
 		//
-		this.id = "tobechanged";
 		this.currentDeposit = 0F;
 		this.depositBoxItemsList = new LinkedList<DepositBoxItem>();
 	}

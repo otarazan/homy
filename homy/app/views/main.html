@@ -28,16 +28,23 @@
                         <div class="nav-collapse collapse" style="height: 0px;">
                             <ul class="nav">
                                 <li>
-                                    <a href="#" class="active" style="border-bottom:5px solid green">Tasks</a>
+                                    <a href="@{Task.index}" class="active" style="
+                                    border-bottom:${ topBarStyle.equals('task') ? 0 : 5}px solid green; background: ${ topBarStyle.equals('task') ? 'green' : 'none'}
+                                    ">Tasks</a>
                                 </li>
                                 <li>
-                                    <a href="#" style="border-bottom:0px solid red; background: red">Groceries</a>
+                                    <a href="@{Grocery.index}" style="border-bottom:${ topBarStyle.equals('grocery') ? 0 : 5}px solid red; background: ${ topBarStyle.equals('grocery') ? 'red' : 'none'}">Groceries</a>
                                 </li>
                                 <li>
-                                    <a href="#" style="border-bottom:5px solid #0072e6">Deposit Box</a>
+                                    <a href=" @{Deposit.index}" style="border-bottom:${ topBarStyle.equals('deposit') ? 0 : 5}px solid #0072e6; background: ${ topBarStyle.equals('deposit') ? '#0072e6' : 'none'}">Deposit Box</a>
                                 </li>
                                 <li style="width:50px">&nbsp;</li>
-                                <form class="navbar-search" style="border-bottom:5px solid red">
+                                <form class="navbar-search" style="border-bottom:5px solid 
+                                ${ topBarStyle.equals('task') ? 'green'
+                                : topBarStyle.equals('grocery') ? 'red'
+                                : topBarStyle.equals('deposit') ? '#0072e6': 'none'}
+
+                                ">
                                     <input type="text" placeholder="Search... ">
                                 </form>
                             </ul>
