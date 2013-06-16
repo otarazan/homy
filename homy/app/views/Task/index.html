@@ -3,71 +3,90 @@
 #{set topBarStyle:'task' /}
 
 <div class="span12">
-
-  <table id="allTasks" class="tablesorter">
-    <thead>
-			<tr>
-				<th>Task</th>
-				<th>Assignee</th>
-				<th>Status</th>
-				<th>Recurrence</th>
-				<th>Remaining Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			#{list items:tasks, as:'task'}
-			<tr>
-				<td>${task.title}</td>
-				<td>${task.assignee2}</td>
-				<td><input type="checkbox" id="${task.id}"${task.status ? 'checked':''}></td>
-				<td>${task.recurrence}</td>
-				<td>${task.remainingDate}</td>
-			</tr>
-			#{/list}
-		</tbody>
-		<tfoot>
-			<tr>
-				<td><input type="text" id="txtTask" value="Add new task"></td>
-				<td>
-					<select id="selectUser">
-					  <option value="1">Olcay</option>
-					</select>
-				</td>
-				<td><input type="checkbox"/></td>
-				<td>
-					<select id="selectRecurrence">
-					  <option value="1">every Day</option>
-					  <option value="2">every Week</option>
-					  <option value="3">every Month</option>
-					  <option value="4">every Year</option>
-					</select>
-				</td>
-				<td><input type="text" id="datepicker"></td>
-			</tr>
-		</<tfoot>
-  </table>
-  
-  <a id="createTask" href="#">Save</a>
-<script>
-		$("#createTask").click(
-				function() {
-					$.post('@{createTask()}', {
-						task : $("#txtTask").val(),
-						recurrence:$('#selectRecurrence :selected').val(),
-						assignee:$('#selectUser :selected').val(),
-						assignee2:'1/1/2012',
-						remainingDate:$('#datepicker').val()
-					}, function(task) {
-						$('#allTasks tbody').append('<tr><td>'+task.title+'</td><td></td><td><input type="checkbox" id="'+task.id+'"></td><td></td><td></td></tr>');
-					}, 'json')
+	<div id="tabs">
+	<ul>
+	<li><a href="#tabs-1">My Tasks</a></li>
+	<li><a href="#tabs-2">All Tasks</a></li>
+	</ul>
+	<div id="tabs-2">
+	  <table id="allTasks" class="tablesorter">
+	    <thead>
+				<tr>
+					<th>Task</th>
+					<th>Assignee</th>
+					<th>Status</th>
+					<th>Recurrence</th>
+					<th>Remaining Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list items:tasks, as:'task'}
+				<tr>
+					<td>${task.title}</td>
+					<td>${task.assignee}</td>
+					<td><input type="checkbox" id="${task.id}"${task.status ? 'checked':''}></td>
+					<td>${task.recurrence}</td>
+					<td>${task.remainingDate}</td>
+				</tr>
+				#{/list}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td><input type="text" id="txtTask" value="Add new task"></td>
+					<td>
+						<select id="selectUser">
+						  <option value="1">Olcay</option>
+						</select>
+					</td>
+					<td><input type="checkbox"/></td>
+					<td>
+						<select id="selectRecurrence">
+						  <option value="1">every Day</option>
+						  <option value="2">every Week</option>
+						  <option value="3">every Month</option>
+						  <option value="4">every Year</option>
+						</select>
+					</td>
+					<td><input type="text" id="datepicker"></td>
+				</tr>
+			</tfoot>
+	  </table>
+	  <a id="createTask" href="#">Save</a>
+</div>
+<div id="tabs-1">
+	#{list items:tasks, as:'task'}
+		<div class="boxed">
+					<p>${task.title}</p>
+					<ul>
+						<li>${task.assignee}</li>
+						<li>${task.recurrence}</li>
+						<li>${task.remainingDate}</li>
+					</ul>
+					
+		</div>
+	#{/list}
+</div>
+</div>
+	<script>
+			$("#createTask").click(
+					function() {
+						$.post('@{createTask()}', {
+							task : $("#txtTask").val(),
+							recurrence:$('#selectRecurrence :selected').val(),
+							assignee:$('#selectUser :selected').val(),
+							assignee2:'1/1/2012',
+							remainingDate:$('#datepicker').val()
+						}, function(task) {
+							$('#allTasks tbody').append('<tr><td>'+task.title+'</td><td></td><td><input type="checkbox" id="'+task.id+'"></td><td></td><td></td></tr>');
+						}, 'json')
+					})
+	
+			//change status
+			$('input checkbox').click(function() {
+				$.post('@{changeStatus()}', {
+					id : $(this).attr('id'),
+					done : $(this).val()
 				})
-
-		//change status
-		$('input checkbox').click(function() {
-			$.post('@{changeStatus()}', {
-				id : $(this).attr('id'),
-				done : $(this).val()
-			})
-		});
-</script>
+			});
+	</script>
 </div>

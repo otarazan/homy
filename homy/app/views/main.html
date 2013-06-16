@@ -8,8 +8,8 @@
         <link rel="stylesheet" href="@{'/public/themes/cosmo/bootstrap.css'}">
         <link rel="stylesheet" href="@{'/public/stylesheets/bootstrap-responsive.css'}">
         <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
-        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/tableSorter.css'}"> 
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />       
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/tableSorter.css'}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/jquery-ui.css'}">     
        
         #{get 'moreStyles' /}
         <script type="text/javascript" src="@{'/public/javascripts/jquery.min.js'}" charset="${_response_encoding}"></script>
@@ -37,7 +37,7 @@
                             <ul class="nav">
                                 <li>
                                     <a href="@{Task.index}" class="active" style="
-                                    border-bottom:${ topBarStyle.equals('task') ? 0 : 5}px solid green; background: ${ topBarStyle.equals('task') ? 'green' : 'none'}
+                                    border-bottom:${ topBarStyle.equals('task') ? 0 : 5}px solid #E78F08; background: ${ topBarStyle.equals('task') ? '#E78F08' : 'none'}
                                     ">Tasks</a>
                                 </li>
                                 <li>
@@ -48,7 +48,7 @@
                                 </li>
                                 <li style="width:50px">&nbsp;</li>
                                 <form class="navbar-search" style="border-bottom:5px solid 
-                                ${ topBarStyle.equals('task') ? 'green'
+                                ${ topBarStyle.equals('task') ? '#E78F08'
                                 : topBarStyle.equals('grocery') ? 'red'
                                 : topBarStyle.equals('deposit') ? '#0072e6': 'none'}
 

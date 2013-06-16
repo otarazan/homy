@@ -11,3 +11,17 @@
 	font-size: 11px;
 	content: "Advertise here";
 }
+
+.boxed {
+  border: 1px solid #F6A828 ;
+  height: 200px;
+  width:100px;
+  float: left;
+  margin-left:10px;
+}
+
+.boxed p{
+	background-color: #E78F08;
+	font-style: bold;
+	text-align:center;
+}

@@ -14,7 +14,6 @@ public class Task extends Model {
     public String description;
     public boolean status;
     public String assignee;
-    public Date assignee2;
     
     /*better declare it as int. we can decide for predefined values,
       like 1=hourly 2=daily 3=weekly etc..*/
@@ -22,13 +21,12 @@ public class Task extends Model {
     /*better store it as a Date and then calculate remaining time*/
     public String remainingDate;
     
-    public Task(String task, int recurrence,String assignee,Date assignee2,String remainingDate) {
+    public Task(String task, int recurrence,String assignee,String remainingDate) {
 		super();
 		this.title = task;
 		this.recurrence = recurrence;
 		this.remainingDate = remainingDate;
 		this.assignee = assignee;
-		this.assignee2 = assignee2;
 	}
     
     

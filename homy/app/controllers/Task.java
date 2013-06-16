@@ -19,8 +19,8 @@ public class Task extends Controller {
     }
 
 
-    public static void createTask(String task,int recurrence,String assignee,Date assignee2,String remainingDate) {
-	models.Task newtask=new models.Task(task, recurrence,assignee,assignee2,remainingDate).save();
+    public static void createTask(String task,int recurrence,String assignee,String remainingDate) {
+	models.Task newtask=new models.Task(task, recurrence,assignee,remainingDate).save();
         renderJSON(newtask);
     }
 
