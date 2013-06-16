@@ -39,9 +39,5 @@ public class Application extends Controller {
     public static void reachUs(){
         renderTemplate("Application/reach.html");
     }
-
-
-
-
     
 }
