@@ -10,23 +10,38 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
+        renderTemplate("Application/login.html");
+    }
+    
+    public static void login(){
         render();
     }
     
-    public static void tasks() {
-        List tasks= Task.find("order by id desc").fetch();
-        render(tasks);
+    public static void logout(){
+        renderTemplate("Application/login.html");
     }
+
+    public static void settings(){
+        render();
+    }
+
+
+    public static void whoWeAre(){
+        renderTemplate("Application/who.html");
+    }
+
+
+    public static void whatWeDo(){
+        renderTemplate("Application/what.html");
+    }
+
+
+    public static void reachUs(){
+        renderTemplate("Application/reach.html");
+    }
+
+
+
+
     
-    public static void createTask(String title,int recurrence,String assignee,Date remainingTime) {
-        Task task=new Task(title, recurrence,assignee,remainingTime).save();
-        renderJSON(task);
-    }
-    
-    public static void changeStatus(long id, boolean status) {
-        Task task = Task.findById(id);
-        task.status=status;
-        task.save();
-        renderJSON(task);
-    }
 }

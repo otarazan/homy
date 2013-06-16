@@ -1,0 +1,69 @@
+#{extends 'main.html' /}
+#{set title:'Deposit box' /}
+#{set topBarStyle:'deposit' /}
+
+<div class="span8">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Roomy</th>
+        <th>+</th>
+        <th>-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Milk</td>
+        <td>Michael</td>
+        <td></td>
+        <td>
+          <span class="badge badge-important">-4</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Monthyl fee</td>
+        <td>Michael</td>
+        <td>
+          <span class="badge badge-success">+4</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Monthyl fee</td>
+        <td>Susie</td>
+        <td>
+          <span class="badge badge-success">+9</span>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <ol class="breadcrumb" style="background:none">
+    <li>
+      <a href="#">Date</a>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <a href="#">Income / Expenses</a>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <a href="#">Assignee</a>
+    </li>
+  </ol>
+</div>
+<div class="span4">
+  <div class="alert alert-block alert-success">
+    <h1>+6</h1>
+    <b>Good job!</b>
+  <br> You have a positive deposit box</div>
+  <div class="well">
+    <form>
+      <input type="text" class="input-medium input-block-level" placeholder="Description">
+      <input type="text" class="input-medium input-block-level" placeholder="Amount in $ / €">
+      <button class="btn pull-left btn-success">Income</button>
+      <button class="btn pull-right btn-danger">Expense</button>
+    </form>
+  </div>
+</div>
