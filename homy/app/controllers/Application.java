@@ -14,10 +14,33 @@ public class Application extends Controller {
     }
     
     public static void login(){
-        render();}
+        render();
+    }
     
+    public static void logout(){
+        renderTemplate("Application/login.html");
+    }
+
     public static void settings(){
-        render();}
+        render();
+    }
+
+
+    public static void whoWeAre(){
+        renderTemplate("Application/who.html");
+    }
+
+
+    public static void whatWeDo(){
+        renderTemplate("Application/what.html");
+    }
+
+
+    public static void reachUs(){
+        renderTemplate("Application/reach.html");
+    }
+
+
 
 
     

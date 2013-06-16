@@ -24,7 +24,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="#" style="width:229px;">Homy </a>
+                        <a class="brand" href="@{Dashboard.index}" style="width:229px;">Homy </a>
                         <div class="nav-collapse collapse" style="height: 0px;">
                             <ul class="nav">
                                 <li>
@@ -52,18 +52,15 @@
                                 <li>
                                     <div class="btn-group">
                                         <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
-                                        User
+                                        {Username here}
                                         <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="#">First Link</a>
+                                                <a href="@{Application.settings}">Settings</a>
                                             </li>
                                             <li>
-                                                <a href="#">Second Link</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Link</a>
+                                                <a href="@{Application.logout}">Logout</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -143,15 +140,15 @@
             <div class="container">
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">Who we are</a>
+                        <a href="@{Application.whoWeAre}">Who we are</a>
                         <span class="divider">/</span>
                     </li>
                     <li>
-                        <a href="#">What we do</a>
+                        <a href="@{Application.whatWeDo}">What we do</a>
                         <span class="divider">/</span>
                     </li>
                     <li>
-                        <a href="#">How you can reach us</a>
+                        <a href="@{Application.reachUs}">How you can reach us</a>
                         <span class="divider">/</span>
                     </li>
                     <li class="pull-right">

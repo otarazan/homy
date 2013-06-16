@@ -11,6 +11,11 @@ GET     /dashboard                         Dashboard.index
 GET     /tasks                             Task.index
 GET     /                                  Application.index
 
+GET     /whoWeAre                          Application.whoWeAre
+GET     /reachUs                           Application.reachUs
+GET     /whatWeDo                          Application.whatWeDo
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
