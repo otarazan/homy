@@ -11,6 +11,8 @@ public class Deposit extends Controller {
 
 
     public static void index(){
+    	models.Room r = new Room("asd","asda");
+    	r.save();
         render();
     }
 

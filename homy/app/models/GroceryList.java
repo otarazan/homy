@@ -9,9 +9,8 @@ import java.util.*;
 @Entity
 public class GroceryList extends Model {
 	
-	@Id
-	public String grocery_id;
-	public LinkedList <GroceryItem> groceryItemsList;
+	@OneToMany(mappedBy="owner")
+	public List <GroceryItem> groceryItemsList;
 
 	public GroceryList() {
 		super();

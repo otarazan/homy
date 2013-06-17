@@ -8,24 +8,41 @@ import java.util.*;
 
 @Entity
 public class Room extends Model {
-   @Id
-   public String room_id;
+
    public String name;
    public String description;
+   
+   @OneToOne(fetch=FetchType.LAZY)
    public GroceryList groceryList;
+
+   @OneToOne(fetch=FetchType.LAZY)
    public DepositBox depositBox;
+   
+   @OneToOne(fetch=FetchType.LAZY)
    public TaskTable taskTable;
-   public LinkedList <Roomy> roomysList;
+
+   @OneToMany(mappedBy="owner")
+   public List <Roomy> roomysList;
    
    
    public Room(String name, String description) {
 	   super();
 	   this.name = name;
 	   this.description = description;
-	   this.groceryList = new GroceryList();
-	   this.depositBox = new DepositBox();
-	   this.taskTable = new TaskTable();
-	   this.roomysList = new LinkedList<Roomy>();
+      GroceryList gl = new GroceryList();
+      gl.save();
+	   this.groceryList = gl;
+
+      DepositBox db = new DepositBox();
+      db.save();
+	   this.depositBox = db;
+
+      TaskTable tt = new TaskTable();
+      tt.save();
+	   this.taskTable = tt;
+
+
+	   //this.roomysList = new LinkedList<Roomy>();
    }
    
    

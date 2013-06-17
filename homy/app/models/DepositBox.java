@@ -9,10 +9,12 @@ import java.util.*;
 @Entity
 public class DepositBox extends Model {
 
-	@Id
-    public String box_id;
     public Float currentDeposit;
-    public LinkedList <DepositBoxItem> depositBoxItemsList;
+
+    @OneToMany(mappedBy="owner")
+    public List <DepositBoxItem> depositBoxItemsList;
+
+
     
     
 	public DepositBox() {
@@ -23,7 +25,11 @@ public class DepositBox extends Model {
 		// See JPA presistence Guide and annotations (@Id)
 		//
 		this.currentDeposit = 0F;
+
+		DepositBoxItem di = new DepositBoxItem("Example item",10f,true);
+		di.save();
 		this.depositBoxItemsList = new LinkedList<DepositBoxItem>();
+		this.depositBoxItemsList.add(di);
 	}
     
     

@@ -9,8 +9,11 @@ import java.util.*;
 @Entity
 public class DepositBoxItem extends Model {
 	
-	@Id
-    public String boxItem_id;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+  	@JoinColumn(name="OWNER_ID")
+	private DepositBox owner;
+
     public String description;
     public Float amount;
     public boolean income;

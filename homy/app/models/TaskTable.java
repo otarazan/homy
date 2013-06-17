@@ -8,9 +8,9 @@ import java.util.*;
 
 @Entity
 public class TaskTable extends Model {
-	@Id
-    public String taskTable_id;
-    public LinkedList <Task> tasksList;
+
+	@OneToMany(mappedBy="owner")
+    public List <Task> tasksList;
 
 	public TaskTable() {
 		super();

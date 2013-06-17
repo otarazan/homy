@@ -18,6 +18,9 @@ public class Roomy extends Model {
 	public String sqAnswer;
 	public Date bithday;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+  	@JoinColumn(name="OWNER_ID")
+	private Room owner;
 	
 	public Roomy(String password, String username, String secretQuestion,
 			String firstName, String email, String sqAnswer, String lastName,
