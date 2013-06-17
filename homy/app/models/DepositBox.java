@@ -26,9 +26,12 @@ public class DepositBox extends Model {
 		//
 		this.currentDeposit = 0F;
 
-		DepositBoxItem di = new DepositBoxItem("Example item",10f,true);
-		di.save();
+		
 		this.depositBoxItemsList = new LinkedList<DepositBoxItem>();
+	}
+
+	public void addBoxItem(DepositBoxItem di){
+		di.save();
 		this.depositBoxItemsList.add(di);
 	}
     

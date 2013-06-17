@@ -28,6 +28,8 @@ public class Task extends Controller {
 	models.Task task = models.Task.findById(id);
         task.status=status;
         task.save();
+        // TaskTable tt = new TaskTable();
+        // tt.addTaskItem(task);
         renderJSON(task);
     }
     
