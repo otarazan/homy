@@ -21,6 +21,11 @@ public class TaskTable extends Model {
 		//
 		this.tasksList = new LinkedList<Task>();
 	}
+
+	public void addTaskItem(Task t){
+		t.save();
+		tasksList.add(t);
+	}
     
     
 }

@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /deposit                           Deposit.index
+GET     /room/{roomId}/deposit             Deposit.index(int roomId)
 GET     /settings                          Application.settings
 GET     /login                             Application.login
 GET     /grocery                           Grocery.index
