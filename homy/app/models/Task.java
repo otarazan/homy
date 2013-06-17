@@ -14,6 +14,10 @@ public class Task extends Model {
     public String description;
     public boolean status;
     public String assignee;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="OWNER_ID")
+    private TaskTable owner;
     
     /*better declare it as int. we can decide for predefined values,
       like 1=hourly 2=daily 3=weekly etc..*/

@@ -11,13 +11,9 @@ public class Deposit extends Controller {
 
 
     public static void index(){
-    	List<DepositBoxItem> itemList=DepositBoxItem.findAll();
-    	render(itemList);
+    	models.Room r = new Room("asd","asda");
+    	r.save();
+        render();
     }
-    
-    public static void delete(long itemId){
-    	DepositBoxItem temp=DepositBoxItem.findById(itemId);
-    	temp.delete();
-    	index();
-    }
+
 }    
