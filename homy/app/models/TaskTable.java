@@ -4,28 +4,28 @@ import play.*;
 import play.db.jpa.*;
 
 import javax.persistence.*;
+
 import java.util.*;
 
 @Entity
 public class TaskTable extends Model {
 
-	@OneToMany(mappedBy="owner")
-    public List <Task> tasksList;
+	public String name;
+	
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+	public List<Task> tasksList;
 
-	public TaskTable() {
-		super();
-		// we have to check if play provides an auto-increment function*/
-		//
-		// Then check it.
-		// See JPA presistence Guide and annotations (@Id)
-		//
+	@OneToOne
+	public Room owner;
+
+	public TaskTable(String name) {
+		this.name = name;
 		this.tasksList = new LinkedList<Task>();
 	}
 
-	public void addTaskItem(Task t){
+	public void addTaskItem(Task t) {
 		t.save();
 		tasksList.add(t);
+		this.save();
 	}
-    
-    
 }

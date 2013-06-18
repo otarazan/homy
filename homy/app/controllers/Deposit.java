@@ -11,11 +11,10 @@ public class Deposit extends Controller {
 
 
     public static void index(int roomId){
-    	System.out.println(roomId);
-    	models.Room r = new Room("asd","asda");
-    	r.save();
-		models.DepositBoxItem i = new models.DepositBoxItem("asd",10f,true);
-    	r.depositBox.addBoxItem(i);
+    	System.out.println(roomId+" <- can be used for retrival");
+    	Room currentRoom = Room.find("byName","DefaultRoom").first();
+    	currentRoom.depositBox.addBoxItem(new DepositBoxItem("Something to put in the box", 11.0f, true));
+    	System.out.println("the current deposit is: "+currentRoom.depositBox.currentDeposit);
         render();
     }
 
