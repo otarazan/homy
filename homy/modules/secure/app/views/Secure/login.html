@@ -1,9 +1,10 @@
-<!doctype html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head
         <title>#{get 'title' /}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta content="text/html; charset=${_response_encoding}" http-equiv="Content-Type">
         <link rel="stylesheet" href="@{'/public/themes/cosmo/bootstrap.css'}">
         <link rel="stylesheet" href="@{'/public/stylesheets/bootstrap-responsive.css'}">
         <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
@@ -86,24 +87,63 @@
       <div class="well" style="background:black">
         <div class="row-fluid">
           <div class="span3"></div>
-          <div class="span3" style="border-left:2px solid #fff; padding-left:15px">
+          <!-- <div class="span3" style="border-left:2px solid #fff; padding-left:15px">
             <h2 style="color:white">Login</h2>
             <input type="text" class="input-medium input-block-level" placeholder="Username">
             <input type="text" class="input-medium input-block-level" placeholder="Password">
             <a class="btn btn-block btn-success">Log me in</a> 
-          </div>
+          </div> -->
+		  <div id="login" class="span3" style="border-left:2px solid #fff; padding-left:15px">
+	
+				<h1>&{'secure.title'}</h1>
+					
+				#{form @authenticate()}
+					
+					#{if flash.error}
+						<p class="error">
+							&{flash.error}
+						</p>
+					#{/if}
+					#{if flash.success}
+						<p class="success">
+							&{flash.success}
+						</p>
+					#{/if}
+				
+					<p id="username-field">
+						<label for="username">&{'secure.username'}</label>
+						<input type="text" name="username" id="username" value="${flash.username}" />
+					</p>
+					<p id="password-field">
+						<label for="password">&{'secure.password'}</label>
+						<input type="password" name="password" id="password" value="" />
+					</p>
+					<p id="remember-field">
+						<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+						<label for="remember">&{'secure.remember'}</label>
+					</p>
+					<p id="signin-field">
+						<input type="submit" id="signin" value="&{'secure.signin'}" />
+					</p>
+				#{/form}
+		  </div>
           <div class="span3" style="border-right:2px solid #fff; padding-right:15px">
-            <h2 style="color:white">Register</h2>
-            <input type="text" class="input-medium input-block-level"
-            placeholder="Username">
-            <input type="email" class="input-medium input-block-level" placeholder="E-Mail">
-            <input type="password" class="input-medium input-block-level" placeholder="Password">
-            <input type="text" class="input-medium input-block-level" placeholder="First Name">
-            <input type="text" class="input-medium input-block-level" placeholder="Last Name">
-            <input type="text" class="input-medium input-block-level" placeholder="Birthday">
-            <input type="text" class="input-medium input-block-level" placeholder="Security question">
-            <input type="text" class="input-medium input-block-level" placeholder="Security answer">
-            <a class="btn btn-block btn-primary">Register a new account</a> 
+          	#{form @Security.registerRoomy()}
+          
+	            <h2 style="color:white">Register</h2>
+	            <input id="username" name"username" type="text" class="input-medium input-block-level" value=""placeholder="Username">
+	            <input id="email" type="email" class="input-medium input-block-level" value=""placeholder="E-Mail">
+	            <input id="password" type="password" class="input-medium input-block-level" value=""placeholder="Password">
+	            <input id="firstName" type="text" class="input-medium input-block-level" value=""placeholder="First Name">
+	            <input id="lastName" type="text" class="input-medium input-block-level" value=""placeholder="Last Name">
+	            <input id="Birthday" type="text" class="input-medium input-block-level" value=""placeholder="Birthday">
+	            <input id="secretQuestion" type="text" class="input-medium input-block-level" value=""placeholder="Security question">
+	            <input id="sqAnswer" type="text" class="input-medium input-block-level" value=""placeholder="Security answer">
+	            <input type="submit" id="register" value="submit"> 
+	            	<a class="btn btn-block btn-primary">Register a new account</a> 
+	            </input>
+	            
+	         #{/form}
           </div>
           <div class="span3"></div>
         </div>

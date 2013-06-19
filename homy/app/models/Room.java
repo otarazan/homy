@@ -18,8 +18,8 @@ public class Room extends Model {
 	@OneToOne(mappedBy = "owner")
 	public DepositBox depositBox;
 	
-	@OneToOne(mappedBy = "owner")
-	public TaskTable taskTable;
+//	@OneToOne(mappedBy = "owner")
+//	public TaskTable taskTable;
 	
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	public List<Roomy> roomysList;
@@ -33,8 +33,8 @@ public class Room extends Model {
 		DepositBox db = new DepositBox("testBox");
 		db.save();
 		this.depositBox = db;
-		TaskTable tt = new TaskTable("testTable");
-		tt.save();
-		this.taskTable = tt;
+//		TaskTable tt = new TaskTable("testTable");
+//		tt.save();
+//		this.taskTable = tt;
 	}
 }

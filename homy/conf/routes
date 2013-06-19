@@ -9,6 +9,7 @@ GET     /login                             Application.login
 GET     /grocery                           Grocery.index
 GET     /dashboard                         Dashboard.index
 GET     /tasks                             Task.index
+GET     /tasks/{roomyId}                   Task.index
 GET     /                                  Application.index
 
 GET     /whoWeAre                          Application.whoWeAre
@@ -24,3 +25,6 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
+#Import Secure routes
+*       /                                  module:secure 

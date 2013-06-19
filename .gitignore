@@ -1,3 +1,7 @@
 homy/tmp/
 homy/.classpath
 homy/.project
+
+/homy/db/h2/play.lock.db
+/homy/db/h2/play.trace.db
+/homy/eclipse/.gitignore

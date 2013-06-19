@@ -10,17 +10,24 @@ import models.*;
 public class Task extends Controller {
 
 
-    public static void index(){
-        List tasks= models.Task.find("order by id desc").fetch();
-        render(tasks);
+    public static void index(int roomyId){
+	//TODO:Implement here
+	System.out.println("roomyID:"+roomyId);
+        List allTasks= models.Task.find("status=false").fetch();
+        Roomy roomy=Roomy.find("byUsername", "olcay").first();
+        List allRoomies=Roomy.findAll();
+        List myTasks= models.Task.find("status=false and roomy=?", roomy).fetch();
+        render(allRoomies,myTasks,allTasks);
     }
     
     public static void tasks() {
     }
 
 
-    public static void createTask(String task,int recurrence,String assignee,String remainingDate) {
-	models.Task newtask=new models.Task(task, recurrence,assignee,remainingDate).save();
+    public static void createTask(String task,int recurrence,Long assignee,String remainingDate) {
+	Roomy roomy=Roomy.findById(assignee);
+	
+	models.Task newtask=new models.Task(task, recurrence,roomy,remainingDate).save();
         renderJSON(newtask);
     }
 
@@ -28,10 +35,20 @@ public class Task extends Controller {
 	models.Task task = models.Task.findById(id);
         task.status=status;
         task.save();
-        // TaskTable tt = new TaskTable();
-        // tt.addTaskItem(task);
         renderJSON(task);
     }
+    
+    public static void passTask(long id) {
+	models.Task task = models.Task.findById(id);
+	List allRoomies=Roomy.findAll();
+	Random randomGenerator = new Random();
+	int index = randomGenerator.nextInt(allRoomies.size());
+	Roomy unluckyRoomy=(Roomy) allRoomies.get(index);
+	task.roomy=unluckyRoomy;
+        task.save();
+        renderJSON(task);
+    }
+    
     
     public static void delete(long id) {
 	models.Task task = models.Task.findById(id);
