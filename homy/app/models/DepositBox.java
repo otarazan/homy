@@ -26,9 +26,10 @@ public class DepositBox extends Model {
 	}
 
 	public void addBoxItem(DepositBoxItem di) {
+		di.owner = this;
 		di.save();
 		// no lazy update
-		currentDeposit = di.income ? di.amount : (-1*di.amount);
+		currentDeposit += di.income ? di.amount : (-1f*di.amount);
 		this.depositBoxItemsList.add(di);
 		this.save();
 	}

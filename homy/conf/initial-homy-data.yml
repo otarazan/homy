@@ -20,6 +20,7 @@ Roomy(olcay):
     birthday: 2007-08-05
     firstName: "olcay"
     lastName: "olcay"
+    owner: homyDefaultRoom
 
 GroceryList(firstList):
     name: "Things to buy"

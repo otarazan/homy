@@ -13,8 +13,8 @@ public class Task extends Model {
     public boolean status;
     public String assignee;
 
-//    @ManyToOne
-//    public TaskTable owner;
+    @ManyToOne
+    public TaskTable owner;
     
     @ManyToOne
     public Roomy roomy;
