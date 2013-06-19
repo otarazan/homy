@@ -11,7 +11,15 @@ Roomy(alex):
     lastName: "Waldmann"
     secretQuestion: "Name of bird"
     sqAnswer: "Max"
-    owner: homyDefaultRoom
+#   owner: homyDefaultRoom
+    
+Roomy(olcay):
+    username: "olcay"
+    password: "olcay"
+    email: olcay@in.tum.de
+    birthday: 2007-08-05
+    firstName: "olcay"
+    lastName: "olcay"
 
 GroceryList(firstList):
     name: "Things to buy"
@@ -44,5 +52,22 @@ Task(firstTask):
     description: "Yes, absolutely everything"
     status: false
     assignee: false
-    owner: firstTable
+    roomy: alex
+    remainingDate: "01/01/2012"
+
+Task(secondTask):
+    title: "WashDishes"
+    description: "Yes, absolutely everything"
+    status: false
+    assignee: false
+    roomy: olcay
+    remainingDate: "01/01/2012"
+
+Task(thirdTask):
+    title: "Organize a party"
+    description: "Yes, absolutely everything"
+    status: false
+    assignee: false
+    roomy: alex
+    remainingDate: "01/01/2012"
     
