@@ -8,24 +8,19 @@ import java.util.*;
 
 @Entity
 public class DepositBoxItem extends Model {
-	
 
-	@ManyToOne(fetch=FetchType.LAZY)
-  	@JoinColumn(name="OWNER_ID")
-	private DepositBox owner;
+	public String description;
+	public Float amount;
+	public boolean income;
 
-    public String description;
-    public Float amount;
-    public boolean income;
-	
-    
-    public DepositBoxItem(String description, Float amount,
-			boolean income) {
-		super();
+	@ManyToOne
+	public DepositBox owner;
+
+
+	public DepositBoxItem(String description, Float amount, boolean income) {
 		this.description = description;
 		this.amount = amount;
 		this.income = income;
 	}
-    
-    
+
 }
