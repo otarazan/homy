@@ -26,6 +26,7 @@
     *3* Each URI represents one resource  
         *3.1* Breaking this rule is only allowed for decorators  
     *4* Each Controller implements the 4 basic http commadns GET, POST, PUT, DELETE,   
+* * *  
 2. Follow the MVP pattern instead of MVC  
     *1* View-Presenter (named controller)-Model  
     *2* HTTP actions are pipes to the basic CRUD actions  
