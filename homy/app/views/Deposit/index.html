@@ -8,36 +8,32 @@
       <tr>
         <th>Description</th>
         <th>Roomy</th>
-        <th>+</th>
         <th>-</th>
+        <th>+</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
+    #{list items:depositItemList,as:'depositItem'}
       <tr>
-        <td>Milk</td>
-        <td>Michael</td>
+        <td>${depositItem.description}</td>
+        <td>${User}</td>
+        #{if depositItem.income}
         <td></td>
         <td>
-          <span class="badge badge-important">-4</span>
+          <span class="badge badge-success">+${depositItem.amount}</span>
         </td>
-      </tr>
-      <tr>
-        <td>Monthyl fee</td>
-        <td>Michael</td>
+        #{/if}
+        #{else}
         <td>
-          <span class="badge badge-success">+4</span>
+          <span class="badge badge-important">-${depositItem.amount}</span>
         </td>
         <td></td>
-      </tr>
-      <tr>
-        <td>Monthyl fee</td>
-        <td>Susie</td>
-        <td>
-          <span class="badge badge-success">+9</span>
-        </td>
-        <td></td>
+        #{/else}
+        <td><input type=button class="btn pull-right btn-danger btn-mini btn-circle" onClick="location.href='@{Deposit.deleteItem(depositItem.id)}'" value='X'/></td>
       </tr>
     </tbody>
+    #{/list}
   </table>
   <ol class="breadcrumb" style="background:none">
     <li>
@@ -59,11 +55,12 @@
     <b>Good job!</b>
   <br> You have a positive deposit box</div>
   <div class="well">
-    <form>
-      <input type="text" class="input-medium input-block-level" placeholder="Description">
-      <input type="text" class="input-medium input-block-level" placeholder="Amount in $ / €">
-      <button class="btn pull-left btn-success">Income</button>
-      <button class="btn pull-right btn-danger">Expense</button>
-    </form>
+    #{form @Deposit.addItem()}
+      <input name="User" type="text" class="input-medium input-block-level" placeholder="User">
+      <input name="description" type="text" class="input-medium input-block-level" placeholder="Description">
+      <input name="amount"type="text" class="input-medium input-block-level" placeholder="Amount in $ / €">
+      <button name="income" class="btn pull-left btn-success">Income</button>
+      <button name="expense" class="btn pull-right btn-danger">Expense</button>
+    #{/form}
   </div>
 </div>
