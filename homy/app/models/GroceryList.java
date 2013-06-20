@@ -24,11 +24,22 @@ public class GroceryList extends Model {
 		this.groceryItemsList = new LinkedList<GroceryItem>();
 	}
 
-	public void addItem(GroceryItem item) {
-		item.owner=this;
-		item.save();
-		this.groceryItemsList.add(item);
+	public void addItem(GroceryItem di) {
+		di.owner = this;
+		di.save();
+		this.groceryItemsList.add(di);
 		this.save();
+		/*item.save();
+		this.groceryItemsList.add(item);
+		this.save();*/
+		
+	}
+	
+	public void deleteGroceryItem(GroceryItem di){
+		di.delete();
+		//this.groceryItemsList.remove(di);
+		this.groceryItemsList.remove(di.id);
+		//di.delete();
 	}
 
 }

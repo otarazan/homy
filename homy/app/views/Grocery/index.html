@@ -2,7 +2,7 @@
 #{set title:'Grocery' /}
 #{set topBarStyle:'grocery' /}
 <div class="progress">
-  <div class="bar" style="width: 40%;"></div>
+  <div class="bar" style="width: 45%;"></div>
 </div>
 <div class="row-fluid">
   <div class="span12">
@@ -20,87 +20,98 @@
       </thead>
       <tbody>
         <tr>
+        #{list items:groceries, as:'Item'}
           <td>
-            <button class="btn btn-block btn-danger btn-mini">Delete</button>
+            <a href="@{Grocery.delete(Item.id)}"><button class="btn btn-block btn-danger btn-mini">Delete</button></a>
+            <!-- <button class="btn btn-block btn-danger btn-mini">Delete</button> -->
           </td>
-          <td>Buy some Milk</td>
+           <td>${Item.name}</td>
+          
           <td>
-            <a class="btn btn-block btn-link btn-small">Buy at XY</a>
+            <a class="btn btn-block btn-link btn-small"><a href="${Item.buyFromLink}">Buy now</a></a>
           </td>
           <td>
-            <select>
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
+          #{form @Grocery.assign()}
+          	
+            <select id="newUser" name="newUser">
+              <option>${Item.assignment}</option>
+              #{list items:roomys, as:'roomy'}
+              #{if Item.assignment!=roomy.username}
+              <option>${roomy.username}</option>
+              #{/if}
+              #{/list}
             </select>
+            <input type="hidden" value="${Item.id}" name="id" /><!-- Hidden input is used to sent id addition to new user -->
+           <br><input type="submit" class="btn pull-left btn-success" id="submitNewAssignment" value="Change" />
+           #{/form}
           </td>
-          <td>Today</td>
+          	
+          	#{if Item.date!=null}
+          	
+            
+          		#{if Item.deadline-(new Date().getTime()-[Item.date.getTime()])/(1000*60*60)<24}
+          				<td>Today</td>
+          		#{/if}
+          		#{if Item.deadline-(new Date().getTime()-[Item.date.getTime()])/(1000*60*60) >= 24 & Item.deadline-(new Date().getTime()-[Item.date.getTime()])/(1000*60*60) < 168}
+          			<td>${Math.round((Item.deadline-(new Date().getTime()-[Item.date.getTime()])/(1000*60*60))/24)} day(s) </td>
+          		#{/if}
+          		#{elseif Item.deadline-(new Date().getTime()-[Item.date.getTime()])/(1000*60*60)>=168}
+          			<td>${Math.round((Item.deadline-(new Date().getTime()-[Item.date.getTime()])/(1000*60*60))/168)} week(s) </td>
+          		#{/elseif}
+          	#{/if}
+          	#{else}
+          		<td>No deadline</td>
+          	#{/else}
+          
           <td>
-            <button class="btn btn-success btn-small">Button Text</button>
+           <a href="@{Grocery.setDone(Item.id)}"> <button class="btn btn-success btn-small">Done</button></a>
           </td>
           <td>
-            <span class="badge badge-warning">Important</span>
+          	#{if Item.important}
+            <a href="@{Grocery.setNotImportant(Item.id)}"><span class="badge badge-warning">Important</span></a>
+            #{/if}
+            #{else}
+            <a href="@{Grocery.setImportant(Item.id)}"><span class="badge badge-warning">Not Important</span></a>
+            #{/else}
           </td>
         </tr>
+        #{/list}
+        
+    
         <tr>
-          <td>
-            <button class="btn btn-block btn-danger btn-mini">Delete</button>
-          </td>
-          <td>Buy some Milk</td>
-          <td>
-            <a class="btn btn-block btn-link btn-small">Buy at XY</a>
-          </td>
-          <td>
-            <select>
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-            </select>
-          </td>
-          <td>Today</td>
-          <td>
-            <button class="btn btn-success btn-small">Button Text</button>
-          </td>
-          <td>
-            <span class="badge badge-warning">Important</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="btn btn-block btn-danger btn-mini">Delete</button>
-          </td>
-          <td>Buy some Milk</td>
-          <td>
-            <a class="btn btn-block btn-link btn-small">Buy at XY</a>
-          </td>
-          <td>
-            <select>
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-            </select>
-          </td>
-          <td>Today</td>
-          <td>
-            <button class="btn btn-success btn-small">Button Text</button>
-          </td>
-          <td>
-            <span class="badge badge-warning">Important</span>
-          </td>
+        #{form @Grocery.addGrocery()}
+        	<td colspan="3"><input type="text" name="name" id="name" class="input-medium input-block-level" placeholder="Add new item" /></td>
+        	<td colspan="2">
+        	<select name="assignment" id="assignment">
+              #{list items:roomys, as:'roomy'}
+              <option>${roomy.username}</option>
+              #{/list}
+            </select><td>
+            <input type="text" name="deadline" id="deadline" class="input-medium input-block-level" />
+            <input type="radio" checked name="userSelection" value="1" />Hour<br>
+			<input type="radio" name="userSelection" value="2" />Day<br>
+			<input type="radio" name="userSelection" value="3" />Week
+			<input type="submit" class="btn pull-left btn-success" id="signin" value="add item" />
+			<td>
+        	<!--  <input type="text" name="assignment" id="assignment" value="" /> -->
+        	</td>
+        	<!--  <td colspan="3"><input type="submit" class="btn pull-left btn-success" id="signin" value="add item" /></td>-->
+        #{/form}
         </tr>
       </tbody>
     </table>
     <ol class="breadcrumb" style="background:none">
+    
       <li>
-        <a href="#">Date</a>
+        <a href="@{Grocery.order(3)}">Deadline</a>
         <span class="divider">/</span>
       </li>
       <li>
-        <a href="#">State</a>
+        <a href="@{Grocery.order(2)}">Importance</a>
         <span class="divider">/</span>
       </li>
       <li>
-        <a href="#">Assignee</a>
+        <a href="@{Grocery.order(1)}">Assignee</a>
       </li>
     </ol>
   </div>
