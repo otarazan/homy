@@ -10,21 +10,12 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-        renderTemplate("Application/login.html");
+        Dashboard.index();
     }
     
     public static void login(){
         render();
     }
-    
-    public static void logout(){
-        renderTemplate("Application/login.html");
-    }
-
-    public static void settings(){
-        render();
-    }
-
 
     public static void whoWeAre(){
         renderTemplate("Application/who.html");

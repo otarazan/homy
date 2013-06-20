@@ -3,14 +3,13 @@
 # ~~~~
 
 # Home page
+GET     /                                  Application.whatWeDo
 GET     /room/{roomId}/deposit             Deposit.index(int roomId)
 GET     /settings                          Application.settings
-GET     /login                             Application.login
 GET     /grocery                           Grocery.index
 GET     /dashboard                         Dashboard.index
 GET     /tasks                             Task.index
-GET     /tasks/{roomId}                     Task.index
-GET     /                                  Application.index
+GET     /tasks/{roomId}                    Task.index
 GET		/myprofile                         MyProfile.index
 
 GET     /whoWeAre                          Application.whoWeAre
