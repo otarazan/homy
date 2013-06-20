@@ -46,7 +46,7 @@ public class Login extends Controller /* extends Secure.Security*/{
 			Roomy roomy = Roomy.find("byUsername",username).first();
 			
 			validation.required(roomy).key("username").message(
-			"validation.email_not_found");
+			"validation.username_not_found");
 			
 			if (!validation.hasErrors()) {
 				System.out.println("Inside Login handler: check password");///////////
@@ -62,6 +62,33 @@ public class Login extends Controller /* extends Secure.Security*/{
 			}
 		}
 
+		params.flash();
+		validation.keep();
+		Application.login();
+	}
+	
+	public static void register(@Required String username, @Required String email, @Required String password, @Required String firstName,
+			@Required String lastName, @Required String birthday, @Required String secQuestion,@Required String sqAnswer ) {
+		System.out.println("Inside Register handler");///////////
+		//if (!validation.hasErrors()) {
+			System.out.println("Inside Register handler: search username");///////////
+			Roomy roomy = Roomy.find("byUsername",username).first();
+			
+			if(roomy==null){
+				System.out.println("Inside Register handler: insert user");///////////
+				roomy = new Roomy(password,username,secQuestion,
+						firstName,email, sqAnswer,lastName);
+				session.put("roomy", roomy.username);
+				Application.index();
+				return;
+			}
+			else{
+				//username already exists
+				System.out.println("Username already exists");///////////
+				
+			}
+		//}
+		System.out.println("Inside Register handler:errors");///////////
 		params.flash();
 		validation.keep();
 		Application.login();
