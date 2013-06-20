@@ -88,28 +88,25 @@
           <div class="span3"></div>
           <div class="span3" style="border-left:2px solid #fff; padding-left:15px">
             <h2 style="color:white">Login</h2>
-            #{form @Login.login()}
-            <div class="error">#{error 'email' /}</div>
-            <input type="text" class="input-medium input-block-level" name="username" id="username" placeholder="Username" value="${flash.username}" >
-            <div class="error">#{error 'password' /}</div>
-            <input type="text" class="input-medium input-block-level" name="password" id="password" placeholder="Password" value="${flash.password}" >
-            <input class="btn btn-block btn-success" type="submit" value="Log in"></input>
+            #{form @Security.login()}
+            <input type="text" class="input-medium input-block-level" placeholder="Username" value="${flash.username}" >
+            <input type="text" class="input-medium input-block-level" placeholder="Password" value="${flash.password}" >
+            <!--a class="btn btn-block btn-success">Log me in</a-->
+            <input class="btn btn-block btn-success" type="submit"> Log me in</input>
             #{/form}
           </div>
           <div class="span3" style="border-right:2px solid #fff; padding-right:15px">
             <h2 style="color:white">Register</h2>
-            #{form @Login.register()}
-            <input type="text" id="username" name="username" class="input-medium input-block-level"
+            <input type="text" class="input-medium input-block-level"
             placeholder="Username">
-            <input type="email" class="input-medium input-block-level"  id="email" name="email"placeholder="E-Mail">
-            <input type="password" class="input-medium input-block-level" id="password" name="password" placeholder="Password">
-            <input type="text" class="input-medium input-block-level"  id="firstName" name="firstName"placeholder="First Name">
-            <input type="text" class="input-medium input-block-level"  id="lastName" name="lastName" placeholder="Last Name">
-            <input type="text" class="input-medium input-block-level"  id="birthDay" name="birthDay" placeholder="Birthday">
-            <input type="text" class="input-medium input-block-level"  id="secQuestion" name="secQuestion"placeholder="Security question">
-            <input type="text" class="input-medium input-block-level"  id="sqAnswer" name="sqAnswer" placeholder="Security answer">
-            <input class="btn btn-block btn-primary" type="submit" value="Register a new account"></input> 
-            #{/form}
+            <input type="email" class="input-medium input-block-level" placeholder="E-Mail">
+            <input type="password" class="input-medium input-block-level" placeholder="Password">
+            <input type="text" class="input-medium input-block-level" placeholder="First Name">
+            <input type="text" class="input-medium input-block-level" placeholder="Last Name">
+            <input type="text" class="input-medium input-block-level" placeholder="Birthday">
+            <input type="text" class="input-medium input-block-level" placeholder="Security question">
+            <input type="text" class="input-medium input-block-level" placeholder="Security answer">
+            <a class="btn btn-block btn-primary">Register a new account</a> 
           </div>
           <div class="span3"></div>
         </div>
