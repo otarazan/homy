@@ -14,7 +14,11 @@ public class Application extends Controller {
     }
     
     public static void login(){
-        render();
+        try {
+			Secure.login();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
     }
 
     public static void whoWeAre(){
