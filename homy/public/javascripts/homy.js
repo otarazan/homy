@@ -2,7 +2,7 @@
 $(document).ready(function() 
     { 
 		//sorts all the table on the page which has tablesorter class
-        $(".tablesorter").tablesorter(); 
+        //$(".tablesorter").tablesorter(); 
         $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd'}).datepicker('setDate', new Date());
         //When textbox is clicked 'add news task' string is removed
         $("#txtTask").focusin(function() {$("#txtTask").val("")});

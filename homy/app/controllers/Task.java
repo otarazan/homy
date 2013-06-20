@@ -17,23 +17,22 @@ public class Task extends Controller {
         List myTasks= models.Task.find("status=false and roomy=?", roomy).fetch();
         render(allRoomies,myTasks,allTasks);
     }
-    
-    public static void tasks() {
-    }
-
-
-    public static void createTask(String task,int recurrence,Long assignee,String remainingDate) {
-	Roomy roomy=Roomy.findById(assignee);
-	
-	models.Task newtask=new models.Task(task, recurrence,roomy,remainingDate).save();
-        renderJSON(newtask);
-    }
 
     public static void changeStatus(long id, boolean status) {
 	models.Task task = models.Task.findById(id);
         task.status=status;
         task.save();
-        renderJSON(task);
+    }
+    
+    public static void addTask(String task,int recurrence,Long selectedUser,String remainingDate){
+	Roomy roomy=Roomy.findById(selectedUser);
+	
+	new models.Task(task, recurrence,roomy,remainingDate).save();
+    	index();
+    }
+    
+    public static void sortItemDate(){
+	
     }
     
     public static void passTask(long id) {

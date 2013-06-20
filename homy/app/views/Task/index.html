@@ -2,14 +2,28 @@
 #{set title:'Tasks' /}
 #{set topBarStyle:'task' /}
 
-<div class="span12">
+<div class="span12"> 
+<ol class="breadcrumb" style="background:none">
+    <li>
+      <a href="@{Task.sortItemDate()}">Date</a>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <a href="@{Task.sortItemIncome()}">Importance</a>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <a href="@{Task.sortItemAssignee()}">Assignee</a>
+    </li>
+  </ol>
 	<div id="tabs">
 		<ul>
 		<li><a href="#tabs-1">My Tasks</a></li>
 		<li><a href="#tabs-2">All Tasks</a></li>
 		</ul>
 		<div id="tabs-2">
-		  <table id="allTasks" class="tablesorter">
+		#{form @Task.addTask()}
+		  <table id="allTasks"  class="table">
 		    <thead>
 					<tr>
 						<th>Task</th>
@@ -32,28 +46,25 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td><input type="text" id="txtTask" value="Add new task"></td>
-						<td>
-							<select id="selectUser">
-							#{list items:allRoomies, as:'roomy'}
-							  <option value="${roomy.id}">${roomy.firstName}</option>
-							#{/list}
-							</select>
+						<td><input type="text" name="task" value="Add new task"></td>
+						<td>							
+							#{select 'selectedUser', items:allRoomies, valueProperty:'id', labelProperty:'firstName' /}
 						</td>
 						<td><input type="checkbox"/></td>
 						<td>
-							<select id="selectRecurrence">
+							<select name="recurrence">
 							  <option value="1">1</option>
 							  <option value="2">2</option>
 							  <option value="3">3</option>
 							  <option value="4">4</option>
 							</select>
 						</td>
-						<td><input type="text" id="datepicker"></td>
+						<td><input type="text" id="datepicker" name="remainingDate"></td>
 					</tr>
 				</tfoot>
 		  </table>
-		  <a id="createTask" href="#">Save</a>
+		    <button name="save" class="btn pull-left btn-success">Save</button>
+		#{/form}
 	</div>
 	<div id="tabs-1">
 		#{list items:myTasks, as:'task'}

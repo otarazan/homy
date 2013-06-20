@@ -4,6 +4,7 @@ import play.*;
 import play.db.jpa.*;
 
 import javax.persistence.*;
+
 import java.util.*;
 
 @Entity
@@ -20,6 +21,9 @@ public class Roomy extends Model {
 
 	@ManyToOne
 	public Room owner;
+
+	@OneToMany(mappedBy = "roomy", cascade = CascadeType.ALL)
+	public List<Task> tasks;
 
 	public Roomy(String password, String username, String secretQuestion,
 			String firstName, String email, String sqAnswer, String lastName) {
