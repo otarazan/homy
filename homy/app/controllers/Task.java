@@ -12,7 +12,7 @@ public class Task extends Controller {
 
 
     public static void index(){
-        List allTasks= models.Task.find("status=false").fetch();
+	List allTasks= models.Task.find("status=false").fetch();
         Roomy roomy=Roomy.find("byUsername", "olcay").first();
         List allRoomies=Roomy.findAll();
         List myTasks= models.Task.find("status=false and roomy=?", roomy).fetch();
@@ -32,7 +32,15 @@ public class Task extends Controller {
     	index();
     }
     
-    public static void sortItemDate(){
+    public static void sortByDate(){
+	
+    }
+    
+    public static void sortbyAssignee(){
+	
+    }
+    
+    public static void sortbyImportance(){
 	
     }
     

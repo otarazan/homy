@@ -5,15 +5,15 @@
 <div class="span12"> 
 <ol class="breadcrumb" style="background:none">
     <li>
-      <a href="@{Task.sortItemDate()}">Date</a>
+      <a href="@{Task.sortbyDate()}">Date</a>
       <span class="divider">/</span>
     </li>
     <li>
-      <a href="@{Task.sortItemIncome()}">Importance</a>
+      <a href="@{Task.sortbyImportance()}">Importance</a>
       <span class="divider">/</span>
     </li>
     <li>
-      <a href="@{Task.sortItemAssignee()}">Assignee</a>
+      <a href="@{Task.sortbyAssignee()}">Assignee</a>
     </li>
   </ol>
 	<div id="tabs">
@@ -24,15 +24,13 @@
 		<div id="tabs-2">
 		#{form @Task.addTask()}
 		  <table id="allTasks"  class="table">
-		    <thead>
 					<tr>
-						<th>Task</th>
-						<th>Assignee</th>
-						<th>Status</th>
-						<th>Importance</th>
-						<th>Remaining Date</th>
+						<td>Task</td>
+						<td>Assignee</td>
+						<td>Status</td>
+						<td>Importance</td>
+						<td>Remaining Date</td>
 					</tr>
-				</thead>
 				<tbody>
 					#{list items:allTasks, as:'task'}
 					<tr>
@@ -52,7 +50,7 @@
 						</td>
 						<td><input type="checkbox"/></td>
 						<td>
-							<select name="recurrence">
+							<select style="width:50px;" name="recurrence">
 							  <option value="1">1</option>
 							  <option value="2">2</option>
 							  <option value="3">3</option>
@@ -72,7 +70,11 @@
 						<p>${task.title}</p>
 						<div>
 							<center>${task.recurrence}</center>
-							<center>${task.remainingDate}</center>
+							<center>${task.recurrence}</center>
+							<center>${task.recurrence}</center>
+							<script>
+								new Date(new Date()-${task.remainingDate}
+							</script>
 							<center><button type="button"  onclick="passTask(box_${task.id},${task.id})">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
 						</div>
 						
