@@ -11,8 +11,14 @@ import models.*;
 public class Dashboard extends Controller {
 
 
+    public static void index(long roomId){
+    	String username = Security.connected();
+        render(username);
+    }
+    
     public static void index(){
-        render();
+    	String username = Security.connected();
+        render(username);
     }
 
 }    

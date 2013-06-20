@@ -10,39 +10,19 @@ import models.*;
 @With(Secure.class)
 public class Deposit extends Controller {
 	
-	static long roomID=0;
-	static int state=0;
 
     public static void index(long roomId){
-    	System.out.println(roomId+" <- can be used for retrival");
-    	roomID=roomId;
+    	String username = Security.connected();
     	Room currentRoom = Room.find("byName","DefaultRoom").first();
-    	//currentRoom.depositBox.addBoxItem(new DepositBoxItem("Something to put in the box", 11.0f, true));
-    	//currentRoom.depositBox.addBoxItem(new DepositBoxItem("Something to put in the box", 11.0f, true));
-    	System.out.println("the current deposit is: "+currentRoom.depositBox.currentDeposit);
-    	for (DepositBoxItem item : currentRoom.depositBox.depositBoxItemsList){
-    		System.out.println(item.description+" - "+item.amount);
-    	}
     	List<DepositBoxItem> depositItemList=new LinkedList<DepositBoxItem>();
-    	if(state==0){
-    		depositItemList=models.DepositBoxItem.find("roomId=? order by id desc",roomID).fetch();
-    	}
-    	else if(state==1){
-    		depositItemList=models.DepositBoxItem.find("roomId=? order by income desc",roomID).fetch();
-    	}
-    	else{
-    		depositItemList=models.DepositBoxItem.find("roomId=? order by user desc",roomID).fetch();
-    	}
-    	   
+    	depositItemList=models.DepositBoxItem.find("roomId=? order by id desc",roomId).fetch();
     	float amount=currentRoom.depositBox.currentDeposit;
-    	
-        render(depositItemList,amount);
+        render(depositItemList,amount, username, roomId);
 
     }
     
-    public static void addItem(String User,String description,float amount,String income,String expense){
-    	//Room currentRoom = Room.find("byName","DefaultRoom").first();
-    	Room currentRoom=Room.findById(roomID);
+    public static void addItem(long roomId ,String User,String description,float amount,String income,String expense){
+    	Room currentRoom=Room.findById(roomId);
     	DepositBoxItem temp=null;
     	if(income!=null){
     		temp=new DepositBoxItem(description,amount,true);
@@ -50,29 +30,16 @@ public class Deposit extends Controller {
     	else if(expense!=null){
     		temp=new DepositBoxItem(description,amount,false);
     	}
-    	temp.roomId=roomID;
+    	temp.roomId=1;
     	temp.user=User;
     	currentRoom.depositBox.addBoxItem(temp);
-    	index(roomID);
+    	index(roomId);
     }
     
-    public static void deleteItem(long itemId){
-    	Room currentRoom = Room.findById(roomID);
+    public static void deleteItem(long roomId, long itemId){
+    	Room currentRoom = Room.findById(roomId);
     	currentRoom.depositBox.deleteBoxItem(itemId);
-    	index(roomID);
-    }
-    
-    public static void sortItemIncome(){
-    	state=1;
-    	index(roomID);
-    }
-    public static void sortItemDate(){
-    	state=0;
-    	index(roomID);
-    }
-    public static void sortItemAssignee(){
-    	state=2;
-    	index(roomID);
+    	index(roomId);
     }
     
 

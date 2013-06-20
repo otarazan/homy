@@ -11,12 +11,13 @@ import models.*;
 public class Task extends Controller {
 
 
-    public static void index(){
+    public static void index(long roomId){
+    	String username = Security.connected();
         List allTasks= models.Task.find("status=false").fetch();
         Roomy roomy=Roomy.find("byUsername", "olcay").first();
         List allRoomies=Roomy.findAll();
         List myTasks= models.Task.find("status=false and roomy=?", roomy).fetch();
-        render(allRoomies,myTasks,allTasks);
+        render(allRoomies,myTasks,allTasks,username);
     }
     
     public static void tasks() {
