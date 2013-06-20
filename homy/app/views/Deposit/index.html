@@ -17,7 +17,7 @@
     #{list items:depositItemList,as:'depositItem'}
       <tr>
         <td>${depositItem.description}</td>
-        <td>${User}</td>
+        <td>${depositItem.user}</td>
         #{if depositItem.income}
         <td></td>
         <td>
@@ -38,23 +38,31 @@
   </table>
   <ol class="breadcrumb" style="background:none">
     <li>
-      <a href="#">Date</a>
+      <a href="@{Deposit.sortItemDate()}">Date</a>
       <span class="divider">/</span>
     </li>
     <li>
-      <a href="#">Income / Expenses</a>
+      <a href="@{Deposit.sortItemIncome()}">Income / Expenses</a>
       <span class="divider">/</span>
     </li>
     <li>
-      <a href="#">Assignee</a>
+      <a href="@{Deposit.sortItemAssignee()}">Assignee</a>
     </li>
   </ol>
 </div>
 <div class="span4">
+#{if amount>0}
   <div class="alert alert-block alert-success">
-    <h1>+6</h1>
+    <h1>${amount}</h1>
     <b>Good job!</b>
   <br> You have a positive deposit box</div>
+#{/if}
+#{else}
+<div class="alert alert-block alert-danger">
+    <h1>${amount}</h1>
+    <b>Problem!</b>
+  <br> You are out of money!</div>
+#{/else}
   <div class="well">
     #{form @Deposit.addItem()}
       <input name="User" type="text" class="input-medium input-block-level" placeholder="User">

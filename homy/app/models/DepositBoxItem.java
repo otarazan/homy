@@ -12,6 +12,8 @@ public class DepositBoxItem extends Model {
 	public String description;
 	public Float amount;
 	public boolean income;
+	public long roomId;
+	public String user;
 
 	@ManyToOne
 	public DepositBox owner;

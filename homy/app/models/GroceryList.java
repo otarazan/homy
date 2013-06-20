@@ -25,6 +25,7 @@ public class GroceryList extends Model {
 	}
 
 	public void addItem(GroceryItem item) {
+		item.owner=this;
 		item.save();
 		this.groceryItemsList.add(item);
 		this.save();
