@@ -10,19 +10,25 @@ import play.mvc.With;
 
 @With(Secure.class)
 public class Profile extends Controller{
+	
     public static void index(long roomId){
-    	List<Roomy> roomys = Roomy.findAll();
-    	String username = Security.connected();
-        render(username);
+    	
+    	String email = Security.connected();
+    	Roomy r = Roomy.find("byEmail", email).first();
+        render(r,roomId);
     }
     
-public static void deleteRoomy(long roomyId) {
-	Roomy roomy = Roomy.findById(roomyId);
-	roomy.delete();
-	index(roomyId);
-}
-
-
-
+    public static void updateRoomy(long roomId ,String username, String password, String fname, String lname, String squestion, String sanswer, String bday, String email){
+    	Roomy r = Roomy.find("byEmail", email).first();
+    	r.birthday = new Date(bday);
+    	r.firstName = fname;
+    	r.lastName =lname;
+    	r.password = password;
+    	r.secretQuestion = squestion;
+    	r.sqAnswer = sanswer;
+    	r.username = username;
+    	r.save();
+    	index(roomId);
+    }
 }
 
