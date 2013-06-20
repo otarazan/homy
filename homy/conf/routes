@@ -16,9 +16,10 @@ GET     /room/{roomId}/tasks               Task.index(int roomId)
 GET     /room/{roomId}/tasks               Task.index(int roomId)
 
 
-GET     /room/{roomId}/profile             Profile.index
-POST    /room/{roomId}/profile/updateroomy Profile.updateroomy(int roomId)
-POST    /room/{roomId}/profile/updatephoto Profile.updateroomy(int roomId)
+GET     /profile             				Profile.index
+POST    /profile/updateroomy 				Profile.updateroomy(int roomId)
+POST    /profile/updatephoto 				Profile.updateroomy(int roomId)
+POST    /profile/updatecurrentroom 			Profile.updateroomy(int roomId)
 
 GET     /whoWeAre                          Application.whoWeAre
 GET     /reachUs                           Application.reachUs

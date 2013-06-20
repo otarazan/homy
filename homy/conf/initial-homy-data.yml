@@ -1,6 +1,10 @@
 Room(homyDefaultRoom):
     name: "DefaultRoom"
     description: "This room is used for all memebers of homy. Dont worry, you can switch to whatever room you like."
+    
+Room(nonDefaultRoom):
+    name: "AnotherRoom"
+    description: "This room is used for all memebers of homy. Dont worry, you can switch to whatever room you like."
 
 Roomy(alex):
     username: "Alex"
