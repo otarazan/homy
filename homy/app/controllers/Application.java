@@ -10,7 +10,7 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-        renderTemplate("Application/login.html");
+        renderTemplate("Deposit/index.html");
     }
     
     public static void login(){

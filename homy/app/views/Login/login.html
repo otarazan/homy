@@ -88,12 +88,11 @@
           <div class="span3"></div>
           <div class="span3" style="border-left:2px solid #fff; padding-left:15px">
             <h2 style="color:white">Login</h2>
-            #{form @Login.login()}
-            <div class="error">#{error 'email' /}</div>
-            <input type="text" class="input-medium input-block-level" name="username" id="username" placeholder="Username" value="${flash.username}" >
-            <div class="error">#{error 'password' /}</div>
-            <input type="text" class="input-medium input-block-level" name="password" id="password" placeholder="Password" value="${flash.password}" >
-            <input class="btn btn-block btn-success" type="submit" value="Log in"></input>
+            #{form @Security.login()}
+            <input type="text" class="input-medium input-block-level" placeholder="Username" value="${flash.username}" >
+            <input type="text" class="input-medium input-block-level" placeholder="Password" value="${flash.password}" >
+            <!--a class="btn btn-block btn-success">Log me in</a-->
+            <input class="btn btn-block btn-success" type="submit"> Log me in</input>
             #{/form}
           </div>
           <div class="span3" style="border-right:2px solid #fff; padding-right:15px">

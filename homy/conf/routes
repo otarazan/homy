@@ -5,7 +5,10 @@
 # Home page
 GET     /room/{roomId}/deposit             Deposit.index(int roomId)
 GET     /settings                          Application.settings
+
 GET     /login                             Application.login
+POST    /login                             Application.login
+
 GET     /grocery                           Grocery.index
 GET     /dashboard                         Dashboard.index
 GET     /tasks                             Task.index
@@ -28,4 +31,4 @@ GET     /public/                                staticDir:public
 *       /{controller}/{action}                  {controller}.{action}
 
 #Import Secure routes
-*       /                                  module:secure 
+#*       /                                  module:secure 
