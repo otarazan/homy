@@ -9,8 +9,9 @@ GET     /login                             Application.login
 GET     /grocery                           Grocery.index
 GET     /dashboard                         Dashboard.index
 GET     /tasks                             Task.index
-GET     /tasks/{roomyId}                   Task.index
+GET     /tasks/{roomId}                     Task.index
 GET     /                                  Application.index
+GET		/myprofile                         MyProfile.index
 
 GET     /whoWeAre                          Application.whoWeAre
 GET     /reachUs                           Application.reachUs

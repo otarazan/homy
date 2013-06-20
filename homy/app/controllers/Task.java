@@ -10,9 +10,7 @@ import models.*;
 public class Task extends Controller {
 
 
-    public static void index(int roomyId){
-	//TODO:Implement here
-	System.out.println("roomyID:"+roomyId);
+    public static void index(){
         List allTasks= models.Task.find("status=false").fetch();
         Roomy roomy=Roomy.find("byUsername", "olcay").first();
         List allRoomies=Roomy.findAll();
