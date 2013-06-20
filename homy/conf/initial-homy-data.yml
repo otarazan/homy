@@ -11,7 +11,7 @@ Roomy(alex):
     lastName: "Waldmann"
     secretQuestion: "Name of bird"
     sqAnswer: "Max"
-    owner: homyDefaultRoom
+#   owner: homyDefaultRoom
     
 Roomy(olcay):
     username: "olcay"
