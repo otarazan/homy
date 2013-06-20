@@ -60,10 +60,7 @@
 						<div>
 							<center>${task.recurrence}</center>
 							<center>${task.recurrence}</center>
-							<center>${task.recurrence}</center>
-							<script>
-								new Date(new Date()-${task.remainingDate}
-							</script>
+							<center><div id="counter"></div></center>
 							<center><button type="button"  onclick="passTask(box_${task.id},${task.id})">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
 						</div>
 						

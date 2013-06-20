@@ -28,6 +28,13 @@ $(document).ready(function()
         		status : $(this).is(":checked")
         	})
         });
+        
+        alert("test");
+        
+        $('#counter').countdown({
+            image: 'img/digits.png',
+            startTime: '01:12:12:00'
+          });
     } 
 ); 
 
@@ -49,8 +56,3 @@ function passTask(boxid,taskID) {
 	$(boxid).fadeOut("slow");
 }
 
-
-function diffDate(f,e)
-{
-	return new Date(f - e);
-}
