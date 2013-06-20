@@ -32,6 +32,7 @@
 2. Follow the MVP pattern instead of MVC  
     *1* View-Presenter (named controller)-Model  
     *2* HTTP actions are pipes to the basic CRUD actions  
+* * *  
 
 ### Data-Layer conventions
 
