@@ -7,6 +7,7 @@ import java.util.*;
 
 import models.*;
 
+@With(Secure.class)
 public class Deposit extends Controller {
 	
 	static long roomID=0;

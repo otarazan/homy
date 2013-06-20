@@ -6,8 +6,10 @@ import java.util.List;
 import models.Roomy;
 import play.*;
 import play.mvc.Controller;
+import play.mvc.With;
 
-public class MyProfile extends Controller{
+@With(Secure.class)
+public class Profile extends Controller{
     public static void index(){
     	List<Roomy> roomys = Roomy.findAll();
         render();

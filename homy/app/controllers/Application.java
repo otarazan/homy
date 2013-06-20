@@ -10,21 +10,16 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-        renderTemplate("Deposit/index.html");
+        Dashboard.index();
     }
     
     public static void login(){
-        render();
+        try {
+			Secure.login();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
     }
-    
-    public static void logout(){
-        renderTemplate("Application/login.html");
-    }
-
-    public static void settings(){
-        render();
-    }
-
 
     public static void whoWeAre(){
         renderTemplate("Application/who.html");

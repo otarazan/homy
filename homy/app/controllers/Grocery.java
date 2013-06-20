@@ -7,6 +7,7 @@ import java.util.*;
 
 import models.*;
 
+@With(Secure.class)
 public class Grocery extends Controller {
 
 
