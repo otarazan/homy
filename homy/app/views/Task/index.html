@@ -3,19 +3,6 @@
 #{set topBarStyle:'task' /}
 
 <div class="span12"> 
-<ol class="breadcrumb" style="background:none">
-    <li>
-      <a href="@{Task.sortbyDate()}">Date</a>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <a href="@{Task.sortbyImportance()}">Importance</a>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <a href="@{Task.sortbyAssignee()}">Assignee</a>
-    </li>
-  </ol>
 	<div id="tabs">
 		<ul>
 		<li><a href="#tabs-1">My Tasks</a></li>
@@ -23,14 +10,16 @@
 		</ul>
 		<div id="tabs-2">
 		#{form @Task.addTask()}
-		  <table id="allTasks"  class="table">
+		  <table id="allTasks"  class="tablesorter">
+		       <thead>
 					<tr>
-						<td>Task</td>
-						<td>Assignee</td>
-						<td>Status</td>
-						<td>Importance</td>
-						<td>Remaining Date</td>
+						<th>Task</th>
+						<th>Assignee</th>
+						<th>Status</th>
+						<th>Importance</th>
+						<th>Remaining Date</th>
 					</tr>
+			</thead>
 				<tbody>
 					#{list items:allTasks, as:'task'}
 					<tr>
