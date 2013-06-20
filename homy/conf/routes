@@ -3,12 +3,17 @@
 # ~~~~
 
 # Home page
-GET     /                                  Dashboard.index
+GET     /                    			   Dashboard.index
+GET     /room/{roomId}/                    Dashboard.index
+
 GET     /room/{roomId}/deposit             Deposit.index(int roomId)
-GET     /grocery                           Grocery.index
-GET     /dashboard                         Dashboard.index
-GET     /tasks                             Task.index
-GET     /tasks/{roomId}                    Task.index
+POST    /room/{roomId}/deposit/additem     Deposit.addItem(int roomId)
+GET     /room/{roomId}/deposit/deleteitem  Deposit.deleteitem(int roomId)
+
+GET     /room/{roomId}/grocery             Grocery.index(int roomId)
+GET     /room/{roomId}/dashboard           Dashboard.index(int roomId)
+GET     /room/{roomId}/tasks               Task.index(int roomId)
+GET     /room/{roomId}/tasks               Task.index(int roomId)
 GET		/profile                           Profile.index
 
 GET     /whoWeAre                          Application.whoWeAre

@@ -11,8 +11,9 @@ import models.*;
 public class Grocery extends Controller {
 
 
-    public static void index(){
-        render();
+    public static void index(long roomId){
+    	String username = Security.connected();
+        render(username);
     }
 
 }    
