@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -18,16 +19,26 @@ public class Profile extends Controller{
         render(r,roomId);
     }
     
-    public static void updateRoomy(long roomId ,String username, String password, String fname, String lname, String squestion, String sanswer, String bday, String email){
+    public static void updateRoomy(long roomId ,String username, String password, String fname, String lname, String squestion, String sanswer, String bday, File photo){
+    	String email = Security.connected();
     	Roomy r = Roomy.find("byEmail", email).first();
-    	r.birthday = new Date(bday);
-    	r.firstName = fname;
-    	r.lastName =lname;
-    	r.password = password;
-    	r.secretQuestion = squestion;
-    	r.sqAnswer = sanswer;
-    	r.username = username;
-    	r.save();
+    	//if (r.password==password){
+	    	r.firstName = fname;
+	    	r.lastName =lname;
+	    	r.password = password;
+	    	r.secretQuestion = squestion;
+	    	r.sqAnswer = sanswer;
+	    	r.username = username;
+	    	r.save();
+    	//}
+    	index(roomId);
+    }
+    
+    
+    public static void updatePhoto(long roomId, File photo){
+    	String email = Security.connected();
+    	Roomy r = Roomy.find("byEmail", email).first();
+    	r.pathToPicture = photo;
     	index(roomId);
     }
 }
