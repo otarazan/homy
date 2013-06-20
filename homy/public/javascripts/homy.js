@@ -2,8 +2,8 @@
 $(document).ready(function() 
     { 
 		//sorts all the table on the page which has tablesorter class
-        $(".tablesorter").tablesorter(); 
-        $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd'}).datepicker('setDate', new Date());
+        //$(".tablesorter").tablesorter(); 
+        $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy'}).datepicker('setDate', new Date());
         //When textbox is clicked 'add news task' string is removed
         $("#txtTask").focusin(function() {$("#txtTask").val("")});
         //jquery tab view is created as mytasks and alltasks
@@ -49,3 +49,8 @@ function passTask(boxid,taskID) {
 	$(boxid).fadeOut("slow");
 }
 
+
+function diffDate(f,e)
+{
+	return new Date(f - e);
+}
