@@ -66,34 +66,32 @@
       </form>
     </div>
     <table class="table">
+  
+  	
       <thead>
         <tr>
           <th>Room</th>
-          <th></th>
+          <th>Join it ?</th>
         </tr>
       </thead>
       <tbody>
+      #{list items:rooms,as:'room'}
         <tr>
-          <td>Work</td>
+          <td>${room.name}<br/>
+          <i>${room.description}</i></td>
           <td>
-            <a class="btn btn-danger btn-block">Unjoin</a>
+          
+       		 #{if room.name == r.owner.name}
+            <a class="btn btn-inverse btn-block" href="#">Joined</a>
+            #{/if}
+        #{else}
+            <a class="btn btn-success btn-block" href="@{Profile.updateCurrentRoom(room.name)}">Join this room</a>
+        #{/else}
           </td>
         </tr>
-        <tr>
-          <td>Home</td>
-          <td>
-            <a class="btn btn-danger btn-block">Unjoin</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="text" class="input-medium">
-          </td>
-          <td>
-            <a class="btn btn-block btn-success">Join room</a>
-          </td>
-        </tr>
+        
+      #{/list}
       </tbody>
-    </table>
+   </table>
   </div>
 </div>

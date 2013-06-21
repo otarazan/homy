@@ -17,7 +17,8 @@ public class Profile extends Controller{
     	String username = Security.connected();
     	Roomy r = Roomy.find("byEmail", username).first();
     	long roomId = r.owner.getId();
-        render(roomId,r,username);
+    	List<Room> rooms = Room.findAll();
+        render(roomId,r,username,rooms);
     }
     
     public static void updateRoomy(String username, String password, String fname, String lname, String squestion, String sanswer, String bday, File photo){
@@ -50,7 +51,7 @@ public class Profile extends Controller{
     	r.owner = room;
     	r.save();
     	room.save();
-    	Deposit.index(room.getId());
+    	Dashboard.index();
     }
 }
 
