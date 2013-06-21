@@ -49,14 +49,6 @@ $(document).ready(function()
     } 
 ); 
 
-//when done button on task is clicked set as done and remove the box
-function setTaskAsDone(boxid,taskID) {
-	$.post('../task/changeStatus', {
-		id : taskID,
-		status : true
-	})
-	$(boxid).fadeOut("slow");
-}
 
 function importance(element,level){
 	if(level==1){
@@ -111,11 +103,5 @@ function countDown(element,end){
     timer = setInterval(showRemaining, 1000);
 }
 
-//when pass button on task is clicked assign task to next person
-function passTask(boxid,taskID) {
-	$.post('../task/passTask', {
-		id : taskID
-	})
-	$(boxid).fadeOut("slow");
-}
+
 
