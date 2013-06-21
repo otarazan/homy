@@ -48,7 +48,7 @@ Task(firstTask):
     title: "Clean the apartment"
     description: "Yes, absolutely everything"
     status: false
-    assignee: false
+    recurrence: 3
     roomy: alex
     remainingDate: "01/01/2012"
 
@@ -56,7 +56,7 @@ Task(secondTask):
     title: "WashDishes"
     description: "Yes, absolutely everything"
     status: false
-    assignee: false
+    recurrence: 1
     roomy: olcay
     remainingDate: "01/01/2012"
 
@@ -64,7 +64,7 @@ Task(thirdTask):
     title: "Organize a party"
     description: "Yes, absolutely everything"
     status: false
-    assignee: false
+    recurrence: 2
     roomy: alex
     remainingDate: "01/01/2012"
     

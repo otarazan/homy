@@ -58,9 +58,8 @@
 			<div class="boxed" id="box_${task.id}">
 						<p>${task.title}</p>
 						<div>
-							<center>${task.recurrence}</center>
-							<center>${task.recurrence}</center>
-							<center><div id="counter"></div></center>
+							<center><div id="importance_${task.id}">Level:${task.recurrence}</div></center>
+							<center><div id="countdown_${task.id}"></div><script>prepareBox(${task.id},${task.remainingDate});</script></center>
 							<center><button type="button"  onclick="passTask(box_${task.id},${task.id})">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
 						</div>
 						
