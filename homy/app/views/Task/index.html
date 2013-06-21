@@ -13,11 +13,21 @@
   	<div id="tabs-1">
 		#{list items:myTasks, as:'task'}
 			<div class="span3 well" id="box_${task.id}">
+			<b>Task:</b>
 						<p>${task.title}</p>
 						<div>
-							<div class="badge badge-important" id="importance_${task.id}">Level:${task.recurrence}</div>
-							<div id="countdown_${task.id}"></div><script>countDown("countdown_${task.id}","${task.remainingDate}");</script>
-							<center><button type="button" class="btn btn-warning" onclick="passTask(box_${task.id},${task.id})">Pass</button> <button class="btn btn-success" type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
+							<span class="badge badge-important" id="importance_${task.id}">Level:${task.recurrence}</span>
+							<span class="pull-right" id="countdown_${task.id}"></span><script>countDown("countdown_${task.id}","${task.remainingDate}");</script>
+							<br/><br/>
+								#{form @Task.passTask(roomId)}
+								<input type="hidden" name="id" id="id" value="${task.id}"/>
+								<input type="submit" class="btn btn-warning btn-block" value="Pass">
+								#{/form}
+								#{form @Task.changeStatus(roomId)}
+								<input type="hidden" name="id" id="id" value="${task.id}"/>
+								<input type="hidden" name="status" id="status" value="true"/>
+								<input type="submit" class="btn btn-success btn-block" value="Done">
+								#{/form}
 						</div>
 						
 			</div>

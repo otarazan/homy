@@ -45,7 +45,7 @@ public class Task extends Controller {
     	index(roomId);
     }
     
-    public static void passTask(long id) {
+    public static void passTask(long roomId, long id) {
 		models.Task task = models.Task.findById(id);
 		List allRoomies=Roomy.findAll();
 		Random randomGenerator = new Random();
@@ -53,7 +53,7 @@ public class Task extends Controller {
 		Roomy unluckyRoomy=(Roomy) allRoomies.get(index);
 		task.roomy=unluckyRoomy.firstName;
         task.save();
-        renderJSON(task);
+    	index(roomId);
     }
     
     public static void delete(long id) {

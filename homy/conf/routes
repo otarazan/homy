@@ -10,8 +10,8 @@ GET     /room/{roomId}/deposit             Deposit.index(int roomId)
 POST    /room/{roomId}/deposit/additem     Deposit.addItem(int roomId)
 GET     /room/{roomId}/deposit/deleteitem  Deposit.deleteitem(int roomId)
 
-GET     /room/{roomId}/grocery               Grocery.index(int roomId)
-POST    /room/{roomId}/grocery/addgrocery    Grocery.addGrocery(int roomId)
+GET     /room/{roomId}/grocerys               Grocery.index(int roomId)
+POST    /room/{roomId}/grocerys/addgrocery    Grocery.addGrocery(int roomId)
 GET     /room/{roomId}/grocery/deletegrocery Grocery.deleteGrocery(int roomId)
 DELETE  /room/{roomId}/grocery/updateGrocery Grocery.updateGrocery(int roomId)
 
@@ -19,7 +19,8 @@ GET     /room/{roomId}/dashboard           Dashboard.index
 
 GET     /room/{roomId}/tasks               Task.index(int roomId)
 GET     /room/{roomId}/tasks/addtask       Task.addTask(int roomId)
-POST    /room/{roomId}/tasks/changestatus  Task.changeStatus(int roomId)
+POST    /room/{roomId}/task/changestatus  Task.changeStatus(int roomId)
+POST    /room/{roomId}/task/passtask      Task.passTask(int roomId)
 
 GET     /profile             				Profile.index
 POST    /profile/updateroomy 				Profile.updateroomy
