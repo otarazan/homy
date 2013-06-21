@@ -19,6 +19,7 @@ GET     /room/{roomId}/dashboard           Dashboard.index
 
 GET     /room/{roomId}/tasks               Task.index(int roomId)
 GET     /room/{roomId}/tasks/addtask       Task.addTask(int roomId)
+POST    /room/{roomId}/tasks/changestatus  Task.changeStatus(int roomId)
 
 GET     /profile             				Profile.index
 POST    /profile/updateroomy 				Profile.updateroomy

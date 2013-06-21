@@ -82,7 +82,7 @@ function countDown(element,end){
         if (distance < 0) {
 
             clearInterval(timer);
-            document.getElementById(element).innerHTML = 'EXPIRED!';
+            document.getElementById(element).innerHTML = '<span class="badge badge-important">Too late</span>';
 
             return;
         }
