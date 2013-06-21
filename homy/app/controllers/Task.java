@@ -19,9 +19,9 @@ public class Task extends Controller {
 	List allTasks = models.Task.find("status=false").fetch();
 	List allRoomies = Roomy.findAll();
 	List myTasks =null;
-	String warning="no error";
+	String warning="";
 	if (roomy != null) {
-	     myTasks = models.Task.find("byRoomy", roomy.firstName).fetch();
+	     myTasks = models.Task.find("status=false and roomy=?", roomy.firstName).fetch();
 	}
 	else{
 	    warning="user not found";
