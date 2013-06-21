@@ -18,6 +18,7 @@ DELETE  /room/{roomId}/grocery/updateGrocery Grocery.updateGrocery(int roomId)
 GET     /room/{roomId}/dashboard           Dashboard.index
 
 GET     /room/{roomId}/tasks               Task.index(int roomId)
+GET     /room/{roomId}/tasks/addtask       Task.addTask(int roomId)
 
 GET     /profile             				Profile.index
 POST    /profile/updateroomy 				Profile.updateroomy
