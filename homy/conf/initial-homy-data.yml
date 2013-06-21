@@ -58,7 +58,7 @@ Task(firstTask):
     status: false
     recurrence: 3
     roomy: "alex"
-    remainingDate: "01/01/2012"
+    remainingDate: "23/06/2013"
     owner: firstTable
 
 Task(secondTask):
@@ -67,7 +67,7 @@ Task(secondTask):
     status: false
     recurrence: 1
     roomy: "olcay"
-    remainingDate: "01/01/2012"
+    remainingDate: "22/06/2013"
     owner: firstTable
 
 Task(thirdTask):
@@ -76,6 +76,6 @@ Task(thirdTask):
     status: false
     recurrence: 2
     roomy: "alex"
-    remainingDate: "01/01/2012"
+    remainingDate: "25/06/2013"
     owner: firstTable
     
