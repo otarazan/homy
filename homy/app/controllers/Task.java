@@ -11,15 +11,22 @@ import models.*;
 public class Task extends Controller {
 
 
-    public static void index(long roomId){
+    public static void index(long roomId) {
 
-    	String username = Security.connected();
-    	Roomy roomy = Roomy.find("byEmail", username).first();
-    	List allTasks= models.Task.find("status=false").fetch();
-        List allRoomies=Roomy.findAll();
-        TaskTable taskTable= (TaskTable) models.TaskTable.findAll().get(0);
-        List myTasks=allTasks;//models.Task.find("status=false and roomy=?", roomy).fetch();
-        render(allRoomies,myTasks,allTasks,roomId,username);
+	String username = Security.connected();
+	Roomy roomy = Roomy.find("byEmail", username).first();
+
+	List allTasks = models.Task.find("status=false").fetch();
+	List allRoomies = Roomy.findAll();
+	List myTasks =null;
+	String warning="no error";
+	if (roomy != null) {
+	     myTasks = models.Task.find("byRoomy", roomy.firstName).fetch();
+	}
+	else{
+	    warning="user not found";
+	}
+	render(allRoomies, myTasks, allTasks, roomId, username,warning);
     }
 
     public static void changeStatus(long id, boolean status) {
