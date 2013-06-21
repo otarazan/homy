@@ -22,7 +22,9 @@
         <tr>
         #{list items:groceries, as:'Item'}
           <td>
-            <a href="@{Grocery.delete(Item.id)}"><button class="btn btn-block btn-danger btn-mini">Delete</button></a>
+          #{form @Grocery.deleteGrocery(roomId, Item.id)}
+            <input type="submit" class="btn btn-block btn-danger btn-mini" value="Delete"/>
+           #{/form}
             <!-- <button class="btn btn-block btn-danger btn-mini">Delete</button> -->
           </td>
            <td>${Item.name}</td>
@@ -31,17 +33,14 @@
             <a class="btn btn-block btn-link btn-small"><a href="${Item.buyFromLink}">Buy now</a></a>
           </td>
           <td>
-          #{form @Grocery.assign()}
-          	
-            <select id="newUser" name="newUser">
-              <option>${Item.assignment}</option>
+          #{form @Grocery.updateGrocery(roomId,Item.id)}
+          	<select name="assignment" id="assignment">
               #{list items:roomys, as:'roomy'}
               #{if Item.assignment!=roomy.username}
               <option>${roomy.username}</option>
               #{/if}
               #{/list}
             </select>
-            <input type="hidden" value="${Item.id}" name="id" /><!-- Hidden input is used to sent id addition to new user -->
            <br><input type="submit" class="btn pull-left btn-success" id="submitNewAssignment" value="Change" />
            #{/form}
           </td>
@@ -64,14 +63,33 @@
           	#{/else}
           
           <td>
-           <a href="@{Grocery.setDone(Item.id)}"> <button class="btn btn-success btn-small">Done</button></a>
+          #{if Item.status}
+          #{form @Grocery.updateGrocery(roomId, Item.id)}
+            <input type="hidden" value="false" name="status" id="status"/>
+            <input type="submit" class="btn btn-success btn-small" value="Undone"/>
+           #{/form}
+           
+            #{/if}
+            #{else}
+           #{form @Grocery.updateGrocery(roomId, Item.id)}
+            <input type="hidden" value="true" name="status" id="status"/>
+            <input type="submit" class="btn btn-success btn-small" value="Done"/>
+           #{/form}
+           
+            #{/else}
           </td>
           <td>
           	#{if Item.important}
-            <a href="@{Grocery.setNotImportant(Item.id)}"><span class="badge badge-warning">Important</span></a>
+           #{form @Grocery.updateGrocery(roomId, Item.id)}
+            <input type="hidden" value="false" name="important" id="important"/>
+            <input type="submit"class="badge badge-warning" value="Important"/>
+           #{/form}
             #{/if}
             #{else}
-            <a href="@{Grocery.setImportant(Item.id)}"><span class="badge badge-warning">Not Important</span></a>
+           #{form @Grocery.updateGrocery(roomId, Item.id)}
+            <input type="hidden" value="true" name="important" id="important"/>
+            <input type="submit"class="badge badge-success" value="Not Important"/>
+           #{/form}
             #{/else}
           </td>
         </tr>
@@ -79,7 +97,7 @@
         
     
         <tr>
-        #{form @Grocery.addGrocery()}
+        #{form @Grocery.addGrocery(roomId)}
         	<td colspan="3"><input type="text" name="name" id="name" class="input-medium input-block-level" placeholder="Add new item" /></td>
         	<td colspan="2">
         	<select name="assignment" id="assignment">
@@ -103,15 +121,15 @@
     <ol class="breadcrumb" style="background:none">
     
       <li>
-        <a href="@{Grocery.order(3)}">Deadline</a>
+        <a href="#">Deadline</a>
         <span class="divider">/</span>
       </li>
       <li>
-        <a href="@{Grocery.order(2)}">Importance</a>
+        <a href="#">Importance</a>
         <span class="divider">/</span>
       </li>
       <li>
-        <a href="@{Grocery.order(1)}">Assignee</a>
+        <a href="#">Assignee</a>
       </li>
     </ol>
   </div>

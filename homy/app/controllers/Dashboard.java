@@ -15,7 +15,8 @@ public class Dashboard extends Controller {
     	String mail = Security.connected();
     	Roomy roomy = Roomy.find("byEmail", mail).first();
     	List<Room> rooms = Room.findAll();
-        render(rooms,roomy);
+    	long roomId = roomy.owner.getId();
+        render(rooms,roomy,roomId);
     }
 
     

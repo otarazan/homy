@@ -10,16 +10,19 @@ GET     /room/{roomId}/deposit             Deposit.index(int roomId)
 POST    /room/{roomId}/deposit/additem     Deposit.addItem(int roomId)
 GET     /room/{roomId}/deposit/deleteitem  Deposit.deleteitem(int roomId)
 
-GET     /room/{roomId}/grocery             Grocery.index(int roomId)
-GET     /room/{roomId}/dashboard           Dashboard.index(int roomId)
-GET     /room/{roomId}/tasks               Task.index(int roomId)
-GET     /room/{roomId}/tasks               Task.index(int roomId)
+GET     /room/{roomId}/grocery               Grocery.index(int roomId)
+POST    /room/{roomId}/grocery/addgrocery    Grocery.addGrocery(int roomId)
+GET     /room/{roomId}/grocery/deletegrocery Grocery.deleteGrocery(int roomId)
+DELETE  /room/{roomId}/grocery/updateGrocery Grocery.updateGrocery(int roomId)
 
+GET     /room/{roomId}/dashboard           Dashboard.index
+
+GET     /room/{roomId}/tasks               Task.index(int roomId)
 
 GET     /profile             				Profile.index
-POST    /profile/updateroomy 				Profile.updateroomy(int roomId)
-POST    /profile/updatephoto 				Profile.updateroomy(int roomId)
-POST    /profile/updatecurrentroom 			Profile.updateroomy(int roomId)
+POST    /profile/updateroomy 				Profile.updateroomy
+POST    /profile/updatephoto 				Profile.updatephoto
+POST    /profile/updatecurrentroom 			Profile.updatecurrentroom
 
 GET     /whoWeAre                          Application.whoWeAre
 GET     /reachUs                           Application.reachUs

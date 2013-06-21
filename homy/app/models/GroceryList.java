@@ -29,17 +29,11 @@ public class GroceryList extends Model {
 		di.save();
 		this.groceryItemsList.add(di);
 		this.save();
-		/*item.save();
-		this.groceryItemsList.add(item);
-		this.save();*/
-		
 	}
 	
 	public void deleteGroceryItem(GroceryItem di){
+		this.groceryItemsList.remove(di);
 		di.delete();
-		//this.groceryItemsList.remove(di);
-		this.groceryItemsList.remove(di.id);
-		//di.delete();
 	}
 
 }
