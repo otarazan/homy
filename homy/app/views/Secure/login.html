@@ -1,6 +1,6 @@
 #{extends 'mainFront.html' /}
 #{set title:'Login' /}
-    <div class="container">&nbsp;
+   <div class="container">&nbsp;
       <div class="hero-unit" style="padding-top:0px;padding-bottom:0px">
         <div class="row-fluid">
           <div class="span4" style="border-right:20px solid green">
@@ -11,7 +11,7 @@
   </a>
               <div class="media-body">
                 <h4 class="media-heading">Manage your tasks</h4>
-                <p>This is the content for your media.</p>
+                <p>Homy lets you manage all the tasks your house, dorm or whatever needs to do.</p>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
   </a>
               <div class="media-body">
                 <h4 class="media-heading">Share grocery lists</h4>
-                <p>This is the content for your media.</p>
+                <p>Nedd a shared grocery list for your household ? Whats to buy, what has you friend already done ? Homy has it.</p>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
   </a>
               <div class="media-body">
                 <h4 class="media-heading">Save you expenses</h4>
-                <p>This is the content for your media.</p>
+                <p>Wonder how much money you and your friends have left ? Homy will tell you in realtime.</p>
               </div>
             </div>
           </div>
@@ -50,12 +50,12 @@
           #{form @authenticate()}
 		
 		#{if flash.error}
-			<p class="error">
+			<p class="error" style="color:red">
 				&{flash.error}
 			</p>
 		#{/if}
 		#{if flash.success}
-			<p class="success">
+			<p class="success" style="color:green">
 				&{flash.success}
 			</p>
 		#{/if}
@@ -72,16 +72,6 @@
           </div>
           <div class="span3" style="border-right:2px solid #fff; padding-right:15px">
           #{form @Register.register()}
-          #{if flash.error}
-			<p class="error">
-				&{flash.error}
-			</p>
-		#{/if}
-		#{if flash.success}
-			<p class="success">
-				&{flash.success}
-			</p>
-		#{/if}
             <h2 style="color:white">Register</h2>
             <input type="text" name="username" id="username" value="${flash.username}" class="input-medium input-block-level" placeholder="Username">
             <input type="email" name="email" id="email" class="input-medium input-block-level" placeholder="E-Mail">

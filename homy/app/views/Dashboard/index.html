@@ -9,13 +9,14 @@
       <thead>
         <tr>
           <th>Room</th>
-          <th></th>
+          <th>Join it ?</th>
         </tr>
       </thead>
       <tbody>
       #{list items:rooms,as:'room'}
         <tr>
-          <td>${room.name}</td>
+          <td>${room.name}<br/>
+          <i>${room.description}</i></td>
           <td>
           
        		 #{if room.name == roomy.owner.name}
