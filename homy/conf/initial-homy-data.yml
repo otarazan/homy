@@ -1,10 +1,10 @@
 Room(homyDefaultRoom):
     name: "DefaultRoom"
-    description: "This room is used for all memebers of homy. Dont worry, you can switch to whatever room you like."
-    
-Room(nonDefaultRoom):
-    name: "AnotherRoom"
-    description: "This room is used for all memebers of homy. Dont worry, you can switch to whatever room you like."
+    description: "Everybody lands here. Look around and try Homy."
+
+Room(sebisChair):
+    name: "SEBIS chair"
+    description: "Every university needs to organize some stuff. The SEBIS chair as well. Jump in."
 
 Roomy(alex):
     username: "Alex"
@@ -16,7 +16,7 @@ Roomy(alex):
     secretQuestion: "Name of bird"
     sqAnswer: "Max"
     owner: homyDefaultRoom
-    
+
 Roomy(olcay):
     username: "olcay"
     password: "olcay"
@@ -24,6 +24,8 @@ Roomy(olcay):
     birthday: 2007-08-05
     firstName: "olcay"
     lastName: "olcay"
+    secretQuestion: "Name of bird"
+    sqAnswer: "Max"
     owner: homyDefaultRoom
 
 GroceryList(firstList):
@@ -31,11 +33,22 @@ GroceryList(firstList):
     owner: homyDefaultRoom
 
 GroceryItem(firstGroceryItem):
-    buyFromLink: "nothing.de"
-    name: "Bread"
+    buyFromLink: "lidl.de"
+    name: "Some bread"
     status: false
     important: true
     owner: firstList
+
+GroceryList(sebisList):
+    name: "What we need to buy four the chair this week"
+    owner: sebisChair
+
+GroceryItem(sebisGroceryItem1):
+    buyFromLink: "lidl.de"
+    name: "Get some \"bretzenln\" "
+    status: false
+    important: true
+    owner: sebisList
 
 DepositBox(firstBox):
     name: "Things bought"
@@ -47,7 +60,37 @@ DepositBoxItem(firstBoxItem):
     amount: "10"
     income: false
     owner: firstBox
+
+DepositBox(sebisBox):
+    name: "Whats our deposit ?"
+    currentDeposit: 0
+    owner: sebisChair
+
+DepositBoxItem(sebisBoxItem1):
+    description: "Bought some stuff for the presentation"
+    amount: "10"
+    income: false
+    owner: sebisBox
     
+DepositBoxItem(sebisBoxItem2):
+    description: "Your free amount for the rpesentation"
+    amount: "25"
+    income: true
+    owner: sebisBox
+
+TaskTable(sebisTable):
+    name: "What is to do ?"
+    owner: sebisChair
+
+Task(firstSebisTask):
+    title: "Make sure the meeting room is free"
+    description: "Maybe the web app club is meeting today. Talk to Zec about it."
+    status: false
+    recurrence: 3
+    roomy: "Alex"
+    remainingDate: "23/06/2013"
+    owner: sebisTable
+
 TaskTable(firstTable):
     name: "Things bought"
     owner: homyDefaultRoom
@@ -78,4 +121,3 @@ Task(thirdTask):
     roomy: "alex"
     remainingDate: "25/06/2013"
     owner: firstTable
-    

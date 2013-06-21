@@ -15,8 +15,13 @@ public class Task extends Controller {
 
 	String username = Security.connected();
 	Roomy roomy = Roomy.find("byEmail", username).first();
-
-	List allTasks = models.Task.find("status=false").fetch();
+	Room r = Room.findById(roomId);
+	List<models.Task> allTasks = new LinkedList<models.Task>();
+	for (models.Task t:r.taskTable.tasks){
+		if(!t.status)
+			allTasks.add(t);
+	}
+	
 	List allRoomies = Roomy.findAll();
 	List myTasks =null;
 	String warning="";
