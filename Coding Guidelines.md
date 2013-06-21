@@ -40,4 +40,6 @@ The datalayer is strictly cut from the application logic. We use a layerd system
 
 1. Controllers interact with models as if they were normaly objects
 2. Data fetching is done lazy
-3. Manipulating data is only allowed from the controller layer
+3. Manipulating data is only allowed from the controller layer  
+  
+* * *   
