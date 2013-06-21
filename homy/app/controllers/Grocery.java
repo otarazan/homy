@@ -20,7 +20,10 @@ public class Grocery extends Controller {
     		if (i.status)
     			doneItem++;
     	}
-      	render(groceries,roomys,roomId, username,doneItem,allItemsCount);
+    	int donePercentage = 0;
+    	if (allItemsCount > 0 && doneItem > 0)
+    		donePercentage = (doneItem / allItemsCount) *100;
+      	render(groceries,roomys,roomId, username,donePercentage);
     }
     
     public static void addGrocery(long roomId, String name,String assignment, String deadline, String userSelection){
