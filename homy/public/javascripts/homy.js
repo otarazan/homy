@@ -28,6 +28,24 @@ $(document).ready(function()
         		status : $(this).is(":checked")
         	})
         });
+        
+        // notifications
+        $("#notificationHide").click(function() {
+        	$("#notifications").removeClass("span3");
+        	$("#notifications").addClass("span1");
+        	$("#mainContent").removeClass("span8");
+        	$("#mainContent").addClass("span10");
+        	$("#notificationHide").addClass("hidden");
+        	$("#notificationShow").removeClass("hidden");
+        	});
+        $("#notificationShow").click(function() {
+        	$("#notifications").removeClass("span1");
+        	$("#notifications").addClass("span3");
+        	$("#mainContent").removeClass("span10");
+        	$("#mainContent").addClass("span8");
+        	$("#notificationHide").removeClass("hidden");
+        	$("#notificationShow").addClass("hidden");
+        	});
     } 
 ); 
 
