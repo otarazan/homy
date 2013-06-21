@@ -12,11 +12,11 @@ public class Dashboard extends Controller {
 
 
     public static void index(){
-    	String mail = Security.connected();
-    	Roomy roomy = Roomy.find("byEmail", mail).first();
+    	String username = Security.connected();
+    	Roomy roomy = Roomy.find("byEmail", username).first();
     	List<Room> rooms = Room.findAll();
     	long roomId = roomy.owner.getId();
-        render(rooms,roomy,roomId);
+        render(rooms,roomy,roomId,username);
     }
 
     

@@ -14,10 +14,10 @@ import play.mvc.With;
 public class Profile extends Controller{
 	
     public static void index(){
-    	String email = Security.connected();
-    	Roomy r = Roomy.find("byEmail", email).first();
+    	String username = Security.connected();
+    	Roomy r = Roomy.find("byEmail", username).first();
     	long roomId = r.owner.getId();
-        render(roomId);
+        render(roomId,r,username);
     }
     
     public static void updateRoomy(String username, String password, String fname, String lname, String squestion, String sanswer, String bday, File photo){
