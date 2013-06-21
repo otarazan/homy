@@ -13,12 +13,12 @@ public class Task extends Controller {
 
     public static void index(long roomId){
 
-    	String mail = Security.connected();
-    	Roomy roomy = Roomy.find("byEmail", mail).first();
+    	String username = Security.connected();
+    	Roomy roomy = Roomy.find("byEmail", username).first();
     	List allTasks= models.Task.find("status=false").fetch();
         List allRoomies=Roomy.findAll();
         List myTasks= models.Task.find("status=false and roomy=?", roomy).fetch();
-        render(allRoomies,myTasks,allTasks,roomId);
+        render(allRoomies,myTasks,allTasks,roomId,username);
     }
 
     public static void changeStatus(long id, boolean status) {

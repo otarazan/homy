@@ -10,10 +10,17 @@ import models.*;
 public class Grocery extends Controller {
 	
     public static void index(long roomId){
+    	String username = Security.connected();
     	Room currentRoom = Room.find("byName","DefaultRoom").first();
-    	List groceries=models.GroceryItem.find("status=0 and roomId=? order by id desc",roomId).fetch();
+    	List<GroceryItem> groceries=models.GroceryItem.find("roomId=? order by id desc",roomId).fetch();
     	List roomys=currentRoom.roomysList;
-      	render(groceries,roomys,roomId);
+    	int allItemsCount = groceries.size();
+    	int doneItem = 0;
+    	for (GroceryItem i : groceries){
+    		if (i.status)
+    			doneItem++;
+    	}
+      	render(groceries,roomys,roomId, username,doneItem,allItemsCount);
     }
     
     public static void addGrocery(long roomId, String name,String assignment, String deadline, String userSelection){
@@ -24,29 +31,28 @@ public class Grocery extends Controller {
     		dead=dead*24;
     	else if(select==3)
     		dead=dead*24*7;
-    	
     	Date today =new Date();
     	models.GroceryItem gro=new GroceryItem(name,false,false,"http://www.lidl.de/de/shop@Search?query="+name,assignment,dead,today,currentRoom.id);
-    	System.out.println("Deadline :"+ today);
-    	
     	currentRoom.groceryList.addItem(gro);
     	Grocery.index(roomId);
      }
     
     public static void deleteGrocery(long roomId, long itemId){
-    	GroceryItem grocery= GroceryItem.findById(itemId);
+    	GroceryItem grocery = GroceryItem.findById(itemId);
     	Room currentRoom = Room.findById(roomId);
     	currentRoom.groceryList.deleteGroceryItem(grocery);
         Grocery.index(roomId); 
     }
     
     public static void updateGrocery(long roomId, long itemId, String name,String assignment, String deadline, String userSelection, String status, String important){
-    	GroceryItem grocery= GroceryItem.findById(roomId);
+    	GroceryItem grocery= GroceryItem.findById(itemId);
     	grocery.name = (name!= null) ? name : grocery.name;
     	grocery.assignment= (assignment!=null) ? assignment : grocery.assignment;
     	grocery.deadline= (deadline!=null) ? Integer.parseInt(deadline): grocery.deadline;
    	   grocery.status= (status!=null) ? ( (status.equals("true")) ? true : false) : grocery.status;
   	   grocery.important= (important!=null) ? ( (important.equals("true")) ? true : false) : grocery.important;
+  	   System.out.println(status);
+  	   System.out.println(grocery.status);
   	   grocery.save();
   	   index(roomId);
      }

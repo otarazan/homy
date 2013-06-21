@@ -3,13 +3,28 @@
 #{set topBarStyle:'task' /}
 
 <div class="span12"> 
-	<div id="tabs">
-		<ul>
-		<li><a href="#tabs-1">My Tasks</a></li>
-		<li><a href="#tabs-2">All Tasks</a></li>
-		</ul>
-		<div id="tabs-2">
-		#{form @Task.addTask()}
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#tabs-1">My Tasks</a></li>
+  <li><a href="#tabs-2">All Tasks</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="tabs-1">
+  #{list items:myTasks, as:'task'}
+			<div class="boxed" id="box_${task.id}">
+						<p>${task.title}</p>
+						<div>
+							<center>${task.recurrence}</center>
+							<center>${task.recurrence}</center>
+							<center><div id="counter"></div></center>
+							<center><button type="button"  onclick="passTask(box_${task.id},${task.id})">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
+						</div>
+						
+			</div>
+		#{/list}
+	</div>
+  <div class="tab-pane" id="tabs-2">
+  #{form @Task.addTask()}
 		  <table id="allTasks"  class="tablesorter">
 		       <thead>
 					<tr>
@@ -52,20 +67,18 @@
 		  </table>
 		    <button name="save" class="btn pull-left btn-success">Save</button>
 		#{/form}
-	</div>
-	<div id="tabs-1">
-		#{list items:myTasks, as:'task'}
-			<div class="boxed" id="box_${task.id}">
-						<p>${task.title}</p>
-						<div>
-							<center>${task.recurrence}</center>
-							<center>${task.recurrence}</center>
-							<center><div id="counter"></div></center>
-							<center><button type="button"  onclick="passTask(box_${task.id},${task.id})">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
-						</div>
-						
-			</div>
-		#{/list}
-	</div>
+  </div>
 </div>
+
+<script>
+	$('#myTab a').click(function (e) {
+		  e.preventDefault();
+		  $(this).tab('show');
+		})
+
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
 </div>
+
