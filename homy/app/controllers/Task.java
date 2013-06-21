@@ -12,7 +12,6 @@ public class Task extends Controller {
 
 
     public static void index(long roomId){
-
     	String username = Security.connected();
     	Roomy roomy = Roomy.find("byEmail", username).first();
     	List allTasks= models.Task.find("status=false").fetch();
@@ -28,27 +27,14 @@ public class Task extends Controller {
         task.save();
     }
     
-    public static void addTask(String task,int recurrence,Long selectedUser,String remainingDate){
-    	String mail = Security.connected();
-    	Roomy user = (Roomy) Roomy.findAll().get(0);
-    	long roomId = user.owner.getId();
+    public static void addTask(long roomId, String task,int recurrence,Long selectedUser,String remainingDate){
     	Roomy roomy=Roomy.findById(selectedUser);
-    	TaskTable tasktable=roomy.owner.taskTable;
+    	Room r=Room.findById(roomId);
+    	TaskTable tasktable = r.taskTable;
     	models.Task t=new models.Task(task, recurrence,roomy,remainingDate);
+    	System.out.println(tasktable);
     	tasktable.addTaskItem(t);
     	index(roomId);
-    }
-    
-    public static void sortByDate(){
-	
-    }
-    
-    public static void sortbyAssignee(){
-	
-    }
-    
-    public static void sortbyImportance(){
-	
     }
     
     public static void passTask(long id) {
@@ -61,7 +47,6 @@ public class Task extends Controller {
         task.save();
         renderJSON(task);
     }
-    
     
     public static void delete(long id) {
     	models.Task task = models.Task.findById(id);
