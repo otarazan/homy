@@ -17,7 +17,8 @@ public class Task extends Controller {
     	Roomy roomy = Roomy.find("byEmail", username).first();
     	List allTasks= models.Task.find("status=false").fetch();
         List allRoomies=Roomy.findAll();
-        List myTasks= models.Task.find("status=false and roomy=?", roomy).fetch();
+        TaskTable taskTable= (TaskTable) models.TaskTable.findAll().get(0);
+        List myTasks=allTasks;//models.Task.find("status=false and roomy=?", roomy).fetch();
         render(allRoomies,myTasks,allTasks,roomId,username);
     }
 
@@ -29,10 +30,12 @@ public class Task extends Controller {
     
     public static void addTask(String task,int recurrence,Long selectedUser,String remainingDate){
     	String mail = Security.connected();
-    	Roomy user = Roomy.find("byEmail", mail).first();
+    	Roomy user = (Roomy) Roomy.findAll().get(0);
     	long roomId = user.owner.getId();
     	Roomy roomy=Roomy.findById(selectedUser);
-    	new models.Task(task, recurrence,roomy,remainingDate).save();
+    	TaskTable tasktable=roomy.owner.taskTable;
+    	models.Task t=new models.Task(task, recurrence,roomy,remainingDate);
+    	tasktable.addTaskItem(t);
     	index(roomId);
     }
     
@@ -54,7 +57,7 @@ public class Task extends Controller {
 		Random randomGenerator = new Random();
 		int index = randomGenerator.nextInt(allRoomies.size());
 		Roomy unluckyRoomy=(Roomy) allRoomies.get(index);
-		task.roomy=unluckyRoomy;
+		task.roomy=unluckyRoomy.firstName;
         task.save();
         renderJSON(task);
     }

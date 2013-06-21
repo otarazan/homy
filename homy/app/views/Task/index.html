@@ -41,10 +41,10 @@
 					#{list items:allTasks, as:'task'}
 					<tr>
 						<td>${task.title}</td>
-						<td>${task.roomy.firstName}</td>
+						<td>${task.roomy}</td>
 						<td><input type="checkbox" id="${task.id}" ${task.status ? 'checked':''}></td>
 						<td>${task.recurrence}</td>
-						<td>${task.remainingDate}</td>
+						<td><div id="all_countdown_${task.id}"></div><script>prepareBox(${task.id},${task.remainingDate});</script></td>
 					</tr>
 					#{/list}
 				</tbody>
