@@ -47,28 +47,35 @@ DepositBoxItem(firstBoxItem):
     amount: "10"
     income: false
     owner: firstBox
+    
+TaskTable(firstTable):
+    name: "Things bought"
+    owner: homyDefaultRoom
 
 Task(firstTask):
     title: "Clean the apartment"
     description: "Yes, absolutely everything"
     status: false
     recurrence: 3
-    roomy: alex
+    roomy: "alex"
     remainingDate: "01/01/2012"
+    owner: firstTable
 
 Task(secondTask):
     title: "WashDishes"
     description: "Yes, absolutely everything"
     status: false
     recurrence: 1
-    roomy: olcay
+    roomy: "olcay"
     remainingDate: "01/01/2012"
+    owner: firstTable
 
 Task(thirdTask):
     title: "Organize a party"
     description: "Yes, absolutely everything"
     status: false
     recurrence: 2
-    roomy: alex
+    roomy: "alex"
     remainingDate: "01/01/2012"
+    owner: firstTable
     

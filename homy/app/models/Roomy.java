@@ -24,9 +24,6 @@ public class Roomy extends Model {
 	@ManyToOne
 	public Room owner;
 
-	@OneToMany(mappedBy = "roomy", cascade = CascadeType.ALL)
-	public List<Task> tasks;
-
 	public Roomy(String password, String username, String secretQuestion,
 			String firstName, String email, String sqAnswer, String lastName) {
 		this.password = password;
@@ -37,5 +34,10 @@ public class Roomy extends Model {
 		this.sqAnswer = sqAnswer;
 		this.lastName = lastName;
 		this.birthday = new Date();
+	}
+	
+	@Override
+	public String toString(){
+	    return firstName;
 	}
 }

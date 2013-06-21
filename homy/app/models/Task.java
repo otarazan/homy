@@ -13,8 +13,10 @@ public class Task extends Model {
     public boolean status;
     public String assignee;
   
+    public String roomy;
+    
     @ManyToOne
-    public Roomy roomy;
+    public TaskTable owner;
     
     /*better declare it as int. we can decide for predefined values,
       like 1=hourly 2=daily 3=weekly etc..*/
@@ -26,7 +28,7 @@ public class Task extends Model {
 		this.title = task;
 		this.recurrence = recurrence;
 		this.remainingDate = remainingDate;
-		this.roomy = roomy;
+		this.roomy = roomy.firstName;
     }
     
     public String toString(){
