@@ -15,8 +15,8 @@
 			<div class="span3 well" id="box_${task.id}">
 						<p>${task.title}</p>
 						<div>
-							<center><div id="importance_${task.id}">Level:${task.recurrence}</div></center>
-							<center><div id="countdown_${task.id}"></div><script>prepareBox(${task.id},${task.remainingDate});</script></center>
+							<div class="badge badge-important" id="importance_${task.id}">Level:${task.recurrence}</div>
+							<div id="countdown_${task.id}"></div><script>countDown("countdown_${task.id}","${task.remainingDate}");</script>
 							<center><button type="button" class="btn btn-warning" onclick="passTask(box_${task.id},${task.id})">Pass</button> <button class="btn btn-success" type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
 						</div>
 						
@@ -44,7 +44,7 @@
 						<td>${task.roomy}</td>
 						<td><input type="checkbox" id="${task.id}" ${task.status ? 'checked':''}></td>
 						<td>${task.recurrence}</td>
-						<td><div id="all_countdown_${task.id}"></div><script>prepareBox(${task.id},${task.remainingDate});</script></td>
+						<td><div id="all_countdown_${task.id}"></div><script>countDown("all_countdown_${task.id}","${task.remainingDate}");</script></td>
 					</tr>
 					#{/list}
 				</tbody>

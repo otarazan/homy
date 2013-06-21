@@ -3,7 +3,7 @@ $(document).ready(function()
     { 
 		//sorts all the table on the page which has tablesorter class
         $(".tablesorter").tablesorter(); 
-        $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy'}).datepicker('setDate', new Date());
+        $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy'}).datepicker('setDate', new Date());
         //When textbox is clicked 'add news task' string is removed
         $("#txtTask").focusin(function() {$("#txtTask").val("")});
         //jquery tab view is created as mytasks and alltasks
@@ -59,17 +59,17 @@ function setTaskAsDone(boxid,taskID) {
 }
 
 function prepareBox(boxid,end,level){
-	countDown(boxid,end);
-
 	$("#importance_"+boxid).attr("class", "badge badge-important");
 }
 
-function countDown(boxid,end){
-	boxid="countdown_"+boxid;
-	end=new Date(end);
-	end=$.format.date(end, 'dd/MM/yyyy');
-	var end = new Date('06/25/2013');
+function countDown(element,end){
 
+	end=$.format.date(end, 'dd/MM/yyyy');
+	var dateArr = end.toString().split("/");
+	end = dateArr[1]+ "/" +dateArr[0] + "/" + dateArr[2];
+
+	var end = new Date(end.toString());
+	
     var _second = 1000;
     var _minute = _second * 60;
     var _hour = _minute * 60;
@@ -82,7 +82,7 @@ function countDown(boxid,end){
         if (distance < 0) {
 
             clearInterval(timer);
-            document.getElementById(boxid).innerHTML = 'EXPIRED!';
+            document.getElementById(element).innerHTML = 'EXPIRED!';
 
             return;
         }
@@ -91,47 +91,10 @@ function countDown(boxid,end){
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        document.getElementById(boxid).innerHTML = days + 'days ';
-        document.getElementById(boxid).innerHTML += hours + 'hrs ';
-        document.getElementById(boxid).innerHTML += minutes + 'mins ';
-        document.getElementById(boxid).innerHTML += seconds + 'secs';
-    }
-
-    timer = setInterval(showRemaining, 1000);
-}
-
-
-function countDown(boxid,end){
-	boxid="all_countdown_"+boxid;
-	end=new Date(end);
-	end=$.format.date(end, 'dd/MM/yyyy');
-	var end = new Date('06/25/2013');
-
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
-
-    function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
-
-            clearInterval(timer);
-            document.getElementById(boxid).innerHTML = 'EXPIRED!';
-
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-
-        document.getElementById(boxid).innerHTML = days + 'days ';
-        document.getElementById(boxid).innerHTML += hours + 'hrs ';
-        document.getElementById(boxid).innerHTML += minutes + 'mins ';
-        document.getElementById(boxid).innerHTML += seconds + 'secs';
+        document.getElementById(element).innerHTML = days + 'days ';
+        document.getElementById(element).innerHTML += hours + 'hrs ';
+        document.getElementById(element).innerHTML += minutes + 'mins ';
+        document.getElementById(element).innerHTML += seconds + 'secs';
     }
 
     timer = setInterval(showRemaining, 1000);
