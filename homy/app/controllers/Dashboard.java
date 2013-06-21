@@ -11,14 +11,13 @@ import models.*;
 public class Dashboard extends Controller {
 
 
-    public static void index(long roomId){
-    	String username = Security.connected();
-        render(username);
-    }
-    
     public static void index(){
-    	String username = Security.connected();
-        render(username);
+    	String mail = Security.connected();
+    	Roomy roomy = Roomy.find("byEmail", mail).first();
+    	List<Room> rooms = Room.findAll();
+        render(rooms,roomy);
     }
+
+    
 
 }    

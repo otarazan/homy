@@ -5,6 +5,7 @@ import play.db.jpa.*;
 
 import javax.persistence.*;
 
+import java.io.File;
 import java.util.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class Roomy extends Model {
 	public String email;
 	public String secretQuestion;
 	public String sqAnswer;
+	public File pathToPicture;
 	public Date birthday;
 
 	@ManyToOne
