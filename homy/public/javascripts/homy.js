@@ -58,8 +58,19 @@ function setTaskAsDone(boxid,taskID) {
 	$(boxid).fadeOut("slow");
 }
 
-function prepareBox(boxid,end,level){
-	$("#importance_"+boxid).attr("class", "badge badge-important");
+function importance(element,level){
+	if(level==1){
+		$(element).attr("class", "badge badge-important");
+	}
+	else if(level==2){
+		$(element).attr("class", "badge badge-warning");
+	}
+	else if(level==3){
+		$(element).attr("class", "badge badge-info");
+	}
+	else if(level==4){
+		$(element).attr("class", "badge badge-inverse");
+	}
 }
 
 function countDown(element,end){

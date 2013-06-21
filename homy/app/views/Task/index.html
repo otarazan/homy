@@ -16,7 +16,7 @@
 			<b>Task:</b>
 						<p>${task.title}</p>
 						<div>
-							<span class="badge badge-important" id="importance_${task.id}">Level:${task.recurrence}</span>
+							<span class="badge badge-important" id="importance_${task.id}">Level:${task.recurrence}</span><script>importance("#importance_${task.id}","${task.recurrence}")</script>
 							<span class="pull-right" id="countdown_${task.id}"></span><script>countDown("countdown_${task.id}","${task.remainingDate}");</script>
 							<br/><br/>
 								#{form @Task.passTask(roomId)}
@@ -57,7 +57,7 @@
 						<input type="hidden" name="status" id="status" value="true"/>
 						<input type="submit" class="btn btn-success btn-small" value="Check"></td>
 						#{/form}
-						<td>${task.recurrence}</td>
+						<td><span  id="importance_all_${task.id}">Level:${task.recurrence}</span><script>importance("#importance_all_${task.id}","${task.recurrence}")</script></td>
 						<td><div id="all_countdown_${task.id}"></div><script>countDown("all_countdown_${task.id}","${task.remainingDate}");</script></td>
 					</tr>
 					#{/list}
