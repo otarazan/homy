@@ -23,10 +23,15 @@ public class Task extends Controller {
 	}
 	
 	List allRoomies = Roomy.findAll();
-	List myTasks =null;
 	String warning="";
+	List<models.Task> myTasks = new LinkedList<models.Task>();
 	if (roomy != null) {
-	     myTasks = models.Task.find("status=false and roomy=?", roomy.firstName).fetch();
+		for (models.Task t:r.taskTable.tasks){
+			if(!t.status && t.roomy.equals(roomy.firstName) && t.owner.owner.id == roomId){
+				myTasks.add(t);
+				}
+		}
+	     
 	}
 	else{
 	    warning="user not found";
