@@ -18,7 +18,6 @@ public class DepositBoxItem extends Model {
 	@ManyToOne
 	public DepositBox owner;
 
-
 	public DepositBoxItem(String description, Float amount, boolean income) {
 		this.description = description;
 		this.amount = amount;

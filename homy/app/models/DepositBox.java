@@ -11,7 +11,7 @@ import java.util.*;
 public class DepositBox extends Model {
 
 	public String name;
-	
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	public List<DepositBoxItem> depositBoxItemsList;
 
@@ -22,10 +22,10 @@ public class DepositBox extends Model {
 		this.name = name;
 		this.depositBoxItemsList = new LinkedList<DepositBoxItem>();
 	}
-	
-	public float currentDeposit(){
-		float val=0;
-		for (DepositBoxItem i: this.depositBoxItemsList){
+
+	public float currentDeposit() {
+		float val = 0;
+		for (DepositBoxItem i : this.depositBoxItemsList) {
 			if (i.income)
 				val += i.amount;
 			else
@@ -40,9 +40,9 @@ public class DepositBox extends Model {
 		this.depositBoxItemsList.add(di);
 		this.save();
 	}
-	
+
 	public void deleteBoxItem(long itemId) {
-		DepositBoxItem di=DepositBoxItem.findById(itemId);
+		DepositBoxItem di = DepositBoxItem.findById(itemId);
 		di.delete();
 		this.depositBoxItemsList.remove(di);
 		this.save();

@@ -18,7 +18,6 @@ public class GroceryList extends Model {
 	@OneToOne
 	public Room owner;
 
-
 	public GroceryList(String name) {
 		this.name = name;
 		this.groceryItemsList = new LinkedList<GroceryItem>();
@@ -30,8 +29,8 @@ public class GroceryList extends Model {
 		this.groceryItemsList.add(di);
 		this.save();
 	}
-	
-	public void deleteGroceryItem(GroceryItem di){
+
+	public void deleteGroceryItem(GroceryItem di) {
 		this.groceryItemsList.remove(di);
 		di.delete();
 	}

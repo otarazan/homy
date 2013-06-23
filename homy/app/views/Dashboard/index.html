@@ -1,33 +1,35 @@
-#{extends 'main.html' /}
-#{set title:'Dashboard' /}
-#{set topBarStyle:'dash' /}
+#{extends 'main.html' /} #{set title:'Dashboard' /} #{set
+topBarStyle:'dash' /}
 
-	<h2> You are currently in room "${roomy.owner.name}"</h2>
- <table class="table">
-  
-  	
-      <thead>
-        <tr>
-          <th>Room</th>
-          <th>Join it ?</th>
-        </tr>
-      </thead>
-      <tbody>
-      #{list items:rooms,as:'room'}
-        <tr>
-          <td>${room.name}<br/>
-          <i>${room.description}</i></td>
-          <td>
-          
-       		 #{if room.name == roomy.owner.name}
-            <a class="btn btn-inverse btn-block" href="#">Joined</a>
-            #{/if}
-        #{else}
-            <a class="btn btn-success btn-block" href="@{Profile.updateCurrentRoom(room.name)}">Join this room</a>
-        #{/else}
-          </td>
-        </tr>
-        
-      #{/list}
-      </tbody>
-   </table>
+<h2>You are currently in room "${roomy.owner.name}"</h2>
+<table class="table">
+
+
+	<thead>
+		<tr>
+			<th>Room</th>
+			<th>Join it ?</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:rooms,as:'room'}
+		<tr>
+			<td>${room.name}<br /> <i>${room.description}</i></td>
+			<td>#{if room.name == roomy.owner.name} <a
+				class="btn btn-inverse btn-block" href="#">Joined</a> #{/if} #{else}
+				<a class="btn btn-success btn-block"
+				href="@{Profile.updateCurrentRoom(room.name)}">Join this room</a>
+				#{/else}
+			</td>
+		</tr>
+	 
+		#{/list}
+	</tbody>
+</table>
+
+#{form @Dashboard.newRoom()}
+	 <div class="well">
+	 <input type="text" name="name" id="name" class="input-medium input-block-level" placeholder="Name">
+	 <input type="text" name="description" id="description" class="input-medium input-block-level" placeholder="Description">
+            <input type="submit" id="register" value="Register your room" class="btn btn-block btn-primary"/> </div>
+	 #{/form}

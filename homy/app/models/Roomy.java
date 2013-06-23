@@ -35,9 +35,9 @@ public class Roomy extends Model {
 		this.lastName = lastName;
 		this.birthday = new Date();
 	}
-	
+
 	@Override
-	public String toString(){
-	    return firstName;
+	public String toString() {
+		return firstName;
 	}
 }

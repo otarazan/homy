@@ -8,13 +8,12 @@ import play.mvc.*;
 
 import models.Roomy;
 
-public class Security extends Secure.Security{
+public class Security extends Secure.Security {
 
 	static boolean authenticate(String username, String password) {
 		Roomy roomy = Roomy.find("byEmail", username).first();
-        return roomy != null && roomy.password.equals(password);
-    }
-	
+		Logger.info("User logged in");
+		return roomy != null && roomy.password.equals(password);
+	}
+
 }
-
-

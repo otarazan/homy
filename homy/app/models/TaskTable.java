@@ -11,7 +11,7 @@ import java.util.*;
 public class TaskTable extends Model {
 
 	public String name;
-	
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	public List<Task> tasks;
 

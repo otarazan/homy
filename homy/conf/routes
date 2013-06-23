@@ -15,7 +15,8 @@ POST    /room/{roomId}/grocerys/addgrocery    Grocery.addGrocery(int roomId)
 GET     /room/{roomId}/grocery/deletegrocery Grocery.deleteGrocery(int roomId)
 DELETE  /room/{roomId}/grocery/updateGrocery Grocery.updateGrocery(int roomId)
 
-GET     /room/{roomId}/dashboard           Dashboard.index
+GET     /dashboard           Dashboard.index
+GET     /dashboard/newroom           Dashboard.newRoom
 
 GET     /room/{roomId}/tasks               Task.index(int roomId)
 GET     /room/{roomId}/tasks/addtask       Task.addTask(int roomId)
