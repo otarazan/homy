@@ -18,7 +18,7 @@ topBarStyle:'dash' /}
 			<td>#{if room.name == roomy.owner.name} <a
 				class="btn btn-inverse btn-block" href="#">Joined</a> #{/if} #{else}
 				<a class="btn btn-success btn-block"
-				href="@{Profile.updateCurrentRoom(room.name)}">Join this room</a>
+				href="@{Profile.updateCurrentRoom(room.id)}">Join this room</a>
 				#{/else}
 			</td>
 		</tr>

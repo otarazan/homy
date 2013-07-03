@@ -1,12 +1,20 @@
 package controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+
+import models.NotificationMessage;
 import models.Room;
 import models.Roomy;
 import play.*;
+import play.db.jpa.Blob;
+import play.libs.Images;
 import play.mvc.Controller;
 import play.mvc.With;
 
@@ -16,9 +24,20 @@ public class Profile extends Controller {
 	public static void index() {
 		String username = Security.connected();
 		Roomy r = Roomy.find("byEmail", username).first();
+		Room currentRoom = r.owner;
+		List<NotificationMessage> userAc = currentRoom.notifications.lastGenericActivity;
+		List<NotificationMessage> genericAc = currentRoom.notifications.lastUserActivity;
+		String rImage="";
+		try {
+			if (r != null && r.pathToPicture!=null)	{
+					rImage = Images.toBase64(new File(r.pathToPicture));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		long roomId = r.owner.getId();
 		List<Room> rooms = Room.findAll();
-		render(roomId, r, username, rooms);
+		render(roomId, r,rImage, username, rooms,userAc,genericAc);
 	}
 
 	public static void updateRoomy(String username, String password,
@@ -38,17 +57,18 @@ public class Profile extends Controller {
 		index();
 	}
 
-	public static void updatePhoto(File photo) {
+	public static void updatePhoto(Blob photo) {
 		String email = Security.connected();
 		Roomy r = Roomy.find("byEmail", email).first();
-		r.pathToPicture = photo;
+		r.pathToPicture = photo.getFile().getAbsolutePath();
+		r.save();
 		index();
 	}
 
-	public static void updateCurrentRoom(String newRoom) {
+	public static void updateCurrentRoom(long newRoom) {
 		String email = Security.connected();
 		Roomy r = Roomy.find("byEmail", email).first();
-		Room room = Room.find("byName", newRoom).first();
+		Room room = Room.findById(newRoom);
 		r.owner = room;
 		r.save();
 		room.save();

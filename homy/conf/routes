@@ -38,6 +38,8 @@ GET     /favicon.ico                       404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                           staticDir:public
+# Map static resources from the /app/public folder to the /public path
+GET     /attachments/            		   staticDir:data/attachments/
 
 # Catch all
 *       /{controller}/{action}             {controller}.{action}

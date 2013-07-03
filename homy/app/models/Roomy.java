@@ -18,9 +18,12 @@ public class Roomy extends Model {
 	public String email;
 	public String secretQuestion;
 	public String sqAnswer;
-	public File pathToPicture;
+	public String pathToPicture;
 	public Date birthday;
 
+	@OneToMany(mappedBy = "notifee")
+	public List<NotificationMessage> logMessages;
+	
 	@ManyToOne
 	public Room owner;
 

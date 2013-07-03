@@ -11,10 +11,13 @@ public class Grocery extends Controller {
 
 	public static void index(long roomId) {
 		String username = Security.connected();
-		Room currentRoom = Room.find("byName", "DefaultRoom").first();
-		List<GroceryItem> groceries = models.GroceryItem.find(
-				"roomId=? order by id desc", roomId).fetch();
+		Room currentRoom = Room.findById(roomId);
+		List<NotificationMessage> userAc = currentRoom.notifications.lastGenericActivity;
+		List<NotificationMessage> genericAc = currentRoom.notifications.lastUserActivity;
+		
+		List<GroceryItem> groceries = currentRoom.groceryList.groceryItemsList;
 		List roomys = currentRoom.roomysList;
+		
 		int allItemsCount = groceries.size();
 		int doneItem = 0;
 		for (GroceryItem i : groceries) {
@@ -24,12 +27,18 @@ public class Grocery extends Controller {
 		int donePercentage = 0;
 		if (allItemsCount > 0 && doneItem > 0)
 			donePercentage = (doneItem / allItemsCount) * 100;
-		render(groceries, roomys, roomId, username, donePercentage);
+
+		render(groceries, roomys, roomId, username, donePercentage,userAc,genericAc);
 	}
 
 	public static void addGrocery(long roomId, String name, String assignment,
 			String deadline, String userSelection) {
 		Room currentRoom = Room.findById(roomId);
+//		
+//		String username = Security.connected();
+//		Roomy r = Roomy.find("byEmail", username).first();
+//		Notification.logGenericActivity(currentRoom, r, "add", "grocery");
+		
 		int dead = Integer.parseInt(deadline);
 		int select = Integer.parseInt(userSelection);
 		if (select == 2)
@@ -41,14 +50,14 @@ public class Grocery extends Controller {
 				"http://www.lidl.de/de/shop@Search?query=" + name, assignment,
 				dead, today, currentRoom.id);
 		currentRoom.groceryList.addItem(gro);
-		Grocery.index(roomId);
+		index(roomId);
 	}
 
 	public static void deleteGrocery(long roomId, long itemId) {
 		GroceryItem grocery = GroceryItem.findById(itemId);
 		Room currentRoom = Room.findById(roomId);
 		currentRoom.groceryList.deleteGroceryItem(grocery);
-		Grocery.index(roomId);
+		index(roomId);
 	}
 
 	public static void updateGrocery(long roomId, long itemId, String name,

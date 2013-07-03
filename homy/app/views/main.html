@@ -39,7 +39,6 @@
 
 #{get 'moreScripts' /}
 </head>
-
 <body>
 	<div class="container">
 		<div class="navbar" style="padding: 0px; margin: 0px">
@@ -103,65 +102,43 @@
 				<ul class="nav nav-list">
 					<li class="nav-header">What</li>
 					<li class="active"><a href="#">Today</a></li>
+					
+        			#{list genericAc, as:'userActivity'}
 					<li>
 						<div class="media"
 							style="border-left: 10px solid orange; margin: 0px; height: 64px;">
 							<a class="pull-left" href="#"> <img class="media-object"
-								src="//app.divshot.com/img/placeholder-64x64.gif" width="32"
+								src="/attachments/${new File(userActivity.notifee.pathToPicture).getName()}" width="32"
 								height="32">
 							</a>
 							<div class="media-body" style="height: 64px">
 								<h4 class="media-heading">
-									User <b>Olcay</b> is late with a task. Talk to him
+									${userActivity.text}
 								</h4>
 							</div>
 						</div>
 					</li>
-					<li class="active"><a href="#">Yesterday</a></li>
-					<li>
-
-						<div class="media"
-							style="border-left: 10px solid green; margin: 0px; height: 64px;">
-							<a class="pull-left" href="#"> <img class="media-object"
-								src="//app.divshot.com/img/placeholder-64x64.gif" width="32"
-								height="32">
-							</a>
-							<div class="media-body" style="height: 64px">
-								<h4 class="media-heading">
-									User <b>Alex</b> completed his task. Everything fine.
-								</h4>
-							</div>
-						</div>
-
-					</li>
+        			#{/list}
+        			
 					<li class="nav-header">Who</li>
-					<li class="active"><a href="#">Alex</a>
+					
+        			#{list items:userAc, as:'userActivity'}
+					<li class="active"><a href="#"> ${userActivity.notifee.username} </a>
 
 						<div class="media"
 							style="border-left: 10px solid green; margin: 0px; height: 30px;">
 							<a class="pull-left" href="#"> <img class="media-object"
-								src="//app.divshot.com/img/placeholder-64x64.gif" width="32"
+								src="/attachments/${new File(userActivity.notifee.pathToPicture).getName()}" width="32"
 								height="32">
 							</a>
 							<div class="media-body" style="height: 30px">
 								<h4 class="media-heading">
-									Just looked at the <b> tasks</b>
+									${userActivity.text}
 								</h4>
 							</div>
-						</div></li>
-					<li class="active"><a href="#">Ugur</a>
-						<div class="media"
-							style="border-left: 10px solid green; margin: 0px; height: 30px;">
-							<a class="pull-left" href="#"> <img class="media-object"
-								src="//app.divshot.com/img/placeholder-64x64.gif" width="32"
-								height="32">
-							</a>
-							<div class="media-body" style="height: 30px">
-								<h4 class="media-heading">
-									Added a <b>grocery</b>
-								</h4>
-							</div>
-						</div></li>
+						</div>
+					</li>
+        			#{/list}
 				</ul>
 			</div>
 			<div class="span8" id="mainContent">

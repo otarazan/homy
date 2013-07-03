@@ -59,12 +59,12 @@
 <div class="span6">
 	<div class="row-fluid">
 		<div class="span4">
-			<img src="//app.divshot.com/img/placeholder-100x100.gif"
-				class="img-polaroid">
+			<img src="${rImage}"
+				class="img-polaroid" style="width:100px">
 		</div>
 		<div class="span8">
 			This is you! <br>
-			<form action="@{Profile.updatePhoto(roomId)}" method="POST"
+			<form action="@{Profile.updatePhoto}" method="POST"
 				enctype='multipart/form-data'>
 				<input type="file" id="photo" name="photo" />Update</a> <input
 					type="submit" id="updatePhoto" class="btn btn-block btn-primary">
@@ -86,7 +86,7 @@
 					<td>#{if room.name == r.owner.name} <a
 						class="btn btn-inverse btn-block" href="#">Joined</a> #{/if}
 						#{else} <a class="btn btn-success btn-block"
-						href="@{Profile.updateCurrentRoom(room.name)}">Join this room</a>
+						href="@{Profile.updateCurrentRoom(room.id)}">Join this room</a>
 						#{/else}
 					</td>
 				</tr>
