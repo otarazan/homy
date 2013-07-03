@@ -103,17 +103,22 @@
 					<li class="nav-header">What</li>
 					<li class="active"><a href="#">Today</a></li>
 					
-        			#{list genericAc, as:'userActivity'}
+        			#{list items:genericAc, as:'genericActivity'}
 					<li>
 						<div class="media"
 							style="border-left: 10px solid orange; margin: 0px; height: 64px;">
 							<a class="pull-left" href="#"> <img class="media-object"
-								src="/attachments/${new File(userActivity.notifee.pathToPicture).getName()}" width="32"
+								#{if genericActivity.notifee.pathToPicture !=null && new File(genericActivity.notifee.pathToPicture).getName() != null}
+								src="/attachments/${new File(genericActivity.notifee.pathToPicture).getName()}" 
+								#{else}
+								#{/else}
+								#{/if}
+								width="32"
 								height="32">
 							</a>
 							<div class="media-body" style="height: 64px">
 								<h4 class="media-heading">
-									${userActivity.text}
+									${genericActivity.text}
 								</h4>
 							</div>
 						</div>
@@ -122,24 +127,33 @@
         			
 					<li class="nav-header">Who</li>
 					
-        			#{list items:userAc, as:'userActivity'}
+        			#{list items:genericAc, as:'userActivity'}
+        			#{if userActivity.actionCode == models.NotificationMessage.ActionCode.LOGIN}
 					<li class="active"><a href="#"> ${userActivity.notifee.username} </a>
 
 						<div class="media"
 							style="border-left: 10px solid green; margin: 0px; height: 30px;">
 							<a class="pull-left" href="#"> <img class="media-object"
-								src="/attachments/${new File(userActivity.notifee.pathToPicture).getName()}" width="32"
+								#{if userActivity.notifee.pathToPicture !=null && new File(userActivity.notifee.pathToPicture).getName() != null}
+								src="/attachments/${new File(userActivity.notifee.pathToPicture).getName()}"
+								#{else}
+								#{/else}
+								#{/if}
+								width="32"
 								height="32">
 							</a>
 							<div class="media-body" style="height: 30px">
 								<h4 class="media-heading">
 									${userActivity.text}
+									${userActivity.actionCode}
 								</h4>
 							</div>
 						</div>
 					</li>
+        			#{/if}
         			#{/list}
 				</ul>
+					
 			</div>
 			<div class="span8" id="mainContent">
 				<!--  <div class="alert">

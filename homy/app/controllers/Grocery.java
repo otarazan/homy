@@ -6,14 +6,14 @@ import play.mvc.*;
 import java.util.*;
 
 import models.*;
+import models.NotificationMessage.ActionCode;
 
 public class Grocery extends Controller {
 
 	public static void index(long roomId) {
 		String username = Security.connected();
 		Room currentRoom = Room.findById(roomId);
-		List<NotificationMessage> userAc = currentRoom.notifications.lastGenericActivity;
-		List<NotificationMessage> genericAc = currentRoom.notifications.lastUserActivity;
+		List<NotificationMessage> genericAc = currentRoom.notifications.lastGenericActivity;
 		
 		List<GroceryItem> groceries = currentRoom.groceryList.groceryItemsList;
 		List roomys = currentRoom.roomysList;
@@ -27,17 +27,16 @@ public class Grocery extends Controller {
 		int donePercentage = 0;
 		if (allItemsCount > 0 && doneItem > 0)
 			donePercentage = (doneItem / allItemsCount) * 100;
-
-		render(groceries, roomys, roomId, username, donePercentage,userAc,genericAc);
+		render(groceries, roomys, roomId, username, donePercentage,genericAc);
 	}
 
 	public static void addGrocery(long roomId, String name, String assignment,
 			String deadline, String userSelection) {
 		Room currentRoom = Room.findById(roomId);
-//		
-//		String username = Security.connected();
-//		Roomy r = Roomy.find("byEmail", username).first();
-//		Notification.logGenericActivity(currentRoom, r, "add", "grocery");
+		
+		String username = Security.connected();
+		Roomy r = Roomy.find("byEmail", username).first();
+		Notification.logGenericActivity(currentRoom, r, ActionCode.ADD);
 		
 		int dead = Integer.parseInt(deadline);
 		int select = Integer.parseInt(userSelection);

@@ -12,6 +12,11 @@ public class NotificationMessage extends Model {
 	
 	public String text;
 	
+	public enum ActionCode {
+	    ADD, DELETE, EDIT, LOGIN, LOGOFF 
+	}
+	public ActionCode actionCode;
+	
 	@ManyToOne
 	public Roomy notifee;
 	
@@ -19,9 +24,8 @@ public class NotificationMessage extends Model {
 	public Notifications owner;
 	
 
-	public NotificationMessage(Roomy r, String t){
-		this.notifee=r;
+	public NotificationMessage(String t, ActionCode action){
 		this.text = t;
-		this.save();
+		this.actionCode = action;
 	}
 }

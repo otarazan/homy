@@ -13,13 +13,12 @@ public class Deposit extends Controller {
 	public static void index(long roomId) {
 		String username = Security.connected();
 		Room currentRoom = Room.findById(roomId);
-		List<NotificationMessage> userAc = currentRoom.notifications.lastGenericActivity;
-		List<NotificationMessage> genericAc = currentRoom.notifications.lastUserActivity;
+		List<NotificationMessage> genericAc = currentRoom.notifications.lastGenericActivity;
 		
 		List<DepositBoxItem> depositItemList = new LinkedList<DepositBoxItem>();
 		depositItemList = currentRoom.depositBox.depositBoxItemsList;
 		float amount = currentRoom.depositBox.currentDeposit();
-		render(depositItemList, amount, username, roomId,userAc,genericAc);
+		render(depositItemList, amount, username, roomId,genericAc);
 
 	}
 

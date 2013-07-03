@@ -15,8 +15,7 @@ public class Task extends Controller {
 		String username = Security.connected();
 		Roomy roomy = Roomy.find("byEmail", username).first();
 		Room r = Room.findById(roomId);
-		List<NotificationMessage> userAc = r.notifications.lastGenericActivity;
-		List<NotificationMessage> genericAc = r.notifications.lastUserActivity;
+		List<NotificationMessage> genericAc = r.notifications.lastGenericActivity;
 		List<models.Task> allTasks = new LinkedList<models.Task>();
 		if (r.taskTable!=null){
 			for (models.Task t : r.taskTable.tasks) {
@@ -39,7 +38,7 @@ public class Task extends Controller {
 		} else {
 			warning = "user not found";
 		}
-		render(allRoomies, myTasks, allTasks, roomId, username, warning,userAc,genericAc);
+		render(allRoomies, myTasks, allTasks, roomId, username, warning,genericAc);
 	}
 
 	public static void changeStatus(long roomId, long id, boolean status) {

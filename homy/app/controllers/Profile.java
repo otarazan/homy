@@ -25,8 +25,7 @@ public class Profile extends Controller {
 		String username = Security.connected();
 		Roomy r = Roomy.find("byEmail", username).first();
 		Room currentRoom = r.owner;
-		List<NotificationMessage> userAc = currentRoom.notifications.lastGenericActivity;
-		List<NotificationMessage> genericAc = currentRoom.notifications.lastUserActivity;
+		List<NotificationMessage> genericAc = currentRoom.notifications.lastGenericActivity;
 		String rImage="";
 		try {
 			if (r != null && r.pathToPicture!=null)	{
@@ -37,7 +36,7 @@ public class Profile extends Controller {
 		}
 		long roomId = r.owner.getId();
 		List<Room> rooms = Room.findAll();
-		render(roomId, r,rImage, username, rooms,userAc,genericAc);
+		render(roomId, r,rImage, username, rooms,genericAc);
 	}
 
 	public static void updateRoomy(String username, String password,
