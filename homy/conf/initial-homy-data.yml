@@ -27,6 +27,17 @@ Roomy(olcay):
     secretQuestion: "Name of bird"
     sqAnswer: "Max"
     owner: homyDefaultRoom
+    
+Roomy(Michael):
+    username: "Michael"
+    password: "Michael"
+    email: Michael@in.tum.de
+    birthday: 2007-08-05
+    firstName: "Michael"
+    lastName: "Jackson"
+    secretQuestion: "Name of bird"
+    sqAnswer: "Max"
+    owner: sebisChair
 
 Notifications(notifyDefault):
     owner: homyDefaultRoom
@@ -106,7 +117,7 @@ Task(firstTask):
     description: "Yes, absolutely everything"
     status: false
     recurrence: 3
-    roomy: "alex"
+    roomy: "Alex"
     remainingDate: "23/06/2013"
     owner: firstTable
 
@@ -124,6 +135,6 @@ Task(thirdTask):
     description: "Yes, absolutely everything"
     status: false
     recurrence: 2
-    roomy: "alex"
+    roomy: "Alex"
     remainingDate: "25/06/2013"
     owner: firstTable
