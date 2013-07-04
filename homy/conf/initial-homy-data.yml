@@ -33,16 +33,6 @@ Notifications(notifyDefault):
 
 Notifications(notifySebis):
     owner: sebisChair
-    
-NotificationMessage(msg1):
-    notifee: alex    
-    owner: notifyDefault
-    text: "test1"
-    
-NotificationMessage(msg2):
-    notifee: olcay    
-    owner: notifySebis
-    text: "test2"
 
 GroceryList(firstList):
     name: "Things to buy"

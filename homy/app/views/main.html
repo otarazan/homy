@@ -104,15 +104,26 @@
 					<li class="active"><a href="#">Today</a></li>
 					
         			#{list items:genericAc, as:'genericActivity'}
+        			#{if genericActivity.actionCode == models.NotificationMessage.ActionCode.ADD || genericActivity.actionCode == models.NotificationMessage.ActionCode.EDIT || genericActivity.actionCode == models.NotificationMessage.ActionCode.DELETE}
 					<li>
 						<div class="media"
-							style="border-left: 10px solid orange; margin: 0px; height: 64px;">
+							style="border-left: 10px solid 
+							#{if genericActivity.actionCode == models.NotificationMessage.ActionCode.ADD }
+							green
+							#{/if}
+							#{elseif genericActivity.actionCode == models.NotificationMessage.ActionCode.DELETE}
+							red
+							#{/elseif}
+							#{elseif genericActivity.actionCode == models.NotificationMessage.ActionCode.EDIT}
+							orange
+							#{/elseif}
+							; margin: 0px; height: 64px;">
 							<a class="pull-left" href="#"> <img class="media-object"
 								#{if genericActivity.notifee.pathToPicture !=null && new File(genericActivity.notifee.pathToPicture).getName() != null}
 								src="/attachments/${new File(genericActivity.notifee.pathToPicture).getName()}" 
+								#{/if}
 								#{else}
 								#{/else}
-								#{/if}
 								width="32"
 								height="32">
 							</a>
@@ -123,16 +134,27 @@
 							</div>
 						</div>
 					</li>
+					#{/if}
         			#{/list}
         			
 					<li class="nav-header">Who</li>
 					
         			#{list items:genericAc, as:'userActivity'}
-        			#{if userActivity.actionCode == models.NotificationMessage.ActionCode.LOGIN}
+        			#{if userActivity.actionCode == models.NotificationMessage.ActionCode.LOGIN || userActivity.actionCode == models.NotificationMessage.ActionCode.LOGOFF || userActivity.actionCode == models.NotificationMessage.ActionCode.LEFTROOM || userActivity.actionCode == models.NotificationMessage.ActionCode.JOINROOM}
 					<li class="active"><a href="#"> ${userActivity.notifee.username} </a>
 
 						<div class="media"
-							style="border-left: 10px solid green; margin: 0px; height: 30px;">
+							style="border-left: 10px solid 
+							#{if userActivity.actionCode == models.NotificationMessage.ActionCode.LOGIN || userActivity.actionCode == models.NotificationMessage.ActionCode.JOINROOM}
+							green
+							#{/if}
+							#{elseif userActivity.actionCode == models.NotificationMessage.ActionCode.LOGOFF}
+							red
+							#{/elseif}
+							#{elseif userActivity.actionCode == models.NotificationMessage.ActionCode.LEFTROOM}
+							orange
+							#{/elseif}
+							; margin: 0px; height: 64px;">
 							<a class="pull-left" href="#"> <img class="media-object"
 								#{if userActivity.notifee.pathToPicture !=null && new File(userActivity.notifee.pathToPicture).getName() != null}
 								src="/attachments/${new File(userActivity.notifee.pathToPicture).getName()}"
@@ -142,10 +164,9 @@
 								width="32"
 								height="32">
 							</a>
-							<div class="media-body" style="height: 30px">
+							<div class="media-body" style="height: 64px">
 								<h4 class="media-heading">
 									${userActivity.text}
-									${userActivity.actionCode}
 								</h4>
 							</div>
 						</div>

@@ -13,7 +13,7 @@ public class Grocery extends Controller {
 	public static void index(long roomId) {
 		String username = Security.connected();
 		Room currentRoom = Room.findById(roomId);
-		List<NotificationMessage> genericAc = currentRoom.notifications.lastGenericActivity;
+		List<NotificationMessage> genericAc = currentRoom.notifications.getCurrentNotifications();
 		
 		List<GroceryItem> groceries = currentRoom.groceryList.groceryItemsList;
 		List roomys = currentRoom.roomysList;
@@ -36,7 +36,7 @@ public class Grocery extends Controller {
 		
 		String username = Security.connected();
 		Roomy r = Roomy.find("byEmail", username).first();
-		Notification.logGenericActivity(currentRoom, r, ActionCode.ADD);
+		Notification.logGenericActivity(currentRoom, r, ActionCode.ADD, "grocery");
 		
 		int dead = Integer.parseInt(deadline);
 		int select = Integer.parseInt(userSelection);
@@ -55,6 +55,11 @@ public class Grocery extends Controller {
 	public static void deleteGrocery(long roomId, long itemId) {
 		GroceryItem grocery = GroceryItem.findById(itemId);
 		Room currentRoom = Room.findById(roomId);
+		
+		String username = Security.connected();
+		Roomy r = Roomy.find("byEmail", username).first();
+		Notification.logGenericActivity(currentRoom, r, ActionCode.DELETE, "grocery");
+		
 		currentRoom.groceryList.deleteGroceryItem(grocery);
 		index(roomId);
 	}
@@ -63,6 +68,12 @@ public class Grocery extends Controller {
 			String assignment, String deadline, String userSelection,
 			String status, String important) {
 		GroceryItem grocery = GroceryItem.findById(itemId);
+		Room currentRoom = Room.findById(roomId);
+		
+		String username = Security.connected();
+		Roomy r = Roomy.find("byEmail", username).first();
+		Notification.logGenericActivity(currentRoom, r, ActionCode.ADD, "grocery");
+		
 		grocery.name = (name != null) ? name : grocery.name;
 		grocery.assignment = (assignment != null) ? assignment
 				: grocery.assignment;

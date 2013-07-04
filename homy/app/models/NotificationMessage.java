@@ -9,11 +9,12 @@ import play.db.jpa.Model;
 
 @Entity
 public class NotificationMessage extends Model {
-	
+
 	public String text;
+	public String target;
 	
 	public enum ActionCode {
-	    ADD, DELETE, EDIT, LOGIN, LOGOFF 
+	    ADD, DELETE, EDIT, LOGIN, LOGOFF, LEFTROOM, JOINROOM 
 	}
 	public ActionCode actionCode;
 	
@@ -24,8 +25,9 @@ public class NotificationMessage extends Model {
 	public Notifications owner;
 	
 
-	public NotificationMessage(String t, ActionCode action){
+	public NotificationMessage(String t, ActionCode action,String target){
 		this.text = t;
 		this.actionCode = action;
+		this.target = target;
 	}
 }

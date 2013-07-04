@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import models.NotificationMessage;
 import models.Room;
 import models.Roomy;
+import models.NotificationMessage.ActionCode;
 import play.*;
 import play.db.jpa.Blob;
 import play.libs.Images;
@@ -25,7 +26,7 @@ public class Profile extends Controller {
 		String username = Security.connected();
 		Roomy r = Roomy.find("byEmail", username).first();
 		Room currentRoom = r.owner;
-		List<NotificationMessage> genericAc = currentRoom.notifications.lastGenericActivity;
+		List<NotificationMessage> genericAc = currentRoom.notifications.getCurrentNotifications();
 		String rImage="";
 		try {
 			if (r != null && r.pathToPicture!=null)	{
@@ -67,8 +68,10 @@ public class Profile extends Controller {
 	public static void updateCurrentRoom(long newRoom) {
 		String email = Security.connected();
 		Roomy r = Roomy.find("byEmail", email).first();
+		Notification.logGenericActivity(r.owner, r, ActionCode.LEFTROOM, r.owner.name);
 		Room room = Room.findById(newRoom);
 		r.owner = room;
+		Notification.logGenericActivity(room, r, ActionCode.JOINROOM, room.name);
 		r.save();
 		room.save();
 		Dashboard.index();

@@ -6,6 +6,7 @@ import play.mvc.*;
 import java.util.*;
 
 import models.*;
+import models.NotificationMessage.ActionCode;
 
 @With(Secure.class)
 public class Dashboard extends Controller {
@@ -14,7 +15,9 @@ public class Dashboard extends Controller {
 		String username = Security.connected();
 		Roomy roomy = Roomy.find("byEmail", username).first();
 		Room currentRoom = roomy.owner;
-		List<NotificationMessage> genericAc = currentRoom.notifications.lastGenericActivity;
+		
+		
+		List<NotificationMessage> genericAc = currentRoom.notifications.getCurrentNotifications();
 		List<Room> rooms = Room.findAll();
 		long roomId = roomy.owner.getId();
 		render(rooms, roomy, roomId, username,genericAc);
