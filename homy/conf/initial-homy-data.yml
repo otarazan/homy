@@ -27,6 +27,17 @@ Roomy(olcay):
     secretQuestion: "Name of bird"
     sqAnswer: "Max"
     owner: homyDefaultRoom
+    
+Roomy(Michael):
+    username: "Michael"
+    password: "Michael"
+    email: Michael@in.tum.de
+    birthday: 2007-08-05
+    firstName: "Michael"
+    lastName: "Jackson"
+    secretQuestion: "Name of bird"
+    sqAnswer: "Max"
+    owner: sebisChair
 
 Notifications(notifyDefault):
     owner: homyDefaultRoom
