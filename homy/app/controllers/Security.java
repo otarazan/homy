@@ -3,39 +3,28 @@ package controllers;
 import java.util.Date;
 import java.util.List;
 
-import models.Roomy;
+import play.*;
+import play.mvc.*;
 
-public class Security extends Secure.Security{
+import models.Room;
+import models.Roomy;
+import models.NotificationMessage.ActionCode;
+
+public class Security extends Secure.Security {
 
 	static boolean authenticate(String username, String password) {
-        /*Roomy user = Roomy.;
-        System.out.println("sdgdfhdfh");	*/
-		/*boolean found = false
-		List<Roomy> roomysList = Roomy.findAll();
-		for(Roomy roomy : roomysList){
-			if( roomy.username.equals(username) &&
-		}*/
-		Roomy roomy = Roomy.find("byUsername", username).first();
-        return roomy != null && roomy.password.equals(password);
-    }
-	
-	public static boolean registerRoomy(/*String password, String username, String secretQuestion,
-			String firstName, String email, String sqAnswer, String lastName,
-			Date birthday*/){
-		//System.out.println("register");
-		/*if(Roomy.findById(username)==null){
-			Roomy newRoomy =  new Roomy(password, username, secretQuestion, firstName, email, sqAnswer, lastName, birthday);
-			newRoomy.save();
+		Roomy roomy = Roomy.find("byEmail", username).first();
+		Logger.info("User logged in");
+		if (roomy != null && roomy.password.equals(password)) {
+
+			Room currentRoom = roomy.owner;
+			
+			Roomy r = Roomy.find("byEmail", username).first();
+			Notification.logGenericActivity(currentRoom, r, ActionCode.LOGIN, currentRoom.name);
+
 			return true;
 		}
-		else*/
-		
-		String username = params.get("username");
-		System.out.println(username);
-		
-		
-			return false;
+		return false;
 	}
+
 }
-
-

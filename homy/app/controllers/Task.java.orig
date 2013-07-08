@@ -17,16 +17,22 @@ public class Task extends Controller {
 	 * @param roomId current room
 	 */
 	public static void index(long roomId) {
-
 	    	//Get the current user name
 		String username = Security.connected();
 		//Find the current user
 		Roomy roomy = Roomy.find("byEmail", username).first();
+<<<<<<< HEAD
+		Room r = Room.findById(roomId);
+		
+		
+		List<NotificationMessage> genericAc = r.notifications.getCurrentNotifications();
+=======
 		//Find the current room
 		Room currentRoom = Room.findById(roomId);
 		//Get notifications
-		List<NotificationMessage> genericAc = currentRoom.notifications.getCurrentNotifications();
+		List<NotificationMessage> genericAc = currentRoom.notifications.lastGenericActivity;
 		//Get all the tasks which is not completed yet
+>>>>>>> 77772683e4dcf13e4ce24efd443885167eb27471
 		List<models.Task> allTasks = new LinkedList<models.Task>();
 		if (currentRoom.taskTable!=null){
 			for (models.Task t : currentRoom.taskTable.tasks) {

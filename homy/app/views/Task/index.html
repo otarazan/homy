@@ -2,71 +2,102 @@
 #{set title:'Tasks' /}
 #{set topBarStyle:'task' /}
 
-<div class="span12">
-	<div id="tabs">
-		<ul>
-		<li><a href="#tabs-1">My Tasks</a></li>
-		<li><a href="#tabs-2">All Tasks</a></li>
-		</ul>
-		<div id="tabs-2">
-		  <table id="allTasks" class="tablesorter">
-		    <thead>
+<div class="span12"> 
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#tabs-1">My Tasks</a></li>
+  <li><a href="#tabs-2">All Tasks</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="tabs-1">
+  	<div id="tabs-1">
+		#{list items:myTasks, as:'task'}
+			<div class="span3 well" id="box_${task.id}">
+			<b>Task:</b>
+						<p>${task.title}</p>
+						<div>
+							<span class="badge badge-important" id="importance_${task.id}">Level:${task.recurrence}</span><script>importance("#importance_${task.id}","${task.recurrence}")</script>
+							<span class="pull-right" id="countdown_${task.id}"></span><script>countDown("countdown_${task.id}","${task.remainingDate}");</script>
+							<br/><br/>
+								#{form @Task.passTask(roomId)}
+								<input type="hidden" name="id" id="id" value="${task.id}"/>
+								<input type="submit" class="btn btn-warning btn-block" value="Pass">
+								#{/form}
+								#{form @Task.changeStatus(roomId)}
+								<input type="hidden" name="id" id="id" value="${task.id}"/>
+								<input type="hidden" name="status" id="status" value="true"/>
+								<input type="submit" class="btn btn-success btn-block" value="Done">
+								#{/form}
+						</div>
+						
+			</div>
+		#{/list}
+	</div>
+	</div>
+  <div class="tab-pane" id="tabs-2">
+	
+		  <table id="allTasks"  class="table table-striped table-hover tablesorter">
+		       <thead>
 					<tr>
 						<th>Task</th>
 						<th>Assignee</th>
-						<th>Status</th>
+						<th></th>
 						<th>Importance</th>
 						<th>Remaining Date</th>
 					</tr>
-				</thead>
+			</thead>
 				<tbody>
 					#{list items:allTasks, as:'task'}
 					<tr>
 						<td>${task.title}</td>
-						<td>${task.roomy.firstName}</td>
-						<td><input type="checkbox" id="${task.id}" ${task.status ? 'checked':''}></td>
-						<td>${task.recurrence}</td>
-						<td>${task.remainingDate}</td>
+						<td>${task.roomy}</td>
+						<td>
+						#{form @Task.changeStatus(roomId)}
+						<input type="hidden" name="id" id="id" value="${task.id}"/>
+						<input type="hidden" name="status" id="status" value="true"/>
+						<input type="submit" class="btn btn-success btn-small" value="Check"></td>
+						#{/form}
+						<td><span  id="importance_all_${task.id}">Level:${task.recurrence}</span><script>importance("#importance_all_${task.id}","${task.recurrence}")</script></td>
+						<td><div id="all_countdown_${task.id}"></div><script>countDown("all_countdown_${task.id}","${task.remainingDate}");</script></td>
 					</tr>
 					#{/list}
 				</tbody>
 				<tfoot>
+				
+				#{form @Task.addTask(roomId)}
 					<tr>
-						<td><input type="text" id="txtTask" value="Add new task"></td>
-						<td>
-							<select id="selectUser">
-							#{list items:allRoomies, as:'roomy'}
-							  <option value="${roomy.id}">${roomy.firstName}</option>
-							#{/list}
-							</select>
+						<td><input type="text" name="task" value="Add new task"></td>
+						<td>							
+							#{select 'selectedUser', items:allRoomies, valueProperty:'id', labelProperty:'firstName' /}
 						</td>
 						<td><input type="checkbox"/></td>
 						<td>
-							<select id="selectRecurrence">
+							<select style="width:50px;" name="recurrence">
 							  <option value="1">1</option>
 							  <option value="2">2</option>
 							  <option value="3">3</option>
 							  <option value="4">4</option>
 							</select>
 						</td>
-						<td><input type="text" id="datepicker"></td>
+						<td><input type="text" id="datepicker" name="remainingDate"></td>
 					</tr>
 				</tfoot>
 		  </table>
-		  <a id="createTask" href="#">Save</a>
-	</div>
-	<div id="tabs-1">
-		#{list items:myTasks, as:'task'}
-			<div class="boxed" id="box_${task.id}">
-						<p>${task.title}</p>
-						<div>
-							<center>${task.recurrence}</center>
-							<center>${task.remainingDate}</center>
-							<center><button type="button"  onclick="passTask(box_${task.id},${task.id})">Pass</button><button type="button" id="btnDone" onclick="setTaskAsDone(box_${task.id},${task.id})">Done</button></center>
-						</div>
-						
-			</div>
-		#{/list}
-	</div>
+		    <button name="save" class="btn pull-left btn-success">Save</button>
+		#{/form}
+  </div>
+
 </div>
+
+<script>
+	$('#myTab a').click(function (e) {
+		  e.preventDefault();
+		  $(this).tab('show');
+		})
+
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+
 </div>

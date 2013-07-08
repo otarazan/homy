@@ -10,9 +10,8 @@ import java.util.*;
 @Entity
 public class DepositBox extends Model {
 
-	public Float currentDeposit;
 	public String name;
-	
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	public List<DepositBoxItem> depositBoxItemsList;
 
@@ -21,23 +20,30 @@ public class DepositBox extends Model {
 
 	public DepositBox(String name) {
 		this.name = name;
-		this.currentDeposit = 0F;
 		this.depositBoxItemsList = new LinkedList<DepositBoxItem>();
+	}
+
+	public float currentDeposit() {
+		float val = 0;
+		for (DepositBoxItem i : this.depositBoxItemsList) {
+			if (i.income)
+				val += i.amount;
+			else
+				val -= i.amount;
+		}
+		return val;
 	}
 
 	public void addBoxItem(DepositBoxItem di) {
 		di.owner = this;
 		di.save();
-		// no lazy update
-		currentDeposit += di.income ? di.amount : (-1f*di.amount);
 		this.depositBoxItemsList.add(di);
 		this.save();
 	}
-	
+
 	public void deleteBoxItem(long itemId) {
-		DepositBoxItem di=DepositBoxItem.findById(itemId);
+		DepositBoxItem di = DepositBoxItem.findById(itemId);
 		di.delete();
-		currentDeposit -= di.income ? di.amount : (-1f*di.amount);
 		this.depositBoxItemsList.remove(di);
 		this.save();
 	}

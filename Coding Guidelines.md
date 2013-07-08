@@ -38,7 +38,8 @@
 
 The datalayer is strictly cut from the application logic. We use a layerd system based on MVP, meaning: Only controllers acces the model data (no data-reads by views).
 
-1. Only models call the database mapping layer
-2. Controllers interact with models as if they were normaly objects
-3. Data fetching is done lazy
-4. Manipulating data is only allowed from the controller layer
+1. Controllers interact with models as if they were normaly objects
+2. Data fetching is done lazy
+3. Manipulating data is only allowed from the controller layer  
+  
+* * *   

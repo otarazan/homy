@@ -14,14 +14,14 @@ $(document).ready(function() {
   <table class="table table-striped table-hover tablesorter">
     <thead>
       <tr>
-        <th>Description</th>
+        <th>Description </th>
         <th>Roomy</th>
         <th>-</th>
         <th>+</th>
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody> 
     #{list items:depositItemList,as:'depositItem'}
       <tr>
         <td>${depositItem.description}</td>
@@ -38,25 +38,13 @@ $(document).ready(function() {
         </td>
         <td></td>
         #{/else}
-        <td><input type=button class="btn pull-right btn-danger btn-mini btn-circle" onClick="location.href='@{Deposit.deleteItem(depositItem.id)}'" value='X'/></td>
+        <td><input type=button class="btn pull-right btn-danger btn-mini btn-circle" onClick="location.href='@{Deposit.deleteItem(roomId,depositItem.id)}'" value='X'/></td>
       </tr>
       #{/list}
     </tbody>
     
   </table>
-  <ol class="breadcrumb" style="background:none">
-    <li>
-      <a href="@{Deposit.sortItemDate()}">Date</a>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <a href="@{Deposit.sortItemIncome()}">Income / Expenses</a>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <a href="@{Deposit.sortItemAssignee()}">Assignee</a>
-    </li>
-  </ol>
+  
 </div>
 <div class="span4">
 #{if amount>0}
@@ -72,12 +60,12 @@ $(document).ready(function() {
   <br> You are out of money!</div>
 #{/else}
   <div class="well">
-    #{form @Deposit.addItem()}
+    <form action="@{Deposit.addItem(roomId)}" method="POST" >
       <input name="User" type="text" class="input-medium input-block-level" placeholder="User">
       <input name="description" type="text" class="input-medium input-block-level" placeholder="Description">
-      <input name="amount"type="text" class="input-medium input-block-level" placeholder="Amount in $ / €">
+      <input name="amount"type="text" class="input-medium input-block-level" placeholder="Amount in $ / ���">
       <button name="income" class="btn pull-left btn-success">Income</button>
       <button name="expense" class="btn pull-right btn-danger">Expense</button>
-    #{/form}
-  </div>
+   </form>
+     </div>
 </div>

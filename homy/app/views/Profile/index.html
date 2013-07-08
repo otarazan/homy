@@ -1,0 +1,98 @@
+#{extends 'main.html' /} #{set title:'Profile' /}
+
+<div class="span6">
+	<div class="control-group">
+		<label class="control-label">Personal settings</label>
+		<div class="controls">
+			<form action="@{Profile.updateRoomy}" method="POST">
+				<div class="row-fluid">
+					<div class="span6 badge badge-warning">
+
+						<label>Password</label> <input type="password" name="password"
+							id="password" value="" class="input-medium input-block-level"
+							placeholder="">
+					</div>
+					<div class="span6"></div>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+						<label>Username</label> <input type="text" name="username"
+							id="username" class="input-medium input-block-level"
+							value="${r.username}">
+					</div>
+					<div class="span6">&nbsp;</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+
+						<label>First name</label> <input type="text" name="fname"
+							id="fname" value="${r.firstName}"
+							class="input-medium input-block-level" placeholder="">
+					</div>
+					<div class="span6">
+						<label>Last name</label> <input type="text" name="lname"
+							id="lname" class="input-medium" value="${r.lastName}">
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+						<label>Security question</label> <input type="text"
+							name="squestion" id="squestion"
+							class="input-medium input-block-level"
+							value="${r.secretQuestion}">
+					</div>
+					<div class="span6">
+						<label>Answer to question</label> <input type="text"
+							name="sanswer" id="sanswer"
+							class="input-medium input-block-level" value="${r.sqAnswer}">
+					</div>
+				</div>
+				<div class="form-actions">
+
+					<input type="submit" id="update" value="Update your roomy"
+						class="btn btn-block btn-primary" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="span6">
+	<div class="row-fluid">
+		<div class="span4">
+			<img src="${rImage}"
+				class="img-polaroid" style="width:100px">
+		</div>
+		<div class="span8">
+			This is you! <br>
+			<form action="@{Profile.updatePhoto}" method="POST"
+				enctype='multipart/form-data'>
+				<input type="file" id="photo" name="photo" />Update</a> <input
+					type="submit" id="updatePhoto" class="btn btn-block btn-primary">
+			</form>
+		</div>
+		<table class="table">
+
+
+			<thead>
+				<tr>
+					<th>Room</th>
+					<th>Join it ?</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list items:rooms,as:'room'}
+				<tr>
+					<td>${room.name}<br /> <i>${room.description}</i></td>
+					<td>#{if room.name == r.owner.name} <a
+						class="btn btn-inverse btn-block" href="#">Joined</a> #{/if}
+						#{else} <a class="btn btn-success btn-block"
+						href="@{Profile.updateCurrentRoom(room.id)}">Join this room</a>
+						#{/else}
+					</td>
+				</tr>
+
+				#{/list}
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -3,15 +3,30 @@
 # ~~~~
 
 # Home page
+GET     /                    			   Dashboard.index
+GET     /room/{roomId}/                    Dashboard.index
+
 GET     /room/{roomId}/deposit             Deposit.index(int roomId)
-GET     /settings                          Application.settings
-GET     /login                             Application.login
-GET     /grocery                           Grocery.index
-GET     /dashboard                         Dashboard.index
-GET     /tasks                             Task.index
-GET     /tasks/{roomId}                     Task.index
-GET     /                                  Application.index
-GET		/myprofile                         MyProfile.index
+POST    /room/{roomId}/deposit/additem     Deposit.addItem(int roomId)
+GET     /room/{roomId}/deposit/deleteitem  Deposit.deleteitem(int roomId)
+
+GET     /room/{roomId}/grocerys               Grocery.index(int roomId)
+POST    /room/{roomId}/grocerys/addgrocery    Grocery.addGrocery(int roomId)
+GET     /room/{roomId}/grocery/deletegrocery Grocery.deleteGrocery(int roomId)
+DELETE  /room/{roomId}/grocery/updateGrocery Grocery.updateGrocery(int roomId)
+
+GET     /dashboard           Dashboard.index
+GET     /dashboard/newroom           Dashboard.newRoom
+
+GET     /room/{roomId}/tasks               Task.index(int roomId)
+GET     /room/{roomId}/tasks/addtask       Task.addTask(int roomId)
+POST    /room/{roomId}/task/changestatus  Task.changeStatus(int roomId)
+POST    /room/{roomId}/task/passtask      Task.passTask(int roomId)
+
+GET     /profile             				Profile.index
+POST    /profile/updateroomy 				Profile.updateroomy
+POST    /profile/updatephoto 				Profile.updatephoto
+POST    /profile/updatecurrentroom 			Profile.updatecurrentroom
 
 GET     /whoWeAre                          Application.whoWeAre
 GET     /reachUs                           Application.reachUs
@@ -19,13 +34,15 @@ GET     /whatWeDo                          Application.whatWeDo
 
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico                       404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
+GET     /public/                           staticDir:public
+# Map static resources from the /app/public folder to the /public path
+GET     /attachments/            		   staticDir:data/attachments/
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}             {controller}.{action}
 
 #Import Secure routes
 *       /                                  module:secure 

@@ -1,0 +1,92 @@
+#{extends 'mainFront.html' /}
+#{set title:'Login' /}
+   <div class="container">&nbsp;
+      <div class="hero-unit" style="padding-top:0px;padding-bottom:0px">
+        <div class="row-fluid">
+          <div class="span4" style="border-right:20px solid green">
+            <h2>Tasks</h2>
+            <div class="media">
+              <a class="pull-left" href="#">
+    <img class="media-object" src="@{'/public/stylesheets/images/task.png'}">
+  </a>
+              <div class="media-body">
+                <h4 class="media-heading">Manage your tasks</h4>
+                <p>Homy lets you manage all the tasks your house, dorm or whatever needs to do.</p>
+              </div>
+            </div>
+          </div>
+          <div class="span4" style="border-right:20px solid red">
+            <h2>Groceries</h2>
+            <div class="media">
+              <a class="pull-left" href="#">
+    <img class="media-object" src="@{'/public/stylesheets/images/grocery.png'}">
+  </a>
+              <div class="media-body">
+                <h4 class="media-heading">Share grocery lists</h4>
+                <p>Nedd a shared grocery list for your household ? Whats to buy, what has you friend already done ? Homy has it.</p>
+              </div>
+            </div>
+          </div>
+          <div class="span4" style="border-right:20px solid #0072e6">
+            <h2>Deposit Box</h2>
+            <div class="media">
+              <a class="pull-left" href="#">
+    <img class="media-object" src="@{'/public/stylesheets/images/depositBox.png'}">
+  </a>
+              <div class="media-body">
+                <h4 class="media-heading">Save you expenses</h4>
+                <p>Wonder how much money you and your friends have left ? Homy will tell you in realtime.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="well" style="background:black">
+        <div class="row-fluid">
+          <div class="span3"></div>
+          <div class="span3" style="border-left:2px solid #fff; padding-left:15px">
+          #{form @authenticate()}
+		
+		#{if flash.error}
+			<p class="error" style="color:red">
+				&{flash.error}
+			</p>
+		#{/if}
+		#{if flash.success}
+			<p class="success" style="color:green">
+				&{flash.success}
+			</p>
+		#{/if}
+	
+            <h2 style="color:white">Login</h2>
+            <input type="text" name="username" id="username" value="${flash.username}" class="input-medium input-block-level" placeholder="E-Mail">
+            <input type="password" name="password" id="password" value=""  class="input-medium input-block-level" placeholder="Password">
+            <input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+			<label for="remember">&{'secure.remember'}</label>
+            
+            <input type="submit" id="signin" value="&{'secure.signin'}" class="btn btn-block btn-success" /> 
+            
+            	#{/form}
+          </div>
+          <div class="span3" style="border-right:2px solid #fff; padding-right:15px">
+          #{form @Register.register()}
+            <h2 style="color:white">Register</h2>
+            <input type="text" name="username" id="username" value="${flash.username}" class="input-medium input-block-level" placeholder="Username">
+            <input type="email" name="email" id="email" class="input-medium input-block-level" placeholder="E-Mail">
+            <input type="password" name="password" id="password" value=""  class="input-medium input-block-level" placeholder="Password">
+            <input type="text" name="fname" id="fname" value="${flash.fname}" class="input-medium input-block-level" placeholder="First Name">
+            <input type="text" name="lname" id="lname" value="${flash.lname}"class="input-medium input-block-level" placeholder="Last Name">
+            <input type="text" name="bday" id="bday" value="${flash.bday}"class="input-medium input-block-level" placeholder="Birthday">
+            <input type="text" name="squestion" id="squestion" value="${flash.squestion}" class="input-medium input-block-level" placeholder="Security question">
+            <input type="text" name="sanswer" id="sanswer" value="${flash.sanswer}" class="input-medium input-block-level" placeholder="Security answer">
+            <input type="submit" id="register" value="Register your roomy" class="btn btn-block btn-primary"/> 
+            
+            	#{/form}
+          </div> 
+          <div class="span3"></div>
+        </div>
+      </div>
+    </div>
+    

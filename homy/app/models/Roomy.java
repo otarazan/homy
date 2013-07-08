@@ -4,6 +4,8 @@ import play.*;
 import play.db.jpa.*;
 
 import javax.persistence.*;
+
+import java.io.File;
 import java.util.*;
 
 @Entity
@@ -16,8 +18,12 @@ public class Roomy extends Model {
 	public String email;
 	public String secretQuestion;
 	public String sqAnswer;
+	public String pathToPicture;
 	public Date birthday;
 
+	@OneToMany(mappedBy = "notifee")
+	public List<NotificationMessage> logMessages;
+	
 	@ManyToOne
 	public Room owner;
 
@@ -31,5 +37,10 @@ public class Roomy extends Model {
 		this.sqAnswer = sqAnswer;
 		this.lastName = lastName;
 		this.birthday = new Date();
+	}
+
+	@Override
+	public String toString() {
+		return firstName;
 	}
 }

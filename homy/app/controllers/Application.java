@@ -9,35 +9,28 @@ import models.*;
 
 public class Application extends Controller {
 
-    public static void index() {
-        renderTemplate("Application/login.html");
-    }
-    
-    public static void login(){
-        render();
-    }
-    
-    public static void logout(){
-        renderTemplate("Application/login.html");
-    }
+	public static void index() {
+		Dashboard.index();
+	}
 
-    public static void settings(){
-        render();
-    }
+	public static void login() {
+		try {
+			Secure.login();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
 
+	public static void whoWeAre() {
+		renderTemplate("Application/who.html");
+	}
 
-    public static void whoWeAre(){
-        renderTemplate("Application/who.html");
-    }
+	public static void whatWeDo() {
+		renderTemplate("Application/what.html");
+	}
 
+	public static void reachUs() {
+		renderTemplate("Application/reach.html");
+	}
 
-    public static void whatWeDo(){
-        renderTemplate("Application/what.html");
-    }
-
-
-    public static void reachUs(){
-        renderTemplate("Application/reach.html");
-    }
-    
 }

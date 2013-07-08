@@ -1,88 +1,33 @@
-<!doctype html>
-<html>
-  <head
-        <title>#{get 'title' /}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-        <link rel="stylesheet" href="@{'/public/themes/cosmo/bootstrap.css'}">
-        <link rel="stylesheet" href="@{'/public/stylesheets/bootstrap-responsive.css'}">
-        <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
-        #{get 'moreStyles' /}
-        <script type="text/javascript" src="@{'/public/javascripts/jquery.min.js'}" charset="${_response_encoding}"></script>
-        <script type="text/javascript" src="@{'/public/javascripts/bootstrap.min.js'}" charset="${_response_encoding}"></script>
-        #{get 'moreScripts' /}
-  </head>
-  <body>
-    <div class="container">
-      <div class="navbar" style="padding:0px;margin:0px">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-            <a class="brand" href="#" style="">Homy</a>
-            <div class="nav-collapse collapse pull-right">
-              <ul class="nav">
-                <li>
-                  <a href="#" class="active" style="padding-left:0px; border-bottom:5px solid green; background: green"><br></a> 
-                </li>
-                <li>
-                  <a href="#" style="padding-left:0px;border-bottom:5px solid red; background: red"><br></a> 
-                </li>
-                <li style="width: 1px;">
-                  <a href="#" style="padding-left:0px;border-bottom:5px solid #0072e6; background: #0072e6"><br></a> 
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+#{extends 'mainFront.html' /}
+#{set title:'Who we are' /}
     <div style="margin-top:40px"></div>
     <div class="container">
       <div class="well" style="color:white; background:black">
         <div class="row-fluid">
           <div class="span2" style="padding-left:15px">
-            Alex</div>
+            Alex
+            <div class="well" style="color:black">Architecture,<br/> Frontend,<br/> Backend,<br/> JS-Layer</div>
+            </div>
           <div class="span2" style="border-left:2px solid green; padding-left:15px">
             Medin
+            <div class="well" style="color:black">Authentication</div>
           </div>
           <div class="span2" style="border-left:2px solid red; padding-left:15px">
             Olcay
+            <div class="well" style="color:black">Frontend,<br/> Tasks,<br/> JS-Layer</div>
           </div>
           <div class="span2" style="border-left:2px solid #0072e6; padding-left:15px;padding-right:15px">
-            Ercan</div>
-
+            Ercan
+            <div class="well" style="color:black">Frontend,<br/> Grocerys</div>
+            </div>
           <div class="span2" style="border-left:2px solid red; padding-left:15px;padding-right:15px">
-            Ali Ugur</div>
-
+            Ali Ugur
+            <div class="well" style="color:black">Frontend,<br/> Deposit</div>
+            </div>
           <div class="span2" style="border-left:2px solid green; padding-left:15px;padding-right:15px">
-            Nikolaos</div>
+            Nikolaos
+            <div class="well" style="color:black">Models,<br/> Authentication</div></div>
         </div>
       </div>
     </div>
-    <div class="container">&nbsp;</div>
-    <div class="container">
-      <ol class="breadcrumb">
-        <li>
-          <a href="#">Who we are</a>
-          <span class="divider">/</span> 
-        </li>
-        <li>
-          <a href="#">What we do</a>
-          <span class="divider">/</span> 
-        </li>
-        <li>
-          <a href="#">How you can reach us</a>
-          <span class="divider">/</span> 
-        </li>
-        <li class="pull-right">
-          <a href="#">Questions ?</a> 
-        </li>
-      </ol>
-    </div>
-  </body>
-
-</html>
+    

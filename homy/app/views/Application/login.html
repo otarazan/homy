@@ -40,18 +40,18 @@
         </div>
       </div>
     </div>
-    <div class="container">&nbsp;
+  <div class="container">&nbsp;
       <div class="hero-unit" style="padding-top:0px;padding-bottom:0px">
         <div class="row-fluid">
           <div class="span4" style="border-right:20px solid green">
             <h2>Tasks</h2>
             <div class="media">
               <a class="pull-left" href="#">
-    <img class="media-object" src="//app.divshot.com/img/placeholder-64x64.gif">
+    <img class="media-object" src="@{'/public/stylesheets/images/task.png'}">
   </a>
               <div class="media-body">
                 <h4 class="media-heading">Manage your tasks</h4>
-                <p>This is the content for your media.</p>
+                <p>Homy lets you manage all the tasks your house, dorm or whatever needs to do.</p>
               </div>
             </div>
           </div>
@@ -59,11 +59,11 @@
             <h2>Groceries</h2>
             <div class="media">
               <a class="pull-left" href="#">
-    <img class="media-object" src="//app.divshot.com/img/placeholder-64x64.gif">
+    <img class="media-object" src="@{'/public/stylesheets/images/grocery.png'}">
   </a>
               <div class="media-body">
                 <h4 class="media-heading">Share grocery lists</h4>
-                <p>This is the content for your media.</p>
+                <p>Nedd a shared grocery list for your household ? Whats to buy, what has you friend already done ? Homy has it.</p>
               </div>
             </div>
           </div>
@@ -71,11 +71,11 @@
             <h2>Deposit Box</h2>
             <div class="media">
               <a class="pull-left" href="#">
-    <img class="media-object" src="//app.divshot.com/img/placeholder-64x64.gif">
+    <img class="media-object" src="@{'/public/stylesheets/images/depositBox.png'}">
   </a>
               <div class="media-body">
                 <h4 class="media-heading">Save you expenses</h4>
-                <p>This is the content for your media.</p>
+                <p>Wonder how much money you and your friends have left ? Homy will tell you in realtime.</p>
               </div>
             </div>
           </div>
@@ -88,22 +88,28 @@
           <div class="span3"></div>
           <div class="span3" style="border-left:2px solid #fff; padding-left:15px">
             <h2 style="color:white">Login</h2>
-            <input type="text" class="input-medium input-block-level" placeholder="Username">
-            <input type="text" class="input-medium input-block-level" placeholder="Password">
-            <a class="btn btn-block btn-success">Log me in</a> 
+            #{form @Login.login()}
+            <div class="error">#{error 'email' /}</div>
+            <input type="text" class="input-medium input-block-level" name="username" id="username" placeholder="Username" value="${flash.username}" >
+            <div class="error">#{error 'password' /}</div>
+            <input type="text" class="input-medium input-block-level" name="password" id="password" placeholder="Password" value="${flash.password}" >
+            <input class="btn btn-block btn-success" type="submit" value="Log in"></input>
+            #{/form}
           </div>
           <div class="span3" style="border-right:2px solid #fff; padding-right:15px">
             <h2 style="color:white">Register</h2>
-            <input type="text" class="input-medium input-block-level"
+            #{form @Login.register()}
+            <input type="text" id="username" name="username" class="input-medium input-block-level"
             placeholder="Username">
-            <input type="email" class="input-medium input-block-level" placeholder="E-Mail">
-            <input type="password" class="input-medium input-block-level" placeholder="Password">
-            <input type="text" class="input-medium input-block-level" placeholder="First Name">
-            <input type="text" class="input-medium input-block-level" placeholder="Last Name">
-            <input type="text" class="input-medium input-block-level" placeholder="Birthday">
-            <input type="text" class="input-medium input-block-level" placeholder="Security question">
-            <input type="text" class="input-medium input-block-level" placeholder="Security answer">
-            <a class="btn btn-block btn-primary">Register a new account</a> 
+            <input type="email" class="input-medium input-block-level"  id="email" name="email"placeholder="E-Mail">
+            <input type="password" class="input-medium input-block-level" id="password" name="password" placeholder="Password">
+            <input type="text" class="input-medium input-block-level"  id="firstName" name="firstName"placeholder="First Name">
+            <input type="text" class="input-medium input-block-level"  id="lastName" name="lastName" placeholder="Last Name">
+            <input type="text" class="input-medium input-block-level"  id="birthDay" name="birthDay" placeholder="Birthday">
+            <input type="text" class="input-medium input-block-level"  id="secQuestion" name="secQuestion"placeholder="Security question">
+            <input type="text" class="input-medium input-block-level"  id="sqAnswer" name="sqAnswer" placeholder="Security answer">
+            <input class="btn btn-block btn-primary" type="submit" value="Register a new account"></input> 
+            #{/form}
           </div>
           <div class="span3"></div>
         </div>

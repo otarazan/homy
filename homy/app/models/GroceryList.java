@@ -18,17 +18,21 @@ public class GroceryList extends Model {
 	@OneToOne
 	public Room owner;
 
-
 	public GroceryList(String name) {
 		this.name = name;
 		this.groceryItemsList = new LinkedList<GroceryItem>();
 	}
 
-	public void addItem(GroceryItem item) {
-		item.owner=this;
-		item.save();
-		this.groceryItemsList.add(item);
+	public void addItem(GroceryItem di) {
+		di.owner = this;
+		di.save();
+		this.groceryItemsList.add(di);
 		this.save();
+	}
+
+	public void deleteGroceryItem(GroceryItem di) {
+		this.groceryItemsList.remove(di);
+		di.delete();
 	}
 
 }

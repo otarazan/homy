@@ -2,17 +2,19 @@
 #{set title:'Grocery' /}
 #{set topBarStyle:'grocery' /}
 <div class="progress">
-  <div class="bar" style="width: 40%;"></div>
+  <div class="bar" style="width: ${donePercentage}%;"></div>
 </div>
 <div class="row-fluid">
   <div class="span12">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover table-bordered tablesorter">
       <thead>
         <tr>
           <th></th>
           <th>Description</th>
           <th>Buy now</th>
+          <!-- 
           <th>Assign to</th>
+           -->
           <th>Until</th>
           <th>State</th>
           <th>Flag</th>
@@ -20,88 +22,142 @@
       </thead>
       <tbody>
         <tr>
+        #{list items:groceries, as:'item'}
+        #{ if item.status==false}
           <td>
-            <button class="btn btn-block btn-danger btn-mini">Delete</button>
+          #{form @Grocery.deleteGrocery(roomId)}
+            <input type="hidden" value="${item.id}" name="itemId" id="itemId"/>
+            <input type="submit" class="btn btn-block btn-danger btn-mini" value="Delete"/>
+           #{/form}
+            <!-- <button class="btn btn-block btn-danger btn-mini">Delete</button> -->
           </td>
-          <td>Buy some Milk</td>
+           <td>${item.name}</td>
+          
           <td>
-            <a class="btn btn-block btn-link btn-small">Buy at XY</a>
+            <a class="btn btn-block btn-link btn-small"><a href="${item.buyFromLink}">Buy now</a></a>
           </td>
+          <!-- 
           <td>
-            <select>
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
+          #{form @Grocery.updateGrocery(roomId)}
+            <input type="hidden" value="${item.id}" name="itemId" id="itemId"/>
+          	<select name="assignment" id="assignment">
+              #{list items:roomys, as:'roomy'}
+              #{if item.assignment!=roomy.username}
+              <option>${roomy.username}</option>
+              #{/if}
+              #{/list}
             </select>
+           <br><input type="submit" class="btn pull-left btn-success" id="submitNewAssignment" value="Change" />
+           #{/form}
           </td>
-          <td>Today</td>
+          	 -->
+          	#{if item.date!=null}
+          	
+            
+          		#{if item.deadline-(new Date().getTime()-[item.date.getTime()])/(1000*60*60)<24}
+          				<td>Today</td>
+          		#{/if}
+          		#{if item.deadline-(new Date().getTime()-[item.date.getTime()])/(1000*60*60) >= 24 & item.deadline-(new Date().getTime()-[item.date.getTime()])/(1000*60*60) < 168}
+          			<td>${Math.round((item.deadline-(new Date().getTime()-[item.date.getTime()])/(1000*60*60))/24)} day(s) </td>
+          		#{/if}
+          		#{elseif item.deadline-(new Date().getTime()-[item.date.getTime()])/(1000*60*60)>=168}
+          			<td>${Math.round((item.deadline-(new Date().getTime()-[item.date.getTime()])/(1000*60*60))/168)} week(s) </td>
+          		#{/elseif}
+          	#{/if}
+          	#{else}
+          		<td>No deadline</td>
+          	#{/else}
+          
           <td>
-            <button class="btn btn-success btn-small">Button Text</button>
+         
+           #{form @Grocery.updateGrocery(roomId)}
+            <input type="hidden" value="${item.id}" name="itemId" id="itemId"/>
+            <input type="hidden" value="true" name="status" id="status"/>
+            <input type="submit" class="btn btn-success btn-small" value="Done"/>
+           #{/form}
+           
           </td>
           <td>
-            <span class="badge badge-warning">Important</span>
+          	#{if item.important}
+           #{form @Grocery.updateGrocery(roomId)}
+            <input type="hidden" value="${item.id}" name="itemId" id="itemId"/>
+            <input type="hidden" value="false" name="important" id="important"/>
+            <span class="badge badge-important "><input type="submit" style="background:none; border:none ; color:white" value="Important"/></span>
+           #{/form}
+            #{/if}
+            #{else}
+           #{form @Grocery.updateGrocery(roomId)}
+            <input type="hidden" value="${item.id}" name="itemId" id="itemId"/>
+            <input type="hidden" value="true" name="important" id="important"/>
+            <span class="badge "><input type="submit" style="background:none; border:none; color:white" value="Not Important"/></span>
+           #{/form}
+            #{/else}
           </td>
         </tr>
-        <tr>
-          <td>
-            <button class="btn btn-block btn-danger btn-mini">Delete</button>
-          </td>
-          <td>Buy some Milk</td>
-          <td>
-            <a class="btn btn-block btn-link btn-small">Buy at XY</a>
-          </td>
-          <td>
-            <select>
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-            </select>
-          </td>
-          <td>Today</td>
-          <td>
-            <button class="btn btn-success btn-small">Button Text</button>
-          </td>
-          <td>
-            <span class="badge badge-warning">Important</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="btn btn-block btn-danger btn-mini">Delete</button>
-          </td>
-          <td>Buy some Milk</td>
-          <td>
-            <a class="btn btn-block btn-link btn-small">Buy at XY</a>
-          </td>
-          <td>
-            <select>
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-            </select>
-          </td>
-          <td>Today</td>
-          <td>
-            <button class="btn btn-success btn-small">Button Text</button>
-          </td>
-          <td>
-            <span class="badge badge-warning">Important</span>
-          </td>
-        </tr>
-      </tbody>
+        #{/if}
+        #{/list}
+        </tbody>
     </table>
-    <ol class="breadcrumb" style="background:none">
-      <li>
-        <a href="#">Date</a>
-        <span class="divider">/</span>
-      </li>
-      <li>
-        <a href="#">State</a>
-        <span class="divider">/</span>
-      </li>
-      <li>
-        <a href="#">Assignee</a>
-      </li>
-    </ol>
+        #{form @Grocery.addGrocery(roomId)}
+	    <div class="well">
+	    <div class=" row-fluid">
+	        <div class=" span6">
+	          <label>Description of your new task</label>
+	          <input type="text" name="name" id="name" class="input-medium input-block-level" placeholder="Add new item" />
+	        </div>
+	        <div class="span6">
+	          <label>Assign it to a user</label>
+	        	<select name="assignment" id="assignment">
+	              #{list items:roomys, as:'roomy'}
+	              <option>${roomy.username}</option>
+	              #{/list}
+	            </select>
+	        </div>
+	      </div>
+	    <div class="row-fluid">
+	        <div class="span6">
+	          <label>How much <b>days</b> can pass ?</label>
+	          <input type="text" name="deadline" id="deadline" class="input-medium input-block-level" />
+				<input type="hidden" name="userSelection" value="2" />
+	        </div>
+	        <div class="span6">
+	            <br>
+			<input type="submit" class="btn btn-success" id="signin" value="Add this item to the list" />
+	        </div>
+	      </div>
+	      </div>
+			
+        #{/form}
+    
+    <h4>Task log</h4>
+    <table class="table table-striped table-hover table-bordered tablesorter">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Who did it?</th>
+          <th>State</th>
+          <th>Flag</th>
+        </tr>
+      </thead>
+      <tbody>
+        #{list items:groceries, as:'item'}
+        #{if item.status!=false}
+        <tr>
+          <td>${item.name}</td>
+          <td>${item.assignment}</td>
+          <td>
+          #{form @Grocery.updateGrocery(roomId)}
+            <input type="hidden" value="${item.id}" name="itemId" id="itemId"/>
+            <input type="hidden" value="false" name="status" id="status"/>
+            <input type="submit" class="btn btn-danger btn-small" value="Un-Do"/>
+           #{/form}
+          </td>
+          <td>${item.important}</td>
+          </tr>
+          #{/if}
+        #{/list}
+          </tbody>
+          </table>
+    
   </div>
 </div>
