@@ -22,6 +22,7 @@ public class Deposit extends Controller {
     	for (DepositBoxItem item : currentRoom.depositBox.depositBoxItemsList){
     		System.out.println(item.description+" - "+item.amount);
     	}
+    	/*
     	List<DepositBoxItem> depositItemList=new LinkedList<DepositBoxItem>();
     	if(state==0){
     		depositItemList=models.DepositBoxItem.find("roomId=? order by id desc",roomID).fetch();
@@ -32,9 +33,10 @@ public class Deposit extends Controller {
     	else{
     		depositItemList=models.DepositBoxItem.find("roomId=? order by user desc",roomID).fetch();
     	}
-    	   
+    	    	
+    	*/
     	float amount=currentRoom.depositBox.currentDeposit;
-    	
+    	List<DepositBoxItem> depositItemList=currentRoom.depositBox.depositBoxItemsList;
         render(depositItemList,amount);
 
     }
