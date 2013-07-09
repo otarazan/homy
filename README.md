@@ -1,20 +1,24 @@
 # Homy Project
 Solving all the **little** problems.
-Please read the following notes on where to find resources and how to include them in your work.
 
-### Todo
-- [x] Create all tempaltes and master template
-- [x] Create model
-- [x] Create dynamic tags for template changes on clicks
-- [x] Create all controller
-- [ ] Create login
-- [ ] Create deposit index action
-- [ ] Create settings index action
-- [ ] Create task index action
-- [ ] Create grocery index action
-- [ ] Create dashboard index action
+## Notifications
 
-### Teamplates and views
+### Logging
+When you execute an action that should be listed in the notifications bar inform the notification controller of it
+```java
+Notification.logGenericActivity(yourRoom, yourRoomy, ActionCode.YOUR-ACTION-CODE, "your controller name");
+```
+Refere to the ntofication model for details on the actioncodes
+
+### Showing notifications
+If you want to show the notificationbar (populate) with the generic notifications retrieve them via
+```java
+        List<NotificationMessage> genericAc = currentRoom.notifications.getCurrentNotifications();
+```
+The notificationsbar is populated with the contents of the _genericAc_ parameter (sibmited to the render method).
+
+
+## Teamplates and views
 Views are called by the "render" method. This method calls the view with the name of its calling method
 ```java
 {contoller name} {
@@ -33,11 +37,7 @@ feel free to edit. All templates are rendered inside the master tempaltes (excep
 
     view/main.html    
 
-Find *RAW* templates in:
-
-    /public/{name of the html file}.html
-
-### Notes on Dev process
+## Notes on Dev process
 
 *1* Please check all your code before you commit. If it does not run it does not help
 
