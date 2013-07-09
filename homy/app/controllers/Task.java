@@ -28,10 +28,13 @@ public class Task extends Controller {
 		List<NotificationMessage> genericAc = currentRoom.notifications.getCurrentNotifications();
 		//Get all the tasks which is not completed yet
 		List<models.Task> allTasks = new LinkedList<models.Task>();
+		List<models.Task> doneTasks = new LinkedList<models.Task>();
 		if (currentRoom.taskTable!=null){
 			for (models.Task t : currentRoom.taskTable.tasks) {
 				if (!t.status)
 					allTasks.add(t);
+				else 
+					doneTasks.add(t);
 			}
 		}
 		
@@ -52,7 +55,7 @@ public class Task extends Controller {
 		} else {
 			warning = "user not found";
 		}
-		render(allRoomies, myTasks, allTasks, roomId, username, warning,genericAc);
+		render(allRoomies, myTasks, allTasks,doneTasks, roomId, username, warning,genericAc);
 	}
 
 	/**

@@ -41,8 +41,8 @@
 					<tr>
 						<th>Task</th>
 						<th>Assignee</th>
-						<th></th>
-						<th>Importance</th>
+						<th>Done ?</th>
+						<th>Importance&nbsp;&nbsp;&nbsp;</th>
 						<th>Remaining Date</th>
 					</tr>
 			</thead>
@@ -55,10 +55,20 @@
 						#{form @Task.changeStatus(roomId)}
 						<input type="hidden" name="id" id="id" value="${task.id}"/>
 						<input type="hidden" name="status" id="status" value="true"/>
-						<input type="submit" class="btn btn-success btn-small" value="Check"></td>
+						<input type="submit" class="btn btn-success btn-small" value="Check"/>
 						#{/form}
-						<td><span  id="importance_all_${task.id}">Level:${task.recurrence}</span><script>importance("#importance_all_${task.id}","${task.recurrence}")</script></td>
-						<td><div id="all_countdown_${task.id}"></div><script>countDown("all_countdown_${task.id}","${task.remainingDate}");</script></td>
+						</td>
+						<td>
+							<span  id="importance_all_${task.id}">Level:${task.recurrence}
+							</span>
+							<script>importance("#importance_all_${task.id}","${task.recurrence}")
+							</script>
+						</td>
+						<td>
+							<div id="all_countdown_${task.id}"></div>
+							<script>countDown("all_countdown_${task.id}","${task.remainingDate}");
+							</script>
+						</td>
 					</tr>
 					#{/list}
 				</tbody>
@@ -66,7 +76,12 @@
 				
 				#{form @Task.addTask(roomId)}
 					<tr>
-						<td><input type="text" name="task" value="Add new task"></td>
+						<td>
+						    <div class="input-append">
+								<button name="save" class="btn btn-success">Save</button>
+							    <input type="text" name="task" value="Add new task">
+							</div>
+						</td>
 						<td>							
 							#{select 'selectedUser', items:allRoomies, valueProperty:'id', labelProperty:'firstName' /}
 						</td>
@@ -79,12 +94,40 @@
 							  <option value="4">4</option>
 							</select>
 						</td>
-						<td><input type="text" id="datepicker" name="remainingDate"></td>
+						<td><input type="text" id="datepicker" name="remainingDate" style="width:100px">
+						</td>
 					</tr>
+		#{/form}
 				</tfoot>
 		  </table>
-		    <button name="save" class="btn pull-left btn-success">Save</button>
-		#{/form}
+
+		<h4>Task log</h4>
+    <table class="table table-striped table-hover table-bordered tablesorter">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Who did it?</th>
+          <th>State</th>
+          <th>Flag</th>
+        </tr>
+      </thead>
+      <tbody>
+        #{list items:doneTasks, as:'item'}
+        <tr>
+          <td>${item.title}</td>
+          <td>${item.roomy}</td>
+          <td>
+          #{form @Task.changeStatus(roomId)}
+           <input type="hidden" name="id" id="id" value="${item.id}"/>
+						<input type="hidden" name="status" id="status" value="false"/>
+						<input type="submit" class="btn btn-danger btn-small" value="Un-Check"></td>
+           #{/form}
+          </td>
+          <td><span  id="importance_all_${item.id}">Level:${item.recurrence}</span><script>importance("#importance_all_${item.id}","${item.recurrence}")</script></td>
+          </tr>
+        #{/list}
+          </tbody>
+          </table>
   </div>
 
 </div>

@@ -31,12 +31,14 @@ public class Profile extends Controller {
 		try {
 			if (r != null && r.pathToPicture!=null)	{
 					rImage = Images.toBase64(new File(r.pathToPicture));
+					play.Logger.debug("img "+r.pathToPicture);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		long roomId = r.owner.getId();
 		List<Room> rooms = Room.findAll();
+
 		render(roomId, r,rImage, username, rooms,genericAc);
 	}
 
